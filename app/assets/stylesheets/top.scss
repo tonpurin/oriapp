@@ -10,7 +10,7 @@
 	height: 60%;
 }
 
-.display-shops {
+.display-items {
 	position: relative;
 	top: 3%;
 	height: 30%;
@@ -40,7 +40,7 @@
 	height: 100% ;
 }
 
-.display-shops .shop_info p {
+.display-items .item_info p {
 	text-align:center;
 	font-size: 20px;
 }
@@ -50,12 +50,12 @@
 	//width: 30%;
 }
 
-.selected-shop-list {
+.selected-item-list {
 	margin: 0 auto;
 	padding: 0;
 }
 
-.selected-shop-list .selected-item{
+.selected-item-list .selected-item{
 	margin: 5% 0;
 }
 

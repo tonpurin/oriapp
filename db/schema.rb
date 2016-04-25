@@ -11,19 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420095930) do
+ActiveRecord::Schema.define(version: 20160425064654) do
 
-  create_table "shops", force: :cascade do |t|
-    t.string  "shop_name",    limit: 255
+  create_table "items", force: :cascade do |t|
+    t.string  "item_name",    limit: 255
     t.float   "rate",         limit: 24
-    t.string  "shop_pref",    limit: 255
-    t.string  "shop_genre",   limit: 255
+    t.string  "item_pref",    limit: 255
+    t.string  "item_genre",   limit: 255
     t.text    "image_url",    limit: 65535
-    t.string  "shop_zip",     limit: 255
-    t.string  "shop_address", limit: 255
-    t.decimal "shop_lat",                   precision: 11, scale: 8
-    t.decimal "shop_lng",                   precision: 11, scale: 8
-    t.text    "shop_url",     limit: 65535
+    t.string  "item_zip",     limit: 255
+    t.string  "item_address", limit: 255
+    t.decimal "item_lat",                   precision: 11, scale: 8
+    t.decimal "item_lng",                   precision: 11, scale: 8
+    t.text    "item_url",     limit: 65535
+  end
+
+  create_table "user_items", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "item_id",    limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

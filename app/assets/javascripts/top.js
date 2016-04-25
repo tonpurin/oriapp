@@ -31,7 +31,6 @@ window.onload = function()
     create_marker(lat, lng);
     // 地図を移動
     move_map_center(lat, lng);
-    // リストに追加
 
   });
 };
