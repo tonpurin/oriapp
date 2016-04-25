@@ -1,15 +1,25 @@
+
+// 正面画像のitem_idを取得，form_forに埋め込む
+set_current_item_id = function(){
+  gon.current_item_id = parseInt($('.slick-current a img').data("id"));
+  $('.form_item_id').val(gon.current_item_id);
+};
+
 // トップページのイベント周り
 window.onload = function()
 {
   // map表示
   create_map();
 
-  // スライド
+  // スライド初期化
   $('.pattern4').slick({
-
     centerMode: true,
     centerPadding: '160px'
+  });
 
+  // 画像をスライドさせたら...
+  $('.slick-prev, .slick-next').on('click', function() {
+    set_current_item_id();
   });
 
   // slick.min.jsの一部を無理やり上書き
@@ -21,17 +31,6 @@ window.onload = function()
   $('.slick-next').text("");
   $('.slick-next').append(img_element);
 
-  // 追加ボタンを押したら...
-  $('.iine-button button').on('click', function(){
-
-    // geocode取得
-    var item_id = $('.slick-current a img').data("id");
-    var lat = gon.items[item_id]["item_lat"];
-    var lng = gon.items[item_id]["item_lng"];
-    // markerを作成
-    create_marker(lat, lng);
-    // 地図を移動
-    move_map_center(lat, lng);
-
-  });
+  // 正面画像のid取得，formに埋め込む
+  set_current_item_id();
 };

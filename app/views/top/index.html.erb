@@ -14,7 +14,12 @@
 	</div>
 
 	<div class='iine-button'>
-		<button type="button" class="button button-royal button-pill button-giant">いいね！</button>
+		<%= form_for(@user_item, :url => {:controller => :top, :action => :create}, :remote => true) do |f| %>
+			<!-- viewに表示されない -->
+			<%= f.hidden_field :user_id, :value => 1, :class => "form_user_id" %>
+			<%= f.hidden_field :item_id, :value => 1, :class => "form_item_id" %>
+		  	<%= f.submit 'いいね!', :class => "button button-royal button-pill button-giant" %>
+		<% end %>
 	</div>
 
 	<ul class="selected-item-list" style="list-style:none;">

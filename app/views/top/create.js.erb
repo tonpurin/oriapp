@@ -1,0 +1,15 @@
+// form_forで:remote = > true...ajaxになる
+// top#createが呼ばれる
+// create.js.erbが呼ばれる (viewの代わり)
+
+
+// geocode取得
+// var item_id = $('.slick-current a img').data("id");
+var lat = gon.items[gon.current_item_id]["item_lat"];
+var lng = gon.items[gon.current_item_id]["item_lng"];
+// markerを作成
+create_marker(lat, lng);
+// 地図を移動
+move_map_center(lat, lng);
+
+// リストを表示
