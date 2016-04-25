@@ -47,4 +47,4 @@ end
 
 gem 'pry-rails'  # binding.pry
 gem 'devise'  # ログイン機能
-
+gem 'gon' # railsとjsで変数をやりとり可能
