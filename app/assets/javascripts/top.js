@@ -25,8 +25,9 @@ window.onload = function()
   $('.iine-button button').on('click', function(){
 
     // geocode取得
-    var lat = $('.slick-current a img').data("lat");
-    var lng = $('.slick-current a img').data("lng");
+    var item_id = $('.slick-current a img').data("id");
+    var lat = gon.items[item_id]["item_lat"];
+    var lng = gon.items[item_id]["item_lng"];
     // markerを作成
     create_marker(lat, lng);
     // 地図を移動
