@@ -12,7 +12,14 @@
 </head>
 <body>
 
-	<header>
+	<header class="clearfix">
+    <div class="left-contents">
+    </div>
+    <div class="right-contents">
+      <% if user_signed_in? %>
+        <%= link_to "logout", destroy_user_session_path, method: :delete, :class => "button button-royal button-pill button-giant" %>
+      <% end %>
+    </div>
 	</header>
 
 	<!-- コンテンツ -->

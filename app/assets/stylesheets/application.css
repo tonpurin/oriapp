@@ -35,11 +35,32 @@ h1, h2, h3, h4, h5, h6, p, body {
 }
 
 /* header */
-header{
+header {
   height: 8%;
   background-color: #F3C759;
   margin-bottom: 0px 5px;
 }
+
+header .left-contents {
+  height: 50%;
+  width: 20%;
+  float: left;
+  /*background-color: red;*/
+}
+
+header .right-contents {
+  position: relative;
+  height: 50%;
+  width: 20%;
+  float: right;
+  top: 20%;
+  right: 3%;
+}
+
+header .right-contents a {
+  /*font-size: 30px;*/
+}
+
 
 /* footer */
 footer{
