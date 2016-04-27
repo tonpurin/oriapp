@@ -14,7 +14,7 @@
 	</div>
 
 	<div class='iine-button'>
-		<%= form_for(@user_item, :url => {:controller => :top, :action => :create}, :remote => true) do |f| %>
+		<%= form_for(@new_user_item, :url => {:controller => :top, :action => :create}, :remote => true) do |f| %>
 			<!-- viewに表示されない -->
 			<%= f.hidden_field :user_id, :value => 1, :class => "form_user_id" %>
 			<%= f.hidden_field :item_id, :value => 1, :class => "form_item_id" %>
@@ -23,16 +23,7 @@
 	</div>
 
 	<ul class="selected-item-list" style="list-style:none;">
-		<li class="selected-item">
-			<div class="item-info">
-			hello
-			</div>
-		</li>
-		<li class="selected-item">
-			<div class="item-info">
-				<p>item</p>
-			</div>
-		</li>
+		<%= render :partial => "top/user_item", :collection => @user_items %>
 	</ul>
 
 </div>
