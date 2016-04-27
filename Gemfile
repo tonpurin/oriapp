@@ -48,3 +48,8 @@ end
 gem 'pry-rails'  # binding.pry
 gem 'devise'  # ログイン機能
 gem 'gon' # railsとjsで変数をやりとり可能
+
+# herokuデプロイ用
+group :production, :staging do
+  gem 'rails_12factor'
+end
