@@ -1,5 +1,8 @@
 class TopController < ApplicationController
 
+  # ログインしていない場合はログイン画面へ
+  before_action :authenticate_user!, :only => [:show, :index]
+
   def index
     @items = Item.limit(20)
     @user_items = UserItem.all
