@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160428050746) do
+ActiveRecord::Schema.define(version: 20160428051710) do
 
   create_table "groups", force: :cascade do |t|
     t.string   "group_name",  limit: 255
@@ -32,6 +32,13 @@ ActiveRecord::Schema.define(version: 20160428050746) do
     t.decimal "item_lat",                   precision: 11, scale: 8
     t.decimal "item_lng",                   precision: 11, scale: 8
     t.text    "item_url",     limit: 65535
+  end
+
+  create_table "user_groups", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "group_id",   limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_items", force: :cascade do |t|
