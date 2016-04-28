@@ -4,6 +4,7 @@ class TopController < ApplicationController
   before_action :authenticate_user!, :only => [:show, :index]
 
   def index
+    binding.pry
     @items = Item.limit(20)
     @user_items = UserItem.all
     @new_user_item = UserItem.new
