@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160428052121) do
+ActiveRecord::Schema.define(version: 20160428053429) do
 
   create_table "groups", force: :cascade do |t|
-    t.string   "group_name",  limit: 255
-    t.integer  "owner",       limit: 4
-    t.string   "destination", limit: 255
+    t.string   "group_name",    limit: 255
+    t.integer  "owner_user_id", limit: 4
+    t.string   "destination",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
