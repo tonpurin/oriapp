@@ -16,7 +16,7 @@
 	<div class='iine-button'>
 		<%= form_for(@new_user_item, :url => {:controller => :top, :action => :create}, :remote => true) do |f| %>
 			<!-- viewに表示されない -->
-			<%= f.hidden_field :user_group_id, :value => 1, :class => "form_user_id" %>
+			<%= f.hidden_field :user_group_id, :value => @current_user_group, :class => "form_user_group_id" %>
 			<%= f.hidden_field :item_id, :value => 1, :class => "form_item_id" %>
 		  	<%= f.submit 'いいね!', :class => "button button-royal button-pill button-giant" %>
 		<% end %>

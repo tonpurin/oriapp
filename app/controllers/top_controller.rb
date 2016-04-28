@@ -4,11 +4,9 @@ class TopController < ApplicationController
   before_action :authenticate_user!, :only => [:show, :index]
 
   def index
-    # binding.pry
-
     # ユーザのグループを自動選択
-    binding.pry
-
+    user_groups = current_user.user_groups.includes(:user_items)
+    @current_user_group = UserGroup.get_current_user_group(user_groups)
 
     # 観光地の候補
     @items = Item.limit(20)
