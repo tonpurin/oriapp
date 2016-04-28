@@ -11,5 +11,7 @@ var lng = gon.items[gon.current_item_id]["item_lng"];
 create_marker(lat, lng);
 // 地図を移動
 move_map_center(lat, lng);
-
 // リストを表示
+var item_name = gon.items[gon.current_item_id]["item_name"];
+var new_item = $('<li class="selected-item"><div class="item-info"><p>' + item_name + '</p></div></li>');
+$('.selected-item-list').append(new_item);

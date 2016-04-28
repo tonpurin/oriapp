@@ -87,13 +87,21 @@ move_map_center = function(lat, lng){
   };
 };
 
+// google mapの初期化
+init_gmap = function(){
 
+  // 地図作成
+  create_map();
+  // 選択中のアイテムの数だけマーカー作成
+  var marker_num = gon.user_items_geocodes.length
+  for (var i = 0; i < marker_num - 1; i++) {
+    tmp = gon.user_items_geocodes[i];
+    create_marker(tmp[0], tmp[1]);
+  }
+  // 最後のマーカーを作成・同時に地図を移動
+  last_marker = gon.user_items_geocodes[marker_num - 1];
+  create_marker(last_marker[0], last_marker[1]);
+  move_map_center(last_marker[0], last_marker[1]);
 
-
-
-
-
-
-
-
+};
 

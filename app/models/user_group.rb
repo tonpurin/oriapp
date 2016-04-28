@@ -26,11 +26,7 @@ class UserGroup < ActiveRecord::Base
           current_user_group = ug.id
         end
       end
-
     end
-
     return current_user_group
-
   end
-
 end

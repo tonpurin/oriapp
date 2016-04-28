@@ -8,8 +8,8 @@ set_current_item_id = function(){
 // トップページのイベント周り
 window.onload = function()
 {
-  // map表示
-  create_map();
+  // google map初期化
+  init_gmap();
 
   // スライド初期化
   $('.pattern4').slick({
