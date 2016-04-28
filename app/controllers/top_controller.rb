@@ -7,7 +7,7 @@ class TopController < ApplicationController
     # ユーザのグループを自動選択
     user_groups = current_user.user_groups.includes(:user_items)
     @current_user_group = UserGroup.get_current_user_group(user_groups)
-
+    binding.pry
     # 観光地の候補
     @items = Item.limit(20)
     # 投票中のアイテム

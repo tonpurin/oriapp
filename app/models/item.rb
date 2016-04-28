@@ -1,5 +1,7 @@
 class Item < ActiveRecord::Base
 
+  has_many :user_items
+
   def self.to_hash(model_data, key)
     """
     ActiveRecordのオブジェクトを指定のkeyでhashに変換
