@@ -61,10 +61,39 @@
 
 .item-info{
 	position: relative;
-	height: 200px;
-	width: 100%;
-	background-color: #97D3E3;
+	height: 250px;
+	width: 90%;
+	background-color: #E3E3E3;
 	margin: 0 auto;
 	text-align: center;
+	border-radius: 40px;
+}
+
+.item-info .item-info-left{
+	height: 100%;
+	width: 50%;
+	float: left;
+}
+
+.item-info .item-info-right{
+	position: relative;
+	left: 5%;
+	height: 100%;
+	widht: 50%;
+	float: left;
+}
+
+.item-info img {
+	position: relative;
+	height: 90%;
+	width: 50%;
+	top: 5%;
+	border-radius: 40px;
+}
+
+.item-info p {
+	position: relative;
+	top: 50%;
+	font-size: 25px;
 }
 

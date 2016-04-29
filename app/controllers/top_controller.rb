@@ -27,6 +27,9 @@ class TopController < ApplicationController
     UserItem.create(user_item_params)
   end
 
+  def destroy
+  end
+
   private
   def user_item_params
     params.require(:user_item).permit(:user_group_id, :item_id)
