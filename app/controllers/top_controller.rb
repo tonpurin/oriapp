@@ -28,6 +28,9 @@ class TopController < ApplicationController
   end
 
   def destroy
+    # binding.pry
+    user_item = UserItem.find(params[:id])
+    user_item.destroy
   end
 
   private
