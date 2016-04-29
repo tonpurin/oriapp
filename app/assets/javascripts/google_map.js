@@ -3,8 +3,8 @@
 
 // グローバル変数
 map = null;
-markers = [];
-marker_count = 0;
+markers = {};  // user_itemのidとマーカーの対応
+markers_id_order = []  // 入力された順番を保持するための配列
 
 __is_map_exist = function() {
 
@@ -36,15 +36,15 @@ create_map = function() {
   };
 };
 
-create_marker = function(lat, lng) {
+create_marker = function(lat, lng, uitem_id) {
 
   if (__is_map_exist()){
     // マーカーを作成
-    markers[marker_count] = new google.maps.Marker( {
+    markers[uitem_id] = new google.maps.Marker( {
       map: map ,
       position: new google.maps.LatLng(lat, lng),
     });
-    marker_count += 1;
+    markers_id_order.push(uitem_id);
   }else{
     console.log('there is no map');
   };
@@ -55,7 +55,7 @@ move_map_center = function(lat, lng){
   // すべてのマーカーが表示されるように縮尺を調整
 
   // マーカーの数で条件分岐
-  if (markers.length == 1){
+  if (markers_id_order.length == 1){
 
     // 位置情報のオブジェクトを生成
     var latlng = new google.maps.LatLng(lat ,lng) ;
@@ -68,8 +68,8 @@ move_map_center = function(lat, lng){
     var lat = [];
     var lng = [];
     var latlng = null;
-    for (var i = 0; i < markers.length; i++) {
-      latlng = markers[i].getPosition();
+    for (var i = 0; i < markers_id_order.length; i++) {
+      latlng = markers[markers_id_order[i]].getPosition();
       lat[i] = latlng.lat();
       lng[i] = latlng.lng();
     }
@@ -96,11 +96,11 @@ init_gmap = function(){
   var marker_num = gon.user_items_geocodes.length
   for (var i = 0; i < marker_num - 1; i++) {
     tmp = gon.user_items_geocodes[i];
-    create_marker(tmp[0], tmp[1]);
+    create_marker(tmp[0], tmp[1], tmp[2]);
   }
   // 最後のマーカーを作成・同時に地図を移動
   last_marker = gon.user_items_geocodes[marker_num - 1];
-  create_marker(last_marker[0], last_marker[1]);
+  create_marker(last_marker[0], last_marker[1], last_marker[2]);
   move_map_center(last_marker[0], last_marker[1]);
 
 };

@@ -4,14 +4,22 @@
 
 
 // geocode取得
-// var item_id = $('.slick-current a img').data("id");
 var lat = gon.items[gon.current_item_id]["item_lat"];
 var lng = gon.items[gon.current_item_id]["item_lng"];
+var user_item_id = (<%= @create_user_item_id %>);  // 対応するアクションのインスタンス変数を受け取れる
 // markerを作成
-create_marker(lat, lng);
+create_marker(lat, lng, user_item_id);
 // 地図を移動
 move_map_center(lat, lng);
-// リストを表示
+
+// リストを表示...要素を作成
+var item_url = gon.items[gon.current_item_id]["item_url"];
+var image_url = gon.items[gon.current_item_id]["image_url"];
 var item_name = gon.items[gon.current_item_id]["item_name"];
-var new_item = $('<li class="selected-item"><div class="item-info"><p>' + item_name + '</p></div></li>');
-$('.selected-item-list').append(new_item);
+
+var left_div_html = '<div class="item-info-left"><a href="' + item_url + '" %><img src="' +image_url + '"></a></div>';
+var right_div_html = '<div class="item-info-right"><a data-remote="true" rel="narrow" data-method="delete" href="/top/' + user_item_id + '">消去</a><p>' + item_name + '</p></div>';
+
+var outer_div = $('<li class="selected-item ui-id-' +  user_item_id + ' %>"><div class="item-info clearfix">' + left_div_html + right_div_html + '</div></li>');
+
+$('.selected-item-list').append(outer_div);

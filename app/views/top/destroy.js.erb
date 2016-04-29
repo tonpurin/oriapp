@@ -3,4 +3,23 @@
 // destroy.js.erbが呼ばれる (viewの代わり)
 
 
-alert("hello");
+var user_item_id = (<%= @destroy_user_item_id %>);
+
+// マーカーの情報を削除
+markers[user_item_id].setMap(null);
+delete markers[user_item_id];
+var array_index = markers_id_order.indexOf(user_item_id);
+markers_id_order.splice(array_index, 1);
+
+// 地図の移動
+var last_marker_id = markers_id_order[markers_id_order.length - 1];
+var last_marker = markers[last_marker_id];
+var last_marker_latlng = last_marker.getPosition();
+var last_marker_lat = last_marker_latlng.lat();
+var last_marker_lng = last_marker_latlng.lng();
+
+move_map_center(last_marker_lat, last_marker_lng);
+
+// リストから消去
+$(".ui-id-" + user_item_id).remove(); // 子要素もすべて消去
+

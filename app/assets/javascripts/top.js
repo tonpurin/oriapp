@@ -1,13 +1,15 @@
-
-// 正面画像のitem_idを取得，form_forに埋め込む
-set_current_item_id = function(){
-  gon.current_item_id = parseInt($('.slick-current a img').data("id"));
-  $('.form_item_id').val(gon.current_item_id);
-};
-
 // トップページのイベント周り
 window.onload = function()
 {
+
+  // -------- メソッド -----------------
+  // 正面画像のitem_idを取得，form_forに埋め込む
+  var set_current_item_id = function(){
+    gon.current_item_id = parseInt($('.slick-current a img').data("id"));
+    $('.form_item_id').val(gon.current_item_id)
+  };
+
+
   // google map初期化
   init_gmap();
 

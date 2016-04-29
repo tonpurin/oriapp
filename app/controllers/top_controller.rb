@@ -6,18 +6,18 @@ class TopController < ApplicationController
   def index
     # ユーザのグループを自動選択
     user_groups = current_user.user_groups.includes(:user_items)
-    @current_user_group = UserGroup.get_current_user_group(user_groups)
+    UserGroup.get_current_user_group_id(user_groups)
     # 観光地の候補
     @items = Item.limit(20)
     # 投票中のアイテム
-    @user_items = UserGroup.find(@current_user_group).user_items.includes(:item)
+    @user_items = UserGroup.find(UserGroup.user_group_id).user_items.includes(:item)
     # 投票用のインスタンス
     @new_user_item = UserItem.new
 
     # --- JSでも利用可能な変数 ----
     # 観光地の候補
     gon.items = Item.to_hash(@items, "id") # idでハッシュに変換
-    # ユーザが投票中のアイテムのジオコード
+    # ユーザが投票中のidとアイテムのジオコード
     gon.user_items_geocodes = UserItem.extract_item_geocode(@user_items)
     # top画面の正面のitem_idを取得
     gon.current_item_id = 0
@@ -25,17 +25,19 @@ class TopController < ApplicationController
 
   def create
     UserItem.create(user_item_params)
+    # 追加したレコードのIDを取得
+    @create_user_item_id = UserItem.where(user_item_params)[0].id
   end
 
   def destroy
-    # binding.pry
     user_item = UserItem.find(params[:id])
     user_item.destroy
+    @destroy_user_item_id = params[:id]
   end
 
   private
   def user_item_params
-    params.require(:user_item).permit(:user_group_id, :item_id)
+    params.require(:user_item).permit(:item_id).merge({:user_group_id => UserGroup.user_group_id})
   end
 
 end
