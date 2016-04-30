@@ -4,9 +4,11 @@ class TopController < ApplicationController
   before_action :authenticate_user!, :only => [:show, :index]
 
   def index
+    # ユーザの所属するグループ情報
+    @user_groups = current_user.user_groups.includes(:group)
     # ユーザのグループを自動選択
-    user_groups = current_user.user_groups.includes(:user_items)
-    UserGroup.get_current_user_group_id(user_groups)
+    user_group_items = current_user.user_groups.includes(:user_items)
+    UserGroup.get_current_user_group_id(user_group_items)
     # 観光地の候補
     @items = Item.limit(20)
     # 投票中のアイテム

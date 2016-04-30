@@ -8,7 +8,7 @@
   left: 0px;
   height: 100%;
   width: 100%;
-  background: #000;
+  background: white;
   display: none;
 }
 #group-div{
@@ -29,4 +29,7 @@
   height: 14px;
   /*background: url(../img/modal_close.png);*/
   z-index: 2;
+}
+
+.modal-user-group-div {
 }
