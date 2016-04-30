@@ -35,10 +35,13 @@ window.onload = function()
   // 正面画像のid取得，formに埋め込む
   set_current_item_id();
 
-  // Menuのイベントを設定
+  // Menuにリンク・イベントを設定
+  // ドロップダウンメニューに対してリンクがうまく貼れない...
+  // htmlに隠し要素で埋め込んで無理やりクリック
+  $('.menu-row2').on('click', function(){
+    $('.menu-event2 a').trigger("click");
+  });
   $('.menu-row3').on('click', function(){
-    // JS内でdestroy_user_session_pathにリクエストを送れない...
-    // htmlに隠し要素で埋め込んで無理やりクリック
     $('.menu-event3 a').trigger("click");
   });
 };
