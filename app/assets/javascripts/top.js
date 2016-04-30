@@ -1,7 +1,6 @@
 // トップページのイベント周り
 window.onload = function()
 {
-
   // -------- メソッド -----------------
   // 正面画像のitem_idを取得，form_forに埋め込む
   var set_current_item_id = function(){
@@ -35,4 +34,11 @@ window.onload = function()
 
   // 正面画像のid取得，formに埋め込む
   set_current_item_id();
+
+  // Menuのイベントを設定
+  $('.menu-row3').on('click', function(){
+    // JS内でdestroy_user_session_pathにリクエストを送れない...
+    // htmlに隠し要素で埋め込んで無理やりクリック
+    $('.menu-event3 a').trigger("click");
+  });
 };

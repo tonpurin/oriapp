@@ -1,6 +1,7 @@
 // http://codepen.io/HieuHuynh/pen/ogZNbY
 
 (function ( $ ) {
+
   var elActive = '';
     $.fn.selectCF = function( options ) {
 
@@ -49,15 +50,7 @@
 
       $.each(list, function(k, v){
         // s = (v.selected == 1)? "selected":"";
-
-        // 各項目で異なるリンク, イベントを貼る
-        if (v.value == 1){
-          html += "<li value="+v.value+" class='menu-acount'>"+v.text+"</li>";
-        }else if(v.value == 2){
-          html += "<li value="+v.value+" class='menu-group'>"+v.text+"</li>";
-        }else if(v.value == 3){
-          html += "<li value="+v.value+" class='menu-logout'><a rel='nofollow' data-method='delete' href='/users/sign_out'>ログアウト</a></li>";
-        };
+        html += "<li value=" + v.value + " class='menu-acount menu-row" + v.value + "'>"+v.text+"</li>"
       });
       html +=     "</ul>";
       html +=   "</li>";

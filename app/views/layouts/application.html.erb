@@ -13,7 +13,8 @@
 <body>
 
   <header class="clearfix">
-    <div id="wapper" class="left-contents">
+    <% if user_signed_in? %>
+      <div id="wapper" class="left-contents">
         <div class="style1">
           <select class="select">
             <option value="1">アカウント</option>
@@ -21,12 +22,15 @@
             <option value="3">ログアウト</option>
           </select>
         </div>
+        <!-- Menuの各アクションを以下に定義 -->
+        <div class="hidden-menu-event">
+          <span class="menu-event3"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></span>
+        </div>
       </div>
-    <div class="right-contents">
-      <% if user_signed_in? %>
-        <%= link_to "logout", destroy_user_session_path, method: :delete, :class => "button button-royal button-pill button-giant" %>
-      <% end %>
-    </div>
+
+      <div class="right-contents">
+      </div>
+    <% end %>
   </header>
 
 	<!-- コンテンツ -->

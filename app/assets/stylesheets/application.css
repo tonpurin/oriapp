@@ -48,6 +48,10 @@ header .left-contents {
   /*background-color: red;*/
 }
 
+.hidden-menu-event {
+  display: none;
+}
+
 header .right-contents {
   position: relative;
   height: 50%;
@@ -68,3 +72,4 @@ footer{
   text-align: center;
   /*background-color: #FF9500;*/
 }
+
