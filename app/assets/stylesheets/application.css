@@ -16,7 +16,7 @@
 
 body, html {
   height: 100%;
-  // background-color: #ddd;
+  background-image: url("back-image.jpg");
 }
 
 h1, h2, h3, h4, h5, h6, p, body {
@@ -37,13 +37,13 @@ h1, h2, h3, h4, h5, h6, p, body {
 /* header */
 header {
   height: 8%;
-  background-color: #F3C759;
+  background-color: #333333;
   margin-bottom: 0px 5px;
 }
 
 header .left-contents {
-  height: 50%;
-  width: 20%;
+  height: 100%;
+  width: 50%;
   float: left;
   /*background-color: red;*/
 }

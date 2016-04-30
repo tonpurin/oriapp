@@ -12,15 +12,22 @@
 </head>
 <body>
 
-	<header class="clearfix">
-    <div class="left-contents">
-    </div>
+  <header class="clearfix">
+    <div id="wapper" class="left-contents">
+        <div class="style1">
+          <select class="select">
+            <option value="1">アカウント</option>
+            <option value="2">グループ</option>
+            <option value="3">ログアウト</option>
+          </select>
+        </div>
+      </div>
     <div class="right-contents">
       <% if user_signed_in? %>
         <%= link_to "logout", destroy_user_session_path, method: :delete, :class => "button button-royal button-pill button-giant" %>
       <% end %>
     </div>
-	</header>
+  </header>
 
 	<!-- コンテンツ -->
 	<%= yield %>
