@@ -16,7 +16,7 @@
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
   display: none;
   padding: 30px;
-  width: 50%;
+  width: 70%;
   background-image: url("back-image.jpg");
   border-radius: 10px;
  }
@@ -29,7 +29,29 @@
   height: 14px;
   /*background: url(../img/modal_close.png);*/
   z-index: 2;
+  font-size: 30px;
 }
 
 .modal-user-group-div {
+  margin: 30px 10px;
+  padding: 10px 10px;
+  border: thick #333333 solid;
+  border-radius: 10px;
+}
+
+.modal-left {
+  float: left;
+  width: 50%;
+}
+
+.modal-left img {
+  height: 70%;
+  width: 80%;
+  border-radius: 100px;
+}
+
+.modal-right {
+  float: right;
+  width: 40%;
+  text-align: center;
 }

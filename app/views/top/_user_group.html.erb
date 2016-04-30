@@ -1,3 +1,10 @@
-<div class="modal-user-group-div">
-	<p style="font-size: 30px;"><%= user_group.group.group_name %></p>
+<div class="modal-user-group-div clearfix">
+	<div class="modal-left">
+		<%= image_tag 'sample1.png', :class => 'modal-sample-image'%>
+	</div>
+	<div class="modal-right">
+		<p style="font-size: 50px;"><%= user_group.group.group_name %></p>
+		<p style="font-size: 50px;"><%= user_group.group.owner_user_id %></p>
+		<p style="font-size: 50px;"><%= user_group.group.destination %></p>
+	</div>
 </div>
