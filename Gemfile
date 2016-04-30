@@ -48,6 +48,7 @@ end
 gem 'pry-rails'  # binding.pry
 gem 'devise'  # ログイン機能
 gem 'gon' # railsとjsで変数をやりとり可能
+gem 'jquery-turbolinks' # turbolinksを除外するgem
 
 # herokuデプロイ用
 group :production, :staging do

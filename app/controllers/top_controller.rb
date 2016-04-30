@@ -6,9 +6,16 @@ class TopController < ApplicationController
   def index
     # ユーザの所属するグループ情報
     @user_groups = current_user.user_groups.includes(:group)
-    # ユーザのグループを自動選択
-    user_group_items = current_user.user_groups.includes(:user_items)
-    UserGroup.get_current_user_group_id(user_group_items)
+    # ユーザのグループを選択
+    if params["id"].blank? then
+      # 起動時は最新の投稿から判断
+      user_group_items = current_user.user_groups.includes(:user_items)
+      UserGroup.get_current_user_group_id(user_group_items)
+    else
+      # ユーザのチェックが必要
+      UserGroup.set_user_group_id(params["id"])
+    end
+
     # 観光地の候補
     @items = Item.limit(20)
     # 投票中のアイテム
@@ -23,6 +30,7 @@ class TopController < ApplicationController
     gon.user_items_geocodes = UserItem.extract_item_geocode(@user_items)
     # top画面の正面のitem_idを取得
     gon.current_item_id = 0
+
   end
 
   def create

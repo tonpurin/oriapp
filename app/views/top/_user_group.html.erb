@@ -1,10 +1,12 @@
 <div class="modal-user-group-div clearfix">
-	<div class="modal-left">
-		<%= image_tag 'sample1.png', :class => 'modal-sample-image'%>
-	</div>
-	<div class="modal-right">
-		<p style="font-size: 50px;"><%= user_group.group.group_name %></p>
-		<p style="font-size: 50px;"><%= user_group.group.owner_user_id %></p>
-		<p style="font-size: 50px;"><%= user_group.group.destination %></p>
-	</div>
+	<%= link_to({:controller => :top, :action => :index, :id => user_group.id }, data: {no_turbolink:true}) do %>
+		<div class="modal-left">
+			<%= image_tag 'sample1.png', :class => 'modal-sample-image'%>
+		</div>
+		<div class="modal-right">
+			<p style="font-size: 50px;"><%= user_group.group.group_name %></p>
+			<p style="font-size: 50px;"><%= user_group.group.owner_user_id %></p>
+			<p style="font-size: 50px;"><%= user_group.group.destination %></p>
+		</div>
+	<% end %>
 </div>

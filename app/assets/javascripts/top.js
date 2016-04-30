@@ -25,10 +25,10 @@ window.onload = function()
 
   // slick.min.jsの一部を無理やり上書き
   // prev, nextの子要素に画像を追加
-  var img_element = '<img src="assets/left-arrow.png" class="left-arrow">';
+  var img_element = '<img src="/assets/left-arrow.png" class="left-arrow">';
   $('.slick-prev').text("");
   $('.slick-prev').append(img_element);
-  var img_element = '<img src="assets/right-arrow.png" class="right-arrow">';
+  var img_element = '<img src="/assets/right-arrow.png" class="right-arrow">';
   $('.slick-next').text("");
   $('.slick-next').append(img_element);
 

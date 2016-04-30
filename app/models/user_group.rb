@@ -10,6 +10,10 @@ class UserGroup < ActiveRecord::Base
   def self.user_group_id
     return @@user_group_id
   end
+  # セッタ
+  def self.set_user_group_id(id)
+    @@user_group_id = id
+  end
 
   def self.get_current_user_group_id(user_groups)
     """
