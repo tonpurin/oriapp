@@ -114,14 +114,16 @@ init_gmap = function(){
   create_map();
   // 選択中のアイテムの数だけマーカー作成
   var marker_num = gon.user_items_geocodes.length
-  for (var i = 0; i < marker_num - 1; i++) {
-    tmp = gon.user_items_geocodes[i];
-    create_marker(tmp[0], tmp[1], tmp[2]);
-  }
-  // 最後のマーカーを作成・同時に地図を移動
-  last_marker = gon.user_items_geocodes[marker_num - 1];
-  create_marker(last_marker[0], last_marker[1], last_marker[2]);
-  move_map_center(last_marker[0], last_marker[1]);
+  if (marker_num > 0) {
+    for (var i = 0; i < marker_num - 1; i++) {
+      tmp = gon.user_items_geocodes[i];
+      create_marker(tmp[0], tmp[1], tmp[2]);
+    }
+    // 最後のマーカーを作成・同時に地図を移動
+    last_marker = gon.user_items_geocodes[marker_num - 1];
+    create_marker(last_marker[0], last_marker[1], last_marker[2]);
+    move_map_center(last_marker[0], last_marker[1]);
+  };
 
 };
 

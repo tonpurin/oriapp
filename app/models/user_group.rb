@@ -27,7 +27,7 @@ class UserGroup < ActiveRecord::Base
     :retrun: current_user_group_id:
     ユーザ×グループID
     """
-    current_user_group_id = 0
+    current_user_group_id = -1
     latest_date = Time.zone.local(0)
 
     user_groups.each do |ug|
@@ -42,6 +42,11 @@ class UserGroup < ActiveRecord::Base
       end
     end
 
-    @@user_group_id = current_user_group_id
+    if current_user_group_id == -1 then
+      # どのグループでも投稿していない場合
+      @@user_group_id = user_groups[0].id
+    else
+      @@user_group_id = current_user_group_id
+    end
   end
 end
