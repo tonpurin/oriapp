@@ -13,7 +13,7 @@
 <body>
 
   <header class="clearfix">
-    <% if user_signed_in? %>
+    <% if user_signed_in? and params[:controller] == "top" %>
       <div id="wapper" class="left-contents">
         <div class="style1">
           <select class="select">
@@ -28,8 +28,9 @@
           <span class="menu-event3"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></span>
         </div>
       </div>
-
-      <div class="right-contents">
+    <% else %>
+      <div class="left-contents">
+        <%= link_to "Home", "/", data: {no_turbolink:true} %>
       </div>
     <% end %>
   </header>

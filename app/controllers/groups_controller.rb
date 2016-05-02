@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
 
   def new
+    # binding.pry
     @new_group = Group.new
   end
 
@@ -16,7 +17,9 @@ class GroupsController < ApplicationController
     add_members.each{|key, member_obj|
       UserGroup.create({:user_id => member_obj['user_id'], :group_id => group_id})
     }
-    redirect_to controller: 'groups', action: 'new'
+    # トップページにリダイレクト
+    user_group_id = UserGroup.where({:user_id => current_user.id, :group_id => group_id})[0].id
+    redirect_to controller: 'top', action: "index", id: user_group_id
   end
 
   private
