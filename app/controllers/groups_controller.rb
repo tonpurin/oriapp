@@ -5,6 +5,15 @@ class GroupsController < ApplicationController
   end
 
   def create
+    a = group_params
+    # binding.pry
+    Group.create(group_params)
+    redirect_to controller: 'groups', action: 'new'
+  end
+
+  private
+  def group_params
+    params.require(:group).permit(:group_name, :destination).merge({:owner_user_id => current_user.id})
   end
 
 end
