@@ -9,6 +9,10 @@
       </div>
 
       <div class="field form-item">
+          <%= f.text_field :unique_name, autofocus: true, :placeholder => "Unique NickName"%>
+      </div>
+
+      <div class="field form-item">
         <%= f.password_field :password, autocomplete: "off", :placeholder => "Password #{@minimum_password_length} minimum" %>
       </div>
 
