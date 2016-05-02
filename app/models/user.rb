@@ -12,4 +12,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :unique_name
   validates_presence_of :unique_name
 
+  # paperclip用
+  has_attached_file :avatar, styles: { medium: "300x300#", thumb: "100x100#" }
+  validates_attachment_content_type :avatar, content_type: ["image/jpg","image/jpeg","image/png"]
+
 end
