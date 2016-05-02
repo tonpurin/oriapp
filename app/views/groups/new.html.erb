@@ -1,1 +1,19 @@
-hello
+<div class="login-contents">
+  <div class="form-wrapper">
+    <h1 style="font-size: 70px;">New Group</h1>
+    <%= form_for(@new_group, :url => {:controller => :groups, :action => :create}) do |f|  %>
+
+      <div class="field form-item">
+          <%= f.text_field :group_name, autofocus: true, :placeholder => "Group Name"%>
+      </div>
+
+      <div class="field form-item">
+        <%= f.text_field :destination, autocomplete: "off", :placeholder => "Destination" %>
+      </div>
+
+      <div class="actions button-panel">
+          <%= f.submit "ADD", :class => "user_button"%>
+      </div>
+    <% end %>
+  </div>
+</div>
