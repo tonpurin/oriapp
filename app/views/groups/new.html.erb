@@ -13,17 +13,17 @@
 
       <div class="add-member clearfix">
         <div class="add-member-button-div">
-          <button type="button" class="button button-action button-pill button-large">other?</button>
+          <%= f.add_nested_fields_link :user_groups, 'Add User', class: 'button button-action button-pill button-large', role: 'button' %>
         </div>
         <div class="field form-item">
-          <%= fields_for(@new_user_group) do |f2| %>
-            <%= f2.text_field :user_id, :placeholder => "Member1 : UserID"%>
+          <%= f.nested_fields_for :user_groups, wrapper_tag: :div do |f2| %>
+            <%= f2.text_field :user_id, :placeholder => "Member : UserID" %>
           <% end %>
         </div>
       </div>
 
       <div class="actions button-panel">
-          <%= f.submit "ADD", :class => "user_button"%>
+          <%= f.submit "Create", :class => "user_button"%>
       </div>
     <% end %>
   </div>
