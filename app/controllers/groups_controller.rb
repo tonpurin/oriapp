@@ -2,11 +2,11 @@ class GroupsController < ApplicationController
 
   def new
     @new_group = Group.new
+    @new_user_group = UserGroup.new
   end
 
   def create
-    a = group_params
-    # binding.pry
+    binding.pry
     Group.create(group_params)
     redirect_to controller: 'groups', action: 'new'
   end

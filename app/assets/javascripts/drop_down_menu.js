@@ -1,7 +1,5 @@
 // http://codepen.io/HieuHuynh/pen/ogZNbY
-
 (function ( $ ) {
-
   var elActive = '';
     $.fn.selectCF = function( options ) {
 
