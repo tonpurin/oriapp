@@ -40,6 +40,9 @@ window.onload = function()
   // Menuにリンク・イベントを設定
   // ドロップダウンメニューに対してリンクがうまく貼れない...
   // htmlに隠し要素で埋め込んで無理やりクリック
+  $('.menu-row1').on('click', function(){
+    $('.menu-event1 a').trigger("click");
+  });
   $('.menu-row2').on('click', function(){
     $('.menu-event2 a').trigger("click");
   });
