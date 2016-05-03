@@ -6,7 +6,7 @@
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
       <div class="field form-item">
-          <%= f.email_field :email, autofocus: true, :placeholder => "Email Address"%>
+          <%= f.text_field :unique_name, autofocus: true, :placeholder => "User ID"%>
       </div>
 
       <div class="field form-item">
