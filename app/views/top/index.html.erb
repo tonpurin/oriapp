@@ -26,10 +26,18 @@
 	</ul>
 
 	<div class="modal-div">
+		<div id="account-div">
+			<p><%= current_user.email %></p>
+			<p><%= current_user.unique_name %></p>
+			<%= image_tag current_user.avatar %>
+			<span class="modal_close">☓</span>
+			<%= link_to "EDIT", edit_user_registration_path, :class => "button button-action button-pill button-giant group-create-button", :method => "get" %>
+		</div>
+
 		<div id="group-div">
 			<%= render :partial => "top/user_group", :collection => @user_groups %>
-		<span class="modal_close">☓</span>
-		<%= link_to "Create", "/groups/new" , :class => "button button-action button-pill button-giant group-create-button"%>
+			<span class="modal_close">☓</span>
+			<%= link_to "Create", "/groups/new" , :class => "button button-action button-pill button-giant group-create-button"%>
 		</div>
 	</div>
 

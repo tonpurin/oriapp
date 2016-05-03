@@ -24,7 +24,7 @@
         </div>
         <!-- Menuの各アクションを以下に定義 -->
         <div class="hidden-menu-event">
-          <span class="menu-event1"><%= link_to "アカウント", "/users/#{current_user.id}", method: :get %></span>
+          <span class="menu-event1"><a rel="leanModal" href="#account-div">アカウント</a></span>
           <span class="menu-event2"><a rel="leanModal" href="#group-div">グループ</a></span>
           <span class="menu-event3"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></span>
         </div>
@@ -39,8 +39,8 @@
 	<!-- コンテンツ -->
 	<%= yield %>
 
-	<!-- <footer>
+	<footer>
 		<h6>copyright</h6>
-	</footer> -->
+	</footer>
 </body>
 </html>
