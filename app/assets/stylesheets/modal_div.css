@@ -40,45 +40,61 @@
   outline-offset: -5px;
 }
 
-.modal-left {
+.account-edit-button {
+  display: block;
+  margin: 0 auto;
+}
+
+#group-div .modal-user-group-div {
+  margin-bottom: 10px;
+}
+
+#group-div .modal-user-group-div .modal-left {
   float: left;
   width: 50%;
   margin-left: 20px;
   margin-top: 10px;
 }
 
-.modal-left img {
+#group-div .modal-user-group-div .modal-left img {
   height: 60%;
   width: 60%;
   border-radius: 80%;
 }
 
-.modal-right {
+#group-div .modal-user-group-div .modal-left img:hover {
+  border: solid 5px #5EABE6;
+}
+
+#group-div .modal-user-group-div .modal-right {
   float: right;
   height: 70%;
   width: 40%;
   text-align: center;
 }
 
-.account-edit-button {
-  display: block;
-  margin: 0 auto;
+#group-div .members-slide-button {
+  font-size: 40px;
+  text-align: center;
+  font-family: 'Neucha', cursive;
+  color: #CACEDA;
 }
 
-.group-members-modal-bottom {
+#group-div .members-slide-button:hover {
+  color: #101115;
+}
+
+#group-div #modal-bottom {
   height: 50%;
   width: 70%;
   margin: 0 auto;
   margin-bottom: 20px;
-  /*display: none;*/
-}
-
-.group-members-modal-bottom ul {
-  font-size: 30px;
+  display: none;
 }
 
 #group-div .group-create-button {
   display: block;
   width: 50%;
   margin: 0 auto;
+  margin-top: 20px;
 }
