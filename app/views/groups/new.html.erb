@@ -21,7 +21,7 @@
         </div>
         <div class="field form-item">
           <%= f.nested_fields_for :user_groups, wrapper_tag: :div do |f2| %>
-            <%= f2.text_field :user_id, :placeholder => "Member : UserID" %>
+            <%= f2.text_field :user_name, :placeholder => "Member : UserID" %>
           <% end %>
         </div>
       </div>

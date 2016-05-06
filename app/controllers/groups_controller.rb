@@ -17,12 +17,12 @@ class GroupsController < ApplicationController
 
     # ユーザとグループの結びつけ
     # オーナー
-    UserGroup.create({:user_id => current_user.id, :group_id => group_id})
+    UserGroup.create({:user_id => current_user.id, :group_id => group_id, :user_name => current_user.unique_name})
     # メンバー
     unless user_groups_params.blank? then
       add_members = user_groups_params
       add_members.each{|key, member_obj|
-        UserGroup.create({:user_id => member_obj['user_id'], :group_id => group_id})
+        UserGroup.create({:user_id => User.where(:unique_name => member_obj['user_name'])[0].id, :group_id => group_id, :user_name => member_obj["user_name"]})
       }
     end
 

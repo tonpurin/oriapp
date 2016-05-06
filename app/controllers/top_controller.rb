@@ -59,7 +59,7 @@ class TopController < ApplicationController
     new_group_record = Group.create(:group_name => "individual", :owner_user_id => current_user.id, :owner_user_name => current_user.unique_name, :destination => "北海道")
 
     # ユーザとグループを紐付ける
-    new_user_group_record = UserGroup.create(:user_id => current_user.id, :group_id => new_group_record.id)
+    new_user_group_record = UserGroup.create(:user_id => current_user.id, :group_id => new_group_record.id, :user_name => current_user.unique_name)
     # ユーザ✕グループID取得・セット
     UserGroup.set_user_group_id(new_user_group_record.id)
   end
