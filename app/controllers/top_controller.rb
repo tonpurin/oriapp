@@ -56,13 +56,12 @@ class TopController < ApplicationController
     """
     個人グループを作成・ユーザとひも付け
     """
-    Group.create(:group_name => "individual", :owner_user_id => current_user.id, :destination => "北海道")
+    new_group_record = Group.create(:group_name => "individual", :owner_user_id => current_user.id, :owner_user_name => current_user.unique_name, :destination => "北海道")
+
     # ユーザとグループを紐付ける
-    group_id = Group.where({:group_name => "individual", :owner_user_id => current_user.id})[0].id
-    UserGroup.create(:user_id => current_user.id, :group_id => group_id)
+    new_user_group_record = UserGroup.create(:user_id => current_user.id, :group_id => new_group_record.id)
     # ユーザ✕グループID取得・セット
-    user_group_id = UserGroup.where({:user_id => current_user.id, :group_id => group_id})[0].id
-    UserGroup.set_user_group_id(user_group_id)
+    UserGroup.set_user_group_id(new_user_group_record.id)
   end
 
   def set_user_group_id

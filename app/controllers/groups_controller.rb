@@ -29,7 +29,7 @@ class GroupsController < ApplicationController
 
   private
   def group_params
-    params.require(:group).permit(:group_name, :destination, :avatar).merge({:owner_user_id => current_user.id})
+    params.require(:group).permit(:group_name, :destination, :avatar).merge({:owner_user_id => current_user.id, :owner_user_name => current_user.unique_name})
   end
 
   def user_groups_params

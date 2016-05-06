@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160506021413) do
+ActiveRecord::Schema.define(version: 20160506062433) do
 
   create_table "groups", force: :cascade do |t|
     t.string   "group_name",          limit: 255
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20160506021413) do
     t.string   "avatar_content_type", limit: 255
     t.integer  "avatar_file_size",    limit: 4
     t.datetime "avatar_updated_at"
+    t.string   "owner_user_name",     limit: 255
   end
 
   create_table "items", force: :cascade do |t|
