@@ -59,13 +59,19 @@
 }
 
 .item-info{
+	// http://coliss.com/articles/build-websites/operation/css/css3-tutorial-7-super-easy-css-recipes.html
 	position: relative;
-	height: 250px;
+	height: 300px;
 	width: 90%;
 	background-color: #E3E3E3;
 	margin: 0 auto;
 	text-align: center;
-	border-radius: 40px;
+	outline: 1px dashed #98abb9;
+	outline-offset: -5px;
+	/*shadow*/
+	-webkit-box-shadow: 2px 2px 2px #000;
+	-moz-box-shadow: 2px 2px 2px #000;
+	box-shadow: 2px 2px 2px #000;
 }
 
 .item-info .item-info-left{

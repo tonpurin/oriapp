@@ -35,19 +35,22 @@
 .modal-user-group-div, .modal-user-div {
   margin: 30px 10px;
   padding: 10px 10px;
-  border: thick #333333 solid;
-  border-radius: 10px;
+  background-color: #E3E3E3;
+  outline: 1px dashed #98abb9;
+  outline-offset: -5px;
 }
 
 .modal-left {
   float: left;
   width: 50%;
+  margin-left: 20px;
+  margin-top: 10px;
 }
 
 .modal-left img {
-  height: 70%;
-  width: 80%;
-  border-radius: 100px;
+  height: 60%;
+  width: 60%;
+  border-radius: 80%;
 }
 
 .modal-right {
