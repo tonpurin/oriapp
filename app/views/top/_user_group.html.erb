@@ -1,7 +1,7 @@
 <div class="modal-user-group-div clearfix">
 	<%= link_to({:controller => :top, :action => :index, :id => user_group.id }, data: {no_turbolink:true}) do %>
 		<div class="modal-left">
-			<%= image_tag 'sample1.png', :class => 'modal-sample-image'%>
+			<%= image_tag user_group.group.avatar,  :class => 'modal-sample-image'%>
 		</div>
 		<div class="modal-right">
 			<p style="font-size: 50px;"><%= user_group.group.group_name %></p>
