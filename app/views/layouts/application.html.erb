@@ -29,6 +29,9 @@
           <span class="menu-event3"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></span>
         </div>
       </div>
+      <div class="right-contents">
+        <%= image_tag @group_avatar %>
+      </div>
     <% else %>
       <div class="left-contents">
         <%= link_to "Home", "/", data: {no_turbolink:true} %>

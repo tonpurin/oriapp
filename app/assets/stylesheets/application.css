@@ -65,6 +65,20 @@ header .left-contents a {
   display: none;
 }
 
+header .right-contents {
+  height: 100%;
+  width: 30%;
+  float: right;
+  text-align: center;
+}
+
+header .right-contents img {
+  position: relative;
+  top: 20px;
+  height: 70%;
+  width: 70%;
+}
+
 
 /* footer */
 footer{

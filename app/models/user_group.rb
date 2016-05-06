@@ -15,6 +15,12 @@ class UserGroup < ActiveRecord::Base
     @@user_group_id = id
   end
 
+  # ユーザ✕グループのアバター
+  def self.user_group_avatar
+    user_group_record = UserGroup.find(@@user_group_id)
+    return user_group_record.group.avatar
+  end
+
   def self.get_current_user_group_id(user_groups)
     """
     現在ログイン中のユーザのグループを自動選択

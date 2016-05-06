@@ -31,6 +31,10 @@ class GroupsController < ApplicationController
     redirect_to controller: 'top', action: "index", id: user_group_id
   end
 
+  def destroy
+    # グループ消去
+  end
+
   private
   def group_params
     params.require(:group).permit(:group_name, :destination, :avatar).merge({:owner_user_id => current_user.id, :owner_user_name => current_user.unique_name})

@@ -21,6 +21,8 @@ class TopController < ApplicationController
     @new_user_item = UserItem.new
     # ユーザの所属するグループ情報
     @user_groups = current_user.user_groups.includes(:group)
+    # グループのアバター
+    @group_avatar = UserGroup.user_group_avatar
 
     # --- JSでも利用可能な変数 ----
     # 観光地の候補

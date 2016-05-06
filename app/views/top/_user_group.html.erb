@@ -8,7 +8,9 @@
 		<p style="font-size: 30px;"><%= user_group.group.group_name %></p>
 		<p style="font-size: 30px;"><%= user_group.group.owner_user_name %></p>
 		<p style="font-size: 30px;"><%= user_group.group.destination %></p>
-		<input type="button", name="members" value="members" class="group-members-show", style="font-size: 30px;">
+		<% if current_user.id == user_group.group.owner_user_id then %>
+			<p style="font-size: 50px;">消去</p>
+		<% end %>
 	</div>
 </div>
 
