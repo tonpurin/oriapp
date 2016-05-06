@@ -11,6 +11,10 @@
         <%= f.text_field :destination, autocomplete: "off", :placeholder => "Destination" %>
       </div>
 
+      <div class="field", style="margin-top: 50px;">
+          <%= f.file_field :avatar, :class => "dropify" %>
+      </div>
+
       <div class="add-member clearfix">
         <div class="add-member-button-div">
           <%= f.add_nested_fields_link :user_groups, 'Add User', class: 'button button-action button-pill button-large', role: 'button' %>

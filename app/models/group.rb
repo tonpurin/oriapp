@@ -11,7 +11,10 @@ class Group < ActiveRecord::Base
 
   private
   def set_default
-    self.avatar = File.new("app/assets/images/no-image.png", "r")
+    # avatarがnilだった場合
+    if self.avatar.blank? then
+      self.avatar = File.new("app/assets/images/no-image.png", "r")
+    end
   end
 
 end
