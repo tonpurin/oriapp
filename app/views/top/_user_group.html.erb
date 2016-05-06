@@ -8,5 +8,16 @@
 		<p style="font-size: 30px;"><%= user_group.group.group_name %></p>
 		<p style="font-size: 30px;"><%= user_group.group.owner_user_name %></p>
 		<p style="font-size: 30px;"><%= user_group.group.destination %></p>
+		<input type="button", name="members" value="members" class="group-members-show", style="font-size: 30px;">
 	</div>
+</div>
+
+<!-- 冗長にメンバーを取得 -->
+<% group_users = user_group.group.user_groups %>
+<div class="group-members-modal-bottom">
+	<ul class=<%= "group-number#{user_group.group.id}" %>>
+	<% group_users.each do |gu| %>
+		<li><%= gu.user.unique_name %></li>
+	<% end %>
+	</ul>
 </div>

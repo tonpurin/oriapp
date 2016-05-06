@@ -39,21 +39,34 @@
   border-radius: 10px;
 }
 
-.modal-left {
+.modal-user-group-div .modal-left {
   float: left;
   width: 50%;
 }
 
-.modal-left img {
+.modal-user-group-div .modal-left img {
   height: 70%;
   width: 80%;
   border-radius: 100px;
 }
 
-.modal-right {
+.modal-user-group-div .modal-right {
   float: right;
+  height: 70%;
   width: 40%;
   text-align: center;
+}
+
+.group-members-modal-bottom {
+  height: 50%;
+  width: 70%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  /*display: none;*/
+}
+
+.group-members-modal-bottom ul {
+  font-size: 30px;
 }
 
 #group-div .group-create-button {
