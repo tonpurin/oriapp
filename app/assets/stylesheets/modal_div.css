@@ -32,29 +32,34 @@
   font-size: 30px;
 }
 
-.modal-user-group-div {
+.modal-user-group-div, .modal-user-div {
   margin: 30px 10px;
   padding: 10px 10px;
   border: thick #333333 solid;
   border-radius: 10px;
 }
 
-.modal-user-group-div .modal-left {
+.modal-left {
   float: left;
   width: 50%;
 }
 
-.modal-user-group-div .modal-left img {
+.modal-left img {
   height: 70%;
   width: 80%;
   border-radius: 100px;
 }
 
-.modal-user-group-div .modal-right {
+.modal-right {
   float: right;
   height: 70%;
   width: 40%;
   text-align: center;
+}
+
+.account-edit-button {
+  display: block;
+  margin: 0 auto;
 }
 
 .group-members-modal-bottom {
