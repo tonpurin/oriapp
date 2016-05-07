@@ -14,4 +14,7 @@ $(function() {
     $('.modal-bottom-' + user_group_no).slideToggle(200);
   });
 
+  // グループページで，現在のグループの背景・文字色を変える
+  $('.modal-user-group-div-' + gon.user_group_id).css('background-color', '#556068');
+  $('.modal-user-group-div-' + gon.user_group_id + " p").css('color', 'white');
 });

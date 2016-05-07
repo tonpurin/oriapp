@@ -34,6 +34,7 @@
 
 .modal-user-group-div, .modal-user-div {
   margin: 30px 10px;
+  margin-bottom: 10px;
   padding: 10px 10px;
   background-color: #E3E3E3;
   outline: 1px dashed #98abb9;
@@ -43,10 +44,6 @@
 .account-edit-button {
   display: block;
   margin: 0 auto;
-}
-
-#group-div .modal-user-group-div {
-  margin-bottom: 10px;
 }
 
 #group-div .modal-user-group-div .modal-left {
@@ -84,7 +81,7 @@
   color: #101115;
 }
 
-#group-div #modal-bottom {
+#group-div .modal-bottom {
   height: 50%;
   width: 70%;
   margin: 0 auto;

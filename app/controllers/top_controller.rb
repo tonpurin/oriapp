@@ -31,7 +31,8 @@ class TopController < ApplicationController
     gon.user_items_geocodes = UserItem.extract_item_geocode(@user_items)
     # top画面の正面のitem_idを取得
     gon.current_item_id = 0
-    gon.tmp = 0
+    # ユーザ✕グループID
+    gon.user_group_id = UserGroup.user_group_id
 
     # binding.pry
   end
