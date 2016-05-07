@@ -93,11 +93,31 @@
 
 #group-div .modal-bottom {
   height: 50%;
-  width: 70%;
+  width: 60%;
   margin: 0 auto;
   margin-bottom: 20px;
   display: none;
 }
+#group-div .member-row {
+  height: 100px;
+  margin-top: 20px;
+}
+
+#group-div .member-row img {
+  display: block;
+  float: left;
+  height: 100%;
+  width: 30%;
+}
+
+#group-div .member-row p {
+  display: block;
+  float: left;
+  font-size: 40px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
 
 #group-div .group-create-button {
   display: block;
