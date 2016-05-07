@@ -6,12 +6,9 @@
 		</div>
 	<% end %>
 	<div class="modal-right">
-		<p style="font-size: 30px;"><%= user_group.group.group_name %></p>
-		<p style="font-size: 30px;"><%= user_group.group.owner_user_name %></p>
-		<p style="font-size: 30px;"><%= user_group.group.destination %></p>
-		<% if current_user.id == user_group.group.owner_user_id then %>
-			<p style="font-size: 50px;">消去</p>
-		<% end %>
+		<p><%= "Group : #{user_group.group.group_name}" %></p>
+		<p><%= "Owner : #{user_group.group.owner_user_name}" %></p>
+		<p><%= "Destination : #{user_group.group.destination}" %></p>
 	</div>
 <% end -%>
 
