@@ -42,9 +42,38 @@
   outline-offset: -5px;
 }
 
-.account-edit-button {
+#account-div .modal-user-div .modal-left {
+  float: left;
+  width: 30%;
+  margin-left: 30px;
+  margin-top: 30px;
+}
+
+#account-div .modal-user-div .modal-left img {
+  height: 100%;
+  width: 100%;
+}
+
+#account-div .modal-user-div .modal-right {
+  float: right;
+  height: 100%;
+  width: 60%;
+  padding-top: 20px;
+  padding-right: 10px;
+  text-align: center;
+}
+
+#account-div .modal-user-div .modal-right p {
+  font-size: 35px;
+  text-decoration: underline;
+  line-height: 300%;
+}
+
+#account-div .account-edit-button {
   display: block;
+  width: 50%;
   margin: 0 auto;
+  margin-top: 20px;
 }
 
 #group-div .modal-user-group-div .modal-left {
