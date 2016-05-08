@@ -13,7 +13,15 @@
 		</div>
 	</div>
 
+	<!-- iineとyokunaineはトグル -->
 	<div class='iine-button'>
+		<%= form_for(@new_user_item, :url => {:controller => :top, :action => :create}, :remote => true) do |f| %>
+			<!-- viewに表示されない -->
+			<%= f.hidden_field :item_id, :value => 1, :class => "form_item_id" %>
+			<%= f.submit "", :class => "iine-button" %>
+		<% end %>
+	</div>
+	<div class='yokunaine-button'>
 		<%= form_for(@new_user_item, :url => {:controller => :top, :action => :create}, :remote => true) do |f| %>
 			<!-- viewに表示されない -->
 			<%= f.hidden_field :item_id, :value => 1, :class => "form_item_id" %>

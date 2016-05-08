@@ -16,10 +16,14 @@
 	margin: 0px 20px;
 }
 
-.iine-button {
+.iine-button, .yokunaine-button {
 	position: relative;
 	height :10%;
 	text-align : center ;
+}
+
+.yokunaine-button {
+	display: none;
 }
 
 .display-map .map-embed
@@ -55,7 +59,18 @@
 	opacity: 0.8;
 }
 
-.iine-button input:hover {
+.yokunaine-button input {
+	height: 150px;
+	width: 150px;
+	background: url("dislike.png") no-repeat center;
+	// ボタンの大きさに画像がフィットする
+	background-size: contain;
+	background-size: cover;
+	border-radius: 100px;
+	opacity: 0.8;
+}
+
+.iine-button input:hover, .yokunaine-button input:hover {
 	border: solid 5px #5EABE6;
 }
 
