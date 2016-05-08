@@ -45,8 +45,18 @@
 }
 
 .iine-button input {
-	//height: 100px;
-	//width: 30%;
+	height: 150px;
+	width: 150px;
+	background: url("like.png") no-repeat center;
+	// ボタンの大きさに画像がフィットする
+	background-size: contain;
+	background-size: cover;
+	border-radius: 100px;
+	opacity: 0.8;
+}
+
+.iine-button input:hover {
+	border: solid 5px #5EABE6;
 }
 
 .selected-item-list {
