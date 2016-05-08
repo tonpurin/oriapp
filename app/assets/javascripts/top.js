@@ -23,6 +23,8 @@ window.onload = function()
   // 画像をスライドさせたら...
   $('.slick-prev, .slick-next').on('click', function() {
     set_current_item_id();
+    $('.iine-button').toggle();
+    $('.yokunaine-button').toggle();
   });
 
   // slick.min.jsの一部を無理やり上書き
