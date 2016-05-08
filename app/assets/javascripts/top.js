@@ -22,9 +22,17 @@ window.onload = function()
 
   // 画像をスライドさせたら...
   $('.slick-prev, .slick-next').on('click', function() {
+    // 真ん中に表示されているアイテムのIDを取得
     set_current_item_id();
-    $('.iine-button').toggle();
-    $('.yokunaine-button').toggle();
+    // ユーザに選択されたアイテムか否かを判断してボタンをトグル
+    // $.inArray(要素, 配列)：要素が配列に存在すればそのインデックスを返す，なければ-1
+    if ($.inArray(gon.current_item_id, gon.user_items_ids) >= 0){
+      $('.iine-button').hide();
+      $('.yokunaine-button').show();
+    }else {
+      $('.iine-button').show();
+      $('.yokunaine-button').hide();
+    };
   });
 
   // slick.min.jsの一部を無理やり上書き
