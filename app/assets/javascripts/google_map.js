@@ -132,7 +132,7 @@ top_init_gmap = function(){
 owner_init_gmap = function(){
 
   // 地図作成
-  create_map();
+  top_init_gmap();
 };
 
 
