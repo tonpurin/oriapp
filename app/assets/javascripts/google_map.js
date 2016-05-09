@@ -113,16 +113,18 @@ init_gmap = function(){
   // 地図作成
   create_map();
   // 選択中のアイテムの数だけマーカー作成
-  var marker_num = gon.user_items_geocodes.length
+  var marker_num = gon.user_items_info[0].length
   if (marker_num > 0) {
     for (var i = 0; i < marker_num - 1; i++) {
-      tmp = gon.user_items_geocodes[i];
-      create_marker(tmp[0], tmp[1], tmp[2]);
+      var latlng = gon.user_items_info[1][i];
+      var user_item_id = gon.user_items_info[2][i];
+      create_marker(latlng[0], latlng[1], user_item_id);
     }
     // 最後のマーカーを作成・同時に地図を移動
-    last_marker = gon.user_items_geocodes[marker_num - 1];
-    create_marker(last_marker[0], last_marker[1], last_marker[2]);
-    move_map_center(last_marker[0], last_marker[1]);
+    var last_marker_latlng = gon.user_items_info[1][marker_num - 1];
+    var last_marker_user_item_id = gon.user_items_info[2][marker_num - 1];
+    create_marker(last_marker_latlng[0], last_marker_latlng[1], last_marker_user_item_id);
+    move_map_center(last_marker_latlng[0], last_marker_latlng[1]);
   };
 
 };

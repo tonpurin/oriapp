@@ -6,22 +6,26 @@ class UserItem < ActiveRecord::Base
   def self.extract_item_info(user_items)
     """
     gon経由でJSに変数を渡すための変換
-    user_itemからアイテムのIDを抽出してハッシュで返す
-    user_itemsからuser_itemのidとitemのジオコードを抽出してハッシュで返す
+    user_itemからアイテムのID, itemのジオコード, user_itemのidを抽出してハッシュで返す
     """
-    item_geocodes = []
     item_ids = []
+    item_geocodes = []
+    user_item_ids = []
+
     user_items.each do |ui|
 
       item_ids << ui.item.id
 
       lat = ui.item.item_lat
       lng = ui.item.item_lng
-      uset_item_id = ui.id
-      item_geocodes << [lat, lng, uset_item_id]
+      item_geocodes << [lat, lng]
+
+      user_item_ids << ui.id
     end
+
+    user_items_info = [item_ids, item_geocodes, user_item_ids]
     # BigDecimalオブジェクトが格納されるが，JSで丸め込まれる...
-    return item_ids, item_geocodes
+    return user_items_info
   end
 
 end
