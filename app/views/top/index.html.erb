@@ -17,16 +17,12 @@
 	<div class='iine-button'>
 		<%= form_for(@new_user_item, :url => {:controller => :top, :action => :create}, :remote => true) do |f| %>
 			<!-- viewに表示されない -->
-			<%= f.hidden_field :item_id, :value => 1, :class => "form_item_id" %>
+			<%= f.hidden_field :item_id, :value => 1, :class => "iine_item_id" %>
 			<%= f.submit "" %>
 		<% end %>
 	</div>
 	<div class='yokunaine-button'>
-		<%= form_for(@new_user_item, :url => {:controller => :top, :action => :create}, :remote => true) do |f| %>
-			<!-- viewに表示されない -->
-			<%= f.hidden_field :item_id, :value => 1, :class => "form_item_id" %>
-			<%= f.submit "" %>
-		<% end %>
+		<%= link_to image_tag("dislike.png"), "/top/1", :class => "yokunaine_item_id", method: :delete, :remote => true %>
 	</div>
 
 	<ul class="selected-item-list" style="list-style:none;">

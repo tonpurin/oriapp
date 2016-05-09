@@ -4,10 +4,22 @@
 window.onload = function()
 {
   // -------- メソッド -----------------
-  // 正面画像のitem_idを取得，form_forに埋め込む
+  // 正面画像のitem_idを取得，2つのボタンのリクエストに反映
   var set_current_item_id = function(){
+
+    // 正面画像のitem_idを取得
     gon.current_item_id = parseInt($('.slick-current a img').data("id"));
-    $('.form_item_id').val(gon.current_item_id)
+
+    // createのリクエスト
+    $('.iine_item_id').val(gon.current_item_id);
+
+    // destroyのリクエスト
+    var destroy_item_id = $.inArray(gon.current_item_id, gon.user_items_ids);
+    if (destroy_item_id >= 0){
+      // destroyはユーザ✕アイテムIDが必要
+      var destroy_user_item_id = gon.user_items_geocodes[destroy_item_id][2];
+      $('.yokunaine_item_id').attr('href', '/top/'+destroy_user_item_id);
+    };
   };
 
 

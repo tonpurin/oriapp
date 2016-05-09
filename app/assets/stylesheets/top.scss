@@ -59,13 +59,10 @@
 	opacity: 0.8;
 }
 
-.yokunaine-button input {
+.yokunaine-button img {
 	height: 150px;
 	width: 150px;
-	background: url("dislike.png") no-repeat center;
 	// ボタンの大きさに画像がフィットする
-	background-size: contain;
-	background-size: cover;
 	border-radius: 100px;
 	opacity: 0.8;
 }
