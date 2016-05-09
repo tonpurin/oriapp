@@ -80,6 +80,9 @@ window.onload = function()
   });
   $('.menu-row3').on('click', function(){
     $('.menu-event3 a').trigger("click");
+  });$
+  ('.menu-row4').on('click', function(){
+    $('.menu-event4 a').trigger("click");
   });
 
   // 初期の正面画像のいいね or よくないねを考慮

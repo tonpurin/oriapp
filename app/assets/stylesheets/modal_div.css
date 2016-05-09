@@ -11,7 +11,7 @@
   background: white;
   display: none;
 }
-#group-div, #account-div {
+#account-div, #group-div, #owner-div {
   background: none repeat scroll 0 0 #FFFFFF;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
   display: none;
@@ -32,7 +32,7 @@
   font-size: 30px;
 }
 
-.modal-user-group-div, .modal-user-div {
+.modal-user-div, .modal-user-group-div, .modal-owner-div{
   height: 300px;
   margin: 30px 10px;
   margin-bottom: 10px;

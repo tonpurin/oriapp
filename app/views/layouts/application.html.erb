@@ -18,15 +18,27 @@
         <div class="style1">
           <select class="select">
             <option value="1">アカウント</option>
-            <option value="2">グループ</option>
-            <option value="3">ログアウト</option>
+            <% if current_user.id == @group_owner_id then %>
+              <option value="2">グループ</option>
+              <option value="3">オーナー</option>
+              <option value="4">ログアウト</option>
+            <% else %>
+              <option value="2">グループ</option>
+              <option value="3">ログアウト</option>
+            <% end %>
           </select>
         </div>
         <!-- Menuの各アクションを以下に定義 -->
         <div class="hidden-menu-event">
           <span class="menu-event1"><a rel="leanModal" href="#account-div">アカウント</a></span>
-          <span class="menu-event2"><a rel="leanModal" href="#group-div">グループ</a></span>
-          <span class="menu-event3"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></span>
+          <% if current_user.id == @group_owner_id then %>
+            <span class="menu-event2"><a rel="leanModal" href="#group-div">グループ</a></span>
+            <span class="menu-event3"><a rel="leanModal" href="#owner-div">オーナー</a></span>
+            <span class="menu-event4"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></span>
+          <% else %>
+            <span class="menu-event2"><a rel="leanModal" href="#group-div">グループ</a></span>
+            <span class="menu-event3"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></span>
+          <% end %>
         </div>
       </div>
       <div class="right-contents">
