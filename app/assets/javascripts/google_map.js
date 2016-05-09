@@ -107,8 +107,8 @@ move_map_center = function(lat, lng){
   };
 };
 
-// google mapの初期化
-init_gmap = function(){
+// top画面におけるgoogle mapの初期化
+top_init_gmap = function(){
 
   // 地図作成
   create_map();
@@ -126,7 +126,13 @@ init_gmap = function(){
     create_marker(last_marker_latlng[0], last_marker_latlng[1], last_marker_user_item_id);
     move_map_center(last_marker_latlng[0], last_marker_latlng[1]);
   };
+};
 
+// owner画面におけるgoogle mapの初期化
+owner_init_gmap = function(){
+
+  // 地図作成
+  create_map();
 };
 
 
