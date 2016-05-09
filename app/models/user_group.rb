@@ -15,6 +15,12 @@ class UserGroup < ActiveRecord::Base
     @@user_group_id = id
   end
 
+  # グループID
+  def self.group_id
+    user_group_record = UserGroup.find(@@user_group_id)
+    return user_group_record.group.id
+  end
+
   # ユーザ✕グループのオーナー
   def self.user_group_owner
     user_group_record = UserGroup.find(@@user_group_id)

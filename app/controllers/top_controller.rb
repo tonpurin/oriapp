@@ -55,14 +55,14 @@ class TopController < ApplicationController
 
   private
   def user_item_params
-    params.require(:user_item).permit(:item_id).merge({:user_group_id => UserGroup.user_group_id})
+    params.require(:user_item).permit(:item_id).merge({:user_group_id => UserGroup.user_group_id, :group_id => UserGroup.group_id})
   end
 
   def create_individual_group
     """
     個人グループを作成・ユーザとひも付け
     """
-    new_group_record = Group.create(:group_name => "individual", :owner_user_id => current_user.id, :owner_user_name => current_user.unique_name, :destination => "北海道")
+    new_group_record = Group.create(:group_name => current_user.unique_name, :owner_user_id => current_user.id, :owner_user_name => current_user.unique_name, :destination => "北海道")
 
     # ユーザとグループを紐付ける
     new_user_group_record = UserGroup.create(:user_id => current_user.id, :group_id => new_group_record.id, :user_name => current_user.unique_name)
