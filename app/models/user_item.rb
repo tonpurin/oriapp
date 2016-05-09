@@ -1,6 +1,7 @@
 class UserItem < ActiveRecord::Base
 
   belongs_to :user_group
+  belongs_to :group
   belongs_to :item
 
   def self.extract_item_info(user_items)

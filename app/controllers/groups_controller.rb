@@ -5,10 +5,6 @@ class GroupsController < ApplicationController
     @new_group = Group.new
   end
 
-  # def show_group_member
-  #   binding.pry
-  # end
-
   def create
     # グループ作成
     #binding.pry

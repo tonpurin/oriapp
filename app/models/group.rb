@@ -1,6 +1,7 @@
 class Group < ActiveRecord::Base
 
   has_many :user_groups
+  has_many :user_items
 
   # 新規グループのレコードを作成する際にデフォルト値を設定
   after_initialize :set_default, if: :new_record?
