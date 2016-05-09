@@ -22,6 +22,22 @@ window.onload = function()
     };
   };
 
+  var toggle_iine_yokunaine = function () {
+
+    // ユーザに選択されたアイテムか否かを判断してボタンをトグル
+    // $.inArray(要素, 配列)：要素が配列に存在すればそのインデックスを返す，なければ-1
+    if ($.inArray(gon.current_item_id, gon.user_items_info[0]) >= 0){
+      $('.iine-button').hide();
+      $('.yokunaine-button').show();
+    }else {
+      $('.iine-button').show();
+      $('.yokunaine-button').hide();
+    };
+
+  };
+
+  // -------------------------------------------
+
 
   // google map初期化
   init_gmap();
@@ -34,17 +50,11 @@ window.onload = function()
 
   // 画像をスライドさせたら...
   $('.slick-prev, .slick-next').on('click', function() {
+
     // 真ん中に表示されているアイテムのIDを取得
     set_current_item_id();
-    // ユーザに選択されたアイテムか否かを判断してボタンをトグル
-    // $.inArray(要素, 配列)：要素が配列に存在すればそのインデックスを返す，なければ-1
-    if ($.inArray(gon.current_item_id, gon.user_items_info[0]) >= 0){
-      $('.iine-button').hide();
-      $('.yokunaine-button').show();
-    }else {
-      $('.iine-button').show();
-      $('.yokunaine-button').hide();
-    };
+    // いいね or よくないねを判断
+    toggle_iine_yokunaine();
   });
 
   // slick.min.jsの一部を無理やり上書き
@@ -71,4 +81,8 @@ window.onload = function()
   $('.menu-row3').on('click', function(){
     $('.menu-event3 a').trigger("click");
   });
+
+  // 初期の正面画像のいいね or よくないねを考慮
+  toggle_iine_yokunaine();
+
 };
