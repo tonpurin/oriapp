@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :top, only: [:index, :create, :destroy]
   get "top/index/:id" => 'top#index'
   resources :groups, only: [:new, :create, :destroy]
-  # get "/groups/show/:id" => 'top#show_group_member'
+  resources :owners, only: [:index]
+
   devise_for :users
 
 end

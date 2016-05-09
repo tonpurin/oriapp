@@ -1,6 +1,6 @@
 $(function() {
 
-  if((!document.URL.match("/users/")) && (!document.URL.match("/groups/"))) {
+  if((!document.URL.match("/users/")) && (!document.URL.match("/groups/")) && (!document.URL.match("/owners/"))) {
     $('a[rel*=leanModal]').leanModal({
       top: 50,                     // モーダルウィンドウの縦位置を指定
       overlay : 0.8,               // 背面の透明度
