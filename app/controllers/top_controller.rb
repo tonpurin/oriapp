@@ -39,9 +39,9 @@ class TopController < ApplicationController
 
   # ajax
   def create
-    UserItem.create(user_item_params)
+    new_user_item_record = UserItem.create(user_item_params)
     # 追加したレコードのIDを取得
-    @create_user_item_id = UserItem.where(user_item_params)[0].id
+    @create_user_item_id = new_user_item_record.id
   end
 
   # ajax

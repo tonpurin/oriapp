@@ -23,3 +23,15 @@ var right_div_html = '<div class="item-info-right"><a data-remote="true" rel="na
 var outer_div = $('<li class="selected-item ui-id-' +  user_item_id + ' %>"><div class="item-info clearfix">' + left_div_html + right_div_html + '</div></li>');
 
 $('.selected-item-list').append(outer_div);
+
+// 選択中アイテムのgonに要素を追加
+gon.user_items_ids.push(gon.current_item_id);
+gon.user_items_geocodes.push([lat, lng, user_item_id]);
+
+// yokunaineボタンにトグル
+$('.iine-button').hide();
+$('.yokunaine-button').show();
+
+// yokunaineボタンのリクエストを調整
+set_current_item_id();
+
