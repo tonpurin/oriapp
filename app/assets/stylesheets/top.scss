@@ -120,10 +120,10 @@
 .selected-item-info .item-info-middle{
 	max-width: 50%;
 	position: relative;
-	top: 20%;
 	float: left;
-	left: 10%;
 	height: 100%;
+	padding-top:5%;
+	left: 10%;
 }
 
 .selected-item-info .item-info-right {
@@ -150,6 +150,7 @@
 	right: 10%;
 	font-size: 30px;
 	text-decoration: underline;
+	text-align: center;
 	line-height: 250%;
 }
 

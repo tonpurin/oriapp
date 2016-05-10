@@ -36,6 +36,22 @@ window.onload = function()
 
   };
 
+  current_selected_dom = undefined; // 選択中のアイテム
+  selected_item_click = function (){
+
+    // ユーザが選択したアイテムに対するイベント
+    // クリックした瞬間にボーダーを設定
+    // 対象のマーカーを目立たせる
+    $('.item-info-middle').click(
+      function (){
+        if (current_selected_dom != undefined) {
+          $(current_selected_dom).parent().css("border", "");
+        };
+        $(this).parent().css("border", "solid 5px #5EABE6");
+        current_selected_dom = this;
+      });
+  };
+
   // -------------------------------------------
 
   if((!document.URL.match("/users/")) && (!document.URL.match("/groups/")) && (!document.URL.match("/owners/"))){
@@ -88,5 +104,8 @@ window.onload = function()
 
     // 初期の正面画像のいいね or よくないねを考慮
     toggle_iine_yokunaine();
+
+    // ユーザが選択したアイテムに対するイベント
+    selected_item_click();
   }
 };
