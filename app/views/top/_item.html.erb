@@ -1,4 +1,7 @@
-<div class="item_info">
-	<p><%= item.item_name %></p>
+<div class="item-info">
+	<div class="clearfix">
+		<%= image_tag "gurume-icon.png",:align => "left" %>
+		<p><%= item.item_name %></p>
+	</div>
 	<a href=<%= item.item_url %> target="_blank"><img src=<%= item.image_url %> data-id="<%= item.id %>"></a>
 </div>

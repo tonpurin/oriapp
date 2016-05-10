@@ -43,9 +43,24 @@
 	height: 100% ;
 }
 
-.display-items .item_info p {
-	text-align:center;
+.display-items .item-info div {
+	width: 80%;
+	margin-left: 25%;
+}
+
+.display-items .item-info img{
+	display: block;
+	float: left;
+}
+
+.display-items .item-info p{
+	display: block;
+	float: left;
 	font-size: 20px;
+	font-family: 'Neucha', cursive;
+	padding-top:10px;
+	padding-left:10px;
+	width: 70%;
 }
 
 .iine-button input {
@@ -80,7 +95,7 @@
 	margin: 5% 0;
 }
 
-.item-info{
+.selected-item-info{
 	// http://coliss.com/articles/build-websites/operation/css/css3-tutorial-7-super-easy-css-recipes.html
 	position: relative;
 	height: 300px;
@@ -96,13 +111,13 @@
 	box-shadow: 2px 2px 2px #000;
 }
 
-.item-info .item-info-left{
+.selected-item-info .item-info-left{
 	height: 100%;
-	width: 50%;
+	width: 30%;
 	float: left;
 }
 
-.item-info .item-info-right{
+.selected-item-info .item-info-right{
 	position: relative;
 	left: 5%;
 	height: 100%;
@@ -110,17 +125,21 @@
 	float: left;
 }
 
-.item-info img {
+.selected-item-info img {
 	position: relative;
 	height: 90%;
-	width: 50%;
+	width: 80%;
 	top: 5%;
+	//right: 10%;
 	border-radius: 40px;
 }
 
-.item-info p {
+.selected-item-info p {
 	position: relative;
-	top: 50%;
+	top: 0%;
+	right: 10%;
 	font-size: 25px;
+	text-decoration: underline;
+	line-height: 180%;
 }
 
