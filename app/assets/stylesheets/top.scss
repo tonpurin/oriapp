@@ -117,7 +117,7 @@
 	float: left;
 }
 
-.selected-item-info .item-info-right{
+.selected-item-info .item-info-middle{
 	position: relative;
 	left: 5%;
 	height: 100%;
@@ -125,7 +125,15 @@
 	float: left;
 }
 
-.selected-item-info img {
+.selected-item-info .item-info-right {
+	position: relative;
+	float: right;
+	widht: 10%;
+	top: 10px;
+	right: 10px;
+}
+
+.selected-item-info .item-info-left img {
 	position: relative;
 	height: 90%;
 	width: 80%;
@@ -134,12 +142,18 @@
 	border-radius: 40px;
 }
 
-.selected-item-info p {
+.selected-item-info .item-info-middle p {
 	position: relative;
 	top: 0%;
 	right: 10%;
 	font-size: 25px;
 	text-decoration: underline;
 	line-height: 180%;
+}
+
+.selected-item-info .item-info-right img {
+	height: 80px;
+	width: 80px;
+	border-radius: 100px;
 }
 
