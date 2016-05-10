@@ -15,16 +15,21 @@ class TopController < ApplicationController
 
     # 観光地の候補
     @items = Item.limit(20)
+    # ユーザ✕グループのレコードを取得
+    user_group = UserGroup.find(UserGroup.user_group_id(current_user.id))
     # 投票中のアイテム
-    @user_items = UserGroup.find(UserGroup.user_group_id).user_items.includes(:item)
+    # @user_items = UserGroup.find(UserGroup.user_group_id).user_items.includes(:item)
+    @user_items = user_group.user_items.includes(:item)
     # 投票用のインスタンス
     @new_user_item = UserItem.new
     # ユーザの所属するグループ情報
     @user_groups = current_user.user_groups.includes(:group)
     # グループのオーナー
-    @group_owner_id = UserGroup.user_group_owner
+    # @group_owner_id = UserGroup.user_group_owner
+    @group_owner_id = user_group.group.owner_user_id
     # グループのアバター
-    @group_avatar = UserGroup.user_group_avatar
+    # @group_avatar = UserGroup.user_group_avatar
+    @group_avatar = user_group.group.avatar
 
     # --- JSでも利用可能な変数 ----
     # 観光地の候補
@@ -34,18 +39,16 @@ class TopController < ApplicationController
     # top画面の正面のitem_idを取得
     gon.current_item_id = 0
     # ユーザ✕グループID
-    gon.user_group_id = UserGroup.user_group_id
-    # gon.group_id = UserGroup.group_id
+    gon.user_group_id = user_group.id
 
-    # binding.pry
   end
 
   # ajax
   def create
+    # binding.pry
     new_user_item_record = UserItem.create(user_item_params)
     # 追加したレコードのIDを取得
     @create_user_item_id = new_user_item_record.id
-    # @test = UserGroup.user_group_id
   end
 
   # ajax
@@ -57,7 +60,7 @@ class TopController < ApplicationController
 
   private
   def user_item_params
-    params.require(:user_item).permit(:item_id).merge({:user_group_id => UserGroup.user_group_id, :group_id => UserGroup.group_id})
+    params.require(:user_item).permit(:item_id).merge({:user_group_id => UserGroup.user_group_id(current_user.id), :group_id => UserGroup.group_id(current_user.id)})
   end
 
   def create_individual_group
@@ -69,7 +72,7 @@ class TopController < ApplicationController
     # ユーザとグループを紐付ける
     new_user_group_record = UserGroup.create(:user_id => current_user.id, :group_id => new_group_record.id, :user_name => current_user.unique_name)
     # ユーザ✕グループID取得・セット
-    UserGroup.set_user_group_id(new_user_group_record.id)
+    UserGroup.set_user_group_id(current_user.id, new_user_group_record.id)
   end
 
   def set_user_group_id
@@ -81,10 +84,11 @@ class TopController < ApplicationController
     if params["id"].blank? then
       # 起動時
       user_groups = current_user.user_groups.includes(:user_items)
-      UserGroup.get_current_user_group_id(user_groups)
+      selected_user_group_id = UserGroup.select_user_group_id(current_user.id, user_groups)
+      UserGroup.set_user_group_id(current_user.id, selected_user_group_id )
     else
       # TODO : ユーザのチェックが必要
-      UserGroup.set_user_group_id(params["id"])
+      UserGroup.set_user_group_id(current_user.id, params["id"])
     end
   end
 

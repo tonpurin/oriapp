@@ -3,7 +3,7 @@ class OwnersController < ApplicationController
   def index
     # 対象のgroupの投票を集約
     # 投票されたアイテム...includesが出来ない
-    voted_items = Group.find(UserGroup.group_id).user_items
+    voted_items = Group.find(UserGroup.group_id(current_user.id)).user_items
     # 集計，得票数の多い順にソート，idと得票数のハッシュを取得
     voted_counts = voted_items.group(:item_id).order('count_item_id DESC').count(:item_id).to_a # 配列変換
 
