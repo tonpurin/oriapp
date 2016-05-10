@@ -45,10 +45,15 @@ window.onload = function()
     $('.item-info-middle').click(
       function (){
         if (current_selected_dom != undefined) {
-          $(current_selected_dom).parent().css("border", "");
+          $(current_selected_dom).css("border", "");
         };
-        $(this).parent().css("border", "solid 5px #5EABE6");
-        current_selected_dom = this;
+        var item_li = $(this).parent();
+        item_li.css("border", "solid 5px #5EABE6");
+        current_selected_dom = item_li;
+
+        // マーカーの変更
+        var marker_id = parseInt($(item_li).data('id'));
+        chenge_marker_design(marker_id);
       });
   };
 

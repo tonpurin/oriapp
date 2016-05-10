@@ -5,6 +5,7 @@
 map = null;
 markers = {};  // user_itemのidとマーカーの対応
 markers_id_order = [];  // 入力された順番を保持するための配列
+current_chenge_marker_id = undefined; // オプションが変更されているマーカーのID
 
 __is_map_exist = function() {
 
@@ -112,6 +113,30 @@ create_img_marker = function (lat, lng, uitem_id, imge_index) {
     }else {
       create_marker(lat, lng, uitem_id);
     }
+
+  }else{
+    console.log('there is no map');
+  };
+};
+
+chenge_marker_design = function (marker_id){
+
+  if (__is_map_exist()){
+
+    // 一つ前の変更を元に戻す
+    if ((current_chenge_marker_id != undefined) && (markers[current_chenge_marker_id] != undefined)){
+      markers[current_chenge_marker_id].setOptions({
+        icon: "",
+      });
+    };
+    // クリックしたアイテムのマーカーのデザインを変更
+    markers[marker_id].setOptions({
+      icon: new google.maps.MarkerImage(
+        "/assets/click-marker.png",  // どうやら商用ではまずい
+        new google.maps.Size(100,100) // size
+      )
+    });
+    current_chenge_marker_id = marker_id;
 
   }else{
     console.log('there is no map');
