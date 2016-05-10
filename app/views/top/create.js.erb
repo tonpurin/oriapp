@@ -16,9 +16,10 @@ move_map_center(lat, lng);
 var item_url = gon.items[gon.current_item_id]["item_url"];
 var image_url = gon.items[gon.current_item_id]["image_url"];
 var item_name = gon.items[gon.current_item_id]["item_name"];
+var item_address = gon.items[gon.current_item_id]["item_address"];
 
 var left_div_html = '<div class="item-info-left"><a href="' + item_url + '" %><img src="' +image_url + '"></a></div>';
-var middle_div_html = '<div class="item-info-middle"><p>' + item_name + '</p></div>';
+var middle_div_html = '<div class="item-info-middle"><p>' + item_name + '</p><p>' + item_address + '</p></div>';
 var right_div_html = '<div class="item-info-right"><a data-remote="true" rel="narrow" data-method="delete" href="/top/' + user_item_id + '"><img src="/assets/dislike-b850d8502822b64e8a77d32b903829872dc4816da33e48f36a184edea0dd7b5e.png" alt="Dislike"></a>';
 
 var outer_div = $('<li class="selected-item ui-id-' +  user_item_id + ' %>"><div class="selected-item-info clearfix">' + left_div_html + middle_div_html + right_div_html + '</div></li>');

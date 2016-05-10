@@ -118,11 +118,12 @@
 }
 
 .selected-item-info .item-info-middle{
-	position: relative;
-	left: 5%;
-	height: 100%;
 	widht: 50%;
+	position: relative;
+	top: 20%;
 	float: left;
+	left: 10%;
+	height: 100%;
 }
 
 .selected-item-info .item-info-right {
@@ -146,9 +147,9 @@
 	position: relative;
 	top: 0%;
 	right: 10%;
-	font-size: 25px;
+	font-size: 30px;
 	text-decoration: underline;
-	line-height: 180%;
+	line-height: 250%;
 }
 
 .selected-item-info .item-info-right img {
