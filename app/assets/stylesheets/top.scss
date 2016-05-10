@@ -118,7 +118,7 @@
 }
 
 .selected-item-info .item-info-middle{
-	widht: 50%;
+	max-width: 50%;
 	position: relative;
 	top: 20%;
 	float: left;
@@ -130,6 +130,7 @@
 	position: relative;
 	float: right;
 	widht: 10%;
+	height: 100%;
 	top: 10px;
 	right: 10px;
 }
@@ -152,7 +153,17 @@
 	line-height: 250%;
 }
 
-.selected-item-info .item-info-right img {
+.selected-item-info .item-info-right .top-img {
+	position: relative;
+	left: 50%;
+	height: 80px;
+	width: 80px;
+	border-radius: 100px;
+}
+
+.selected-item-info .item-info-right .bottom-img {
+	position: relative;
+	top: 65%;
 	height: 80px;
 	width: 80px;
 	border-radius: 100px;
