@@ -5,31 +5,31 @@ class UserGroup < ActiveRecord::Base
   has_many :user_items
 
   # ユーザ×グループID
-  @@user_group_id = 0
+  @user_group_id = 0
   # ゲッタ
   def self.user_group_id
-    return @@user_group_id
+    return @user_group_id
   end
   # セッタ
   def self.set_user_group_id(id)
-    @@user_group_id = id
+    @user_group_id = id
   end
 
   # グループID
   def self.group_id
-    user_group_record = UserGroup.find(@@user_group_id)
+    user_group_record = UserGroup.find(UserGroup.user_group_id) ##
     return user_group_record.group.id
   end
 
   # ユーザ✕グループのオーナー
   def self.user_group_owner
-    user_group_record = UserGroup.find(@@user_group_id)
+    user_group_record = UserGroup.find(UserGroup.user_group_id) ##
     return user_group_record.group.owner_user_id
   end
 
   # ユーザ✕グループのアバター
   def self.user_group_avatar
-    user_group_record = UserGroup.find(@@user_group_id)
+    user_group_record = UserGroup.find(UserGroup.user_group_id) ##
     return user_group_record.group.avatar
   end
 
@@ -62,9 +62,11 @@ class UserGroup < ActiveRecord::Base
 
     if current_user_group_id == -1 then
       # どのグループでも投稿していない場合
-      @@user_group_id = user_groups[0].id
+      # @user_group_id = user_groups[0].id
+      UserGroup.set_user_group_id(user_groups[0].id)
     else
-      @@user_group_id = current_user_group_id
+      # @user_group_id = current_user_group_id
+      UserGroup.set_user_group_id(current_user_group_id)
     end
   end
 end

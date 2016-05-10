@@ -35,6 +35,7 @@ class TopController < ApplicationController
     gon.current_item_id = 0
     # ユーザ✕グループID
     gon.user_group_id = UserGroup.user_group_id
+    # gon.group_id = UserGroup.group_id
 
     # binding.pry
   end
@@ -44,6 +45,7 @@ class TopController < ApplicationController
     new_user_item_record = UserItem.create(user_item_params)
     # 追加したレコードのIDを取得
     @create_user_item_id = new_user_item_record.id
+    # @test = UserGroup.user_group_id
   end
 
   # ajax
