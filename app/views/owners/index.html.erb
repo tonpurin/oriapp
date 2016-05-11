@@ -11,8 +11,8 @@
 
 	<div class="search-hotel-button">
 		<%= form_tag("/owners/search",:remote => true) do%>
-			<%= hidden_field_tag :lat, 20%>
-			<%= hidden_field_tag :lng, 10 %>
+			<%= hidden_field_tag :lat, 0, :class=>"search-lat"%>
+			<%= hidden_field_tag :lng, 0, :class=>"search-lng" %>
 			<%= submit_tag '', :class=>"do-search"%>
 		<% end %>
 	</div>

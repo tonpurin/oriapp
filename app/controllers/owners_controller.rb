@@ -19,7 +19,7 @@ class OwnersController < ApplicationController
   end
 
   def search
-    # binding.pry
+    binding.pry
     @result = 100
   end
 

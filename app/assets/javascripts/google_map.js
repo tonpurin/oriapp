@@ -126,11 +126,13 @@ add_marker_event = function (marker){
   // 対象のマーカーにイベントを指定する
   google.maps.event.addListener( marker , 'click' , function()
   {
-    // geocodeを取得・表示
+    // geocodeを取得
     var lat = marker.position.lat();
     var lng = marker.position.lng();
-    console.log(lat);
-    console.log(lng);
+    // 緯度経度をホームにセット
+    $('.search-hotel-button .search-lat').val(lat);
+    $('.search-hotel-button .search-lng').val(lng);
+    // 送信
     $('.search-hotel-button .do-search').trigger("click");
   } ) ;
 }
