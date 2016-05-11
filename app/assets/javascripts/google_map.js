@@ -131,6 +131,7 @@ add_marker_event = function (marker){
     var lng = marker.position.lng();
     console.log(lat);
     console.log(lng);
+    $('.search-hotel-button .do-search').trigger("click");
   } ) ;
 }
 

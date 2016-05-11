@@ -18,6 +18,11 @@ class OwnersController < ApplicationController
 
   end
 
+  def search
+    # binding.pry
+    @result = 100
+  end
+
   private
   def convert_voted_item(voted_items, voted_counts)
     """

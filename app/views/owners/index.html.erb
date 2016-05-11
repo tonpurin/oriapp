@@ -9,4 +9,12 @@
 		<%= render :partial => "owners/voted_item", :collection => @orderd_voted_items %>
 	</ul>
 
+	<div class="search-hotel-button">
+		<%= form_tag("/owners/search",:remote => true) do%>
+			<%= hidden_field_tag :lat, 20%>
+			<%= hidden_field_tag :lng, 10 %>
+			<%= submit_tag '', :class=>"do-search"%>
+		<% end %>
+	</div>
+
 </div>
