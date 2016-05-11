@@ -121,6 +121,19 @@ chenge_marker_design = function (marker_id){
   };
 };
 
+add_marker_event = function (marker){
+
+  // 対象のマーカーにイベントを指定する
+  google.maps.event.addListener( marker , 'click' , function()
+  {
+    // geocodeを取得・表示
+    var lat = marker.position.lat();
+    var lng = marker.position.lng();
+    console.log(lat);
+    console.log(lng);
+  } ) ;
+}
+
 move_map_center = function(lat, lng){
   // mapの中心位置を移動
   // すべてのマーカーが表示されるように縮尺を調整
@@ -203,6 +216,8 @@ owner_init_gmap = function(){
         current_vote_max = vote_c;
       }
       create_img_marker(latlng[0], latlng[1], user_item_id, marker_img_index);
+      // イベント設定
+      add_marker_event(markers[user_item_id]);
     }
 
     // 最後のマーカーを作成・同時に地図を移動
@@ -215,6 +230,8 @@ owner_init_gmap = function(){
     }
 
     create_img_marker(last_marker_latlng[0], last_marker_latlng[1], last_marker_user_item_id, marker_img_index);
+    // イベント設定
+    add_marker_event(markers[last_marker_user_item_id]);
     move_map_center(last_marker_latlng[0], last_marker_latlng[1]);
   };
 };
