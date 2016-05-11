@@ -19,8 +19,16 @@ class OwnersController < ApplicationController
   end
 
   def search
-    binding.pry
-    @result = 100
+    # binding.pry
+    lat = params[:lat].to_f
+    lng = params[:lng].to_f
+    radius = params[:radius].to_f
+    count = params[:count].to_i
+
+    # APIで周辺の宿泊施設をサーチ
+    jaran_api = JaranAPI.new()
+    #  経度，緯度の順で渡す
+    @hotel_info = jaran_api.search_hotel(lng, lat, radius, count)
   end
 
   private

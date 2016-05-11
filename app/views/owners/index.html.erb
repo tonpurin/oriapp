@@ -13,6 +13,8 @@
 		<%= form_tag("/owners/search",:remote => true) do%>
 			<%= hidden_field_tag :lat, 0, :class=>"search-lat"%>
 			<%= hidden_field_tag :lng, 0, :class=>"search-lng" %>
+			<%= hidden_field_tag :radius, 1.0, :class=>"search-radius" %>
+			<%= hidden_field_tag :count, 10, :class=>"search-count" %>
 			<%= submit_tag '', :class=>"do-search"%>
 		<% end %>
 	</div>
