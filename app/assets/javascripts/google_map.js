@@ -184,7 +184,7 @@ owner_init_gmap = function(){
 
   // 地図を作成
   create_map();
-
+  console.log("avatar");
   // 選択中のアイテムの数だけマーカー作成
   // 得票数に応じてマーカーのデザインを変更
   var marker_num = gon.user_items_info[0].length;
