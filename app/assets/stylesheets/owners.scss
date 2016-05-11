@@ -6,6 +6,28 @@
 .display-hotels {
 	position: relative;
 	top: 3%;
-	height: 30%;
+	height: 40%;
 	margin: 0px 20px;
+}
+
+.display-hotels .hotel-info div {
+	width: 80%;
+	margin-left: 25%;
+}
+
+.display-hotels .hotel-info img{
+	display: block;
+	float: left;
+	height: 480px;
+	width: 640px;
+}
+
+.display-hotels .hotel-info p{
+	display: block;
+	float: left;
+	font-size: 20px;
+	font-family: 'Neucha', cursive;
+	padding-top:10px;
+	padding-left:10px;
+	width: 70%;
 }
