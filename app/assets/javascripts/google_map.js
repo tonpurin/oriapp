@@ -73,46 +73,24 @@ create_marker = function(lat, lng, uitem_id) {
   };
 };
 
-create_img_marker = function (lat, lng, uitem_id, imge_index) {
+create_img_marker = function (lat, lng, uitem_id, image_index) {
 
+  // image_indexによって読み込む画像を変化
   if (__is_map_exist()){
 
-    if (imge_index == 1) {
+    if (image_index < 4) {
       markers[uitem_id] = new google.maps.Marker( {
         map: map ,
         position: new google.maps.LatLng(lat, lng),
         icon: new google.maps.MarkerImage(
-          "/assets/first-marker.png",  // url
-          new google.maps.Size(100,100) // size
+          "/assets/marker"+ image_index +".png",
+          new google.maps.Size(100,100)
         )
       });
-      markers_id_order.push(uitem_id);
-
-    }else if (imge_index == 2) {
-      markers[uitem_id] = new google.maps.Marker( {
-        map: map ,
-        position: new google.maps.LatLng(lat, lng),
-        icon: new google.maps.MarkerImage(
-          "/assets/second-marker.png",  // url
-          new google.maps.Size(100,100) // size
-        )
-      });
-      markers_id_order.push(uitem_id);
-
-    }else if (imge_index == 3){
-      markers[uitem_id] = new google.maps.Marker( {
-        map: map ,
-        position: new google.maps.LatLng(lat, lng),
-        icon: new google.maps.MarkerImage(
-          "/assets/third-marker.png",  // url
-          new google.maps.Size(100,100) // size
-        )
-      });
-      markers_id_order.push(uitem_id);
-
-    }else {
+    }else{
       create_marker(lat, lng, uitem_id);
     }
+    markers_id_order.push(uitem_id);
 
   }else{
     console.log('there is no map');
@@ -204,6 +182,7 @@ top_init_gmap = function(){
 // owner画面におけるgoogle mapの初期化
 owner_init_gmap = function(){
 
+  console.log("aa");
   // 地図を作成
   create_map();
 
@@ -211,7 +190,7 @@ owner_init_gmap = function(){
   // 得票数に応じてマーカーのデザインを変更
   var marker_num = gon.user_items_info[0].length;
   var current_vote_max = 100000;
-  var maker_img_index = 0;
+  var marker_img_index = 0;
 
   if (marker_num > 0) {
     for (var i = 0; i < marker_num - 1; i++) {
@@ -221,17 +200,22 @@ owner_init_gmap = function(){
 
       // 得票数のチェック→マーカーのデザインを変更
       if (current_vote_max > vote_c){
-        maker_img_index += 1;
+        marker_img_index += 1;
         current_vote_max = vote_c;
       }
-      create_img_marker(latlng[0], latlng[1], user_item_id, maker_img_index);
+      create_img_marker(latlng[0], latlng[1], user_item_id, marker_img_index);
     }
 
     // 最後のマーカーを作成・同時に地図を移動
     var last_marker_latlng = gon.user_items_info[1][marker_num - 1];
     var last_marker_user_item_id = gon.user_items_info[2][marker_num - 1];
     var last_marker_vote_c = gon.user_items_info[3][marker_num - 1];
-    create_img_marker(last_marker_latlng[0], last_marker_latlng[1], last_marker_user_item_id, maker_img_index);
+
+    if (current_vote_max > last_marker_vote_c){
+      marker_img_index += 1;
+    }
+
+    create_img_marker(last_marker_latlng[0], last_marker_latlng[1], last_marker_user_item_id, marker_img_index);
     move_map_center(last_marker_latlng[0], last_marker_latlng[1]);
   };
 };

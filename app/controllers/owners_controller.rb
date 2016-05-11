@@ -15,7 +15,6 @@ class OwnersController < ApplicationController
     gon.user_items_info = UserItem.extract_item_info(tmp[1])
     # 得票数も格納
     gon.user_items_info[3] = tmp[0]
-    # binding.pry
 
   end
 

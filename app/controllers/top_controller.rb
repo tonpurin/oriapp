@@ -18,17 +18,14 @@ class TopController < ApplicationController
     # ユーザ✕グループのレコードを取得
     user_group = UserGroup.find(UserGroup.user_group_id(current_user.id))
     # 投票中のアイテム
-    # @user_items = UserGroup.find(UserGroup.user_group_id).user_items.includes(:item)
     @user_items = user_group.user_items.includes(:item)
     # 投票用のインスタンス
     @new_user_item = UserItem.new
     # ユーザの所属するグループ情報
     @user_groups = current_user.user_groups.includes(:group)
     # グループのオーナー
-    # @group_owner_id = UserGroup.user_group_owner
     @group_owner_id = user_group.group.owner_user_id
     # グループのアバター
-    # @group_avatar = UserGroup.user_group_avatar
     @group_avatar = user_group.group.avatar
 
     # --- JSでも利用可能な変数 ----
