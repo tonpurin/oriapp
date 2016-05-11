@@ -8,6 +8,17 @@ require 'rexml/document'
 
 class JaranAPI
 
+  def get_test_data
+    test_data = []
+    hotel1 = {"name" => "ラビスタ函館ベイ","detail_url" => "http://www.jalan.net/JwsRedirect.do?key=vir1549dce10c5&amp;rd_key=MzEzNDY0LCwsLDEsMSwsLCwsLCwwMSwwMA==","picture_url" => "http://www.jalan.net/jalan/images/pictSS/Y4/Y313464/Y313464633.jpg"}
+    hotel2 = {"name" => "函館グランドホテル","detail_url" => "http://www.jalan.net/JwsRedirect.do?key=vir1549dce10c5&rd_key=MzkzODQ0LCwsLDEsMSwsLCwsLCwwMSwwMA==","picture_url" => "http://www.jalan.net/jalan/images/pictSS/Y4/Y393844/Y393844605.jpg"}
+    hotel3 = {"name" => "函館国際ホテル","detail_url" => "http://www.jalan.net/JwsRedirect.do?key=vir1549dce10c5&rd_key=MzIyNDc2LCwsLDEsMSwsLCwsLCwwMSwwMA==","picture_url" => "http://www.jalan.net/jalan/images/pictSS/Y6/Y322476/Y322476As8.jpg"}
+    test_data << hotel1
+    test_data << hotel2
+    test_data << hotel3
+    return test_data
+  end
+
   def search_hotel(lng, lat, radius, count)
     """
     対象のマーカーのジオコードから周辺の宿泊施設の情報を取得
@@ -17,9 +28,11 @@ class JaranAPI
     wy = lat
     jx, jy = change_location_global_to_japan(wx, wy)
     m_jx, m_jy = change_degree_to_millisec(jx, jy)
+
+    # 利用制限注意
     # xml取得
     xml_doc = get_xml_body(m_jx.round, m_jy.round, radius, count)
-    # # 情報の抽出
+    # 情報の抽出
     hotel_info = get_hotel_info(xml_doc)
     return hotel_info
   end

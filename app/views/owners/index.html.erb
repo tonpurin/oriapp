@@ -5,16 +5,20 @@
 			<div id="map-canvas">map</div>
 		</div>
 	</div>
+
+	<div class="display-hotels">
+	</div>
+
 	<ul class="selected-item-list" style="list-style:none;">
 		<%= render :partial => "owners/voted_item", :collection => @orderd_voted_items %>
 	</ul>
 
-	<div class="search-hotel-button">
+	<div id="search-hotel-button">
 		<%= form_tag("/owners/search",:remote => true) do%>
 			<%= hidden_field_tag :lat, 0, :class=>"search-lat"%>
 			<%= hidden_field_tag :lng, 0, :class=>"search-lng" %>
 			<%= hidden_field_tag :radius, 1.0, :class=>"search-radius" %>
-			<%= hidden_field_tag :count, 10, :class=>"search-count" %>
+			<%= hidden_field_tag :count, 3, :class=>"search-count" %>
 			<%= submit_tag '', :class=>"do-search"%>
 		<% end %>
 	</div>

@@ -1,1 +1,3 @@
-console.log("aaa");
+// サーチした結果をハッシュで返して部分テンプレート
+// 参照 : http://www.c-and-d.org/ruby/rails/rails_tips/2015/04/25/rails_ajax
+$(".display-hotels").html("<%= j(render :partial => 'owners/hotel', :collection => @hotels) %>");
