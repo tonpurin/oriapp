@@ -182,7 +182,6 @@ top_init_gmap = function(){
 // owner画面におけるgoogle mapの初期化
 owner_init_gmap = function(){
 
-  console.log("aa");
   // 地図を作成
   create_map();
 
