@@ -24,6 +24,22 @@
 	display: none;
 }
 
+.display-hotels .search-button {
+	position: relative;
+	height: 80px;
+	width: 80px;
+	float: right;
+	top: -50px;
+	right: 20px;
+}
+
+.display-hotels .search-explain {
+	font-size: 40px;
+	line-width: 60%;
+	text-align: center;
+	padding-top: 200px;
+}
+
 .display-hotels .hotel-info div {
 	width: 80%;
 	margin-left: 25%;
