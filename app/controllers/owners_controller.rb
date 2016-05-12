@@ -30,8 +30,8 @@ class OwnersController < ApplicationController
     # APIで周辺の宿泊施設をサーチ
     jaran_api = JaranAPI.new()
     #  経度，緯度の順で渡す...利用制限
-    # @hotels, @url = jaran_api.search_hotel(lng, lat, radius, count)
-    @hotels = jaran_api.get_test_data
+    @hotels, @url = jaran_api.search_hotel(lng, lat, radius, count)
+    # @hotels = jaran_api.get_test_data
 
     # ヒットのチェック
     if @hotels.empty? then
