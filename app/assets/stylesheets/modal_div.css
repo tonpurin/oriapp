@@ -147,10 +147,41 @@
   margin-left: 20px;
 }
 
-
 #group-div .group-create-button {
   display: block;
   width: 50%;
   margin: 0 auto;
   margin-top: 20px;
+}
+
+#search-filter-div .modal-search-filter-div .radius-count{
+  width: 60%;
+  margin: 0 auto;
+}
+
+.radius-count p {
+  font-size: 40px;
+  text-align: center;
+}
+
+.radius-count .radius-value {
+  font-size: 80px;
+  display: block;
+  text-align: center;
+}
+
+.radius-count .radius-up {
+  font-size: 50px;
+  display: block;
+  float: left;
+  position: relative;
+  left: 70px;
+}
+
+.radius-count .radius-down {
+  font-size: 50px;
+  display: block;
+  float: right;
+  position: relative;
+  right: 70px;
 }

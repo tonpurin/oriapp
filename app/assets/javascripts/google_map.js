@@ -129,11 +129,14 @@ add_marker_event = function (marker){
     // geocodeを取得
     var lat = marker.position.lat();
     var lng = marker.position.lng();
+    var radius = parseInt($('.radius-value').text());
     console.log(lat);
     console.log(lng);
+    console.log(radius);
     // 緯度経度をホームにセット
     $('#search-hotel-button .search-lat').val(lat);
     $('#search-hotel-button .search-lng').val(lng);
+    $('#search-hotel-button .search-count').val(radius);
     // 送信
     $('#search-hotel-button .do-search').trigger("click");
   } ) ;
