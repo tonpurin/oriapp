@@ -26,5 +26,6 @@ if (is_empty == 0) {
 	$('.slick-next').text("");
 	$('.slick-next').append(img_element);
 }else{
-	alert("no hit");
+	var no_hit = "<p class='search-explain'>NO Hit</p>";
+	$(".display-hotels .pattern4").append(no_hit);
 };

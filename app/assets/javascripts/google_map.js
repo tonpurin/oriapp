@@ -136,7 +136,7 @@ add_marker_event = function (marker){
     // 緯度経度をホームにセット
     $('#search-hotel-button .search-lat').val(lat);
     $('#search-hotel-button .search-lng').val(lng);
-    $('#search-hotel-button .search-count').val(radius);
+    $('#search-hotel-button .search-radius').val(radius);
     // 送信
     $('#search-hotel-button .do-search').trigger("click");
   } ) ;
