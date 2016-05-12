@@ -16,6 +16,8 @@ class OwnersController < ApplicationController
     # 得票数も格納
     gon.user_items_info[3] = tmp[0]
 
+    # binding.pry
+
   end
 
   def search
@@ -28,9 +30,17 @@ class OwnersController < ApplicationController
     # APIで周辺の宿泊施設をサーチ
     jaran_api = JaranAPI.new()
     #  経度，緯度の順で渡す...利用制限
-    @hotels = jaran_api.search_hotel(lng, lat, radius, count)
+    @hotels, @url = jaran_api.search_hotel(lng, lat, radius, count)
     # @hotels = jaran_api.get_test_data
-    # binding.pry
+
+    # ヒットのチェック
+    if @hotels.empty? then
+      # ヒットしなかった場合
+      @empty_check = 1
+    else
+      @empty_check = 0
+    end
+
   end
 
   private

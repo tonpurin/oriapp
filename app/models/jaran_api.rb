@@ -30,11 +30,11 @@ class JaranAPI
     m_jx, m_jy = change_degree_to_millisec(jx, jy)
 
     # 利用制限注意
-    # xml取得
-    xml_doc = get_xml_body(m_jx.round, m_jy.round, radius, count)
+    # xml取得 (確認のurl)
+    xml_doc, url = get_xml_body(m_jx.round, m_jy.round, radius, count)
     # 情報の抽出
     hotel_info = get_hotel_info(xml_doc)
-    return hotel_info
+    return [hotel_info, url]
   end
 
   private
@@ -47,7 +47,7 @@ class JaranAPI
     url = URI.parse("http://jws.jalan.net/APIAdvance/HotelSearch/V1/?order=4&xml_ptn=1&pict_size=0&key=vir1549dce10c5&x=#{m_jx}&y=#{m_jy}&range=#{radius}&count=#{count}")
     res = Net::HTTP.start(url.host, url.port){|http| http.get(url.path + "?" + url.query);}
     doc = REXML::Document.new(res.body)
-    return doc
+    return [doc, url]
   end
 
   def get_hotel_info(xml_document)

@@ -6,16 +6,21 @@ $(".display-hotels .pattern4").empty();
 $(".display-hotels .pattern4").removeClass("slick-initialized", "slick-slider");
 
 // 部分テンプレート
-$(".display-hotels .pattern4").html("<%= j(render :partial => 'owners/hotel', :collection => @hotels) %>");
+is_empty = (<%= @empty_check %>)
+if (is_empty == 0) {
+	$(".display-hotels .pattern4").html("<%= j(render :partial => 'owners/hotel', :collection => @hotels) %>");
 
-// スライド初期化
-$('.pattern4').slick({
-	centerMode: true,
-	centerPadding: '160px'
-});
-var img_element = '<img src="/assets/left-arrow.png" class="left-arrow">';
-$('.slick-prev').text("");
-$('.slick-prev').append(img_element);
-var img_element = '<img src="/assets/right-arrow.png" class="right-arrow">';
-$('.slick-next').text("");
-$('.slick-next').append(img_element);
+	// スライド初期化
+	$('.pattern4').slick({
+		centerMode: true,
+		centerPadding: '160px'
+	});
+	var img_element = '<img src="/assets/left-arrow.png" class="left-arrow">';
+	$('.slick-prev').text("");
+	$('.slick-prev').append(img_element);
+	var img_element = '<img src="/assets/right-arrow.png" class="right-arrow">';
+	$('.slick-next').text("");
+	$('.slick-next').append(img_element);
+}else{
+	alert("no hit");
+};
