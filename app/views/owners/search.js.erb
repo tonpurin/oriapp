@@ -4,15 +4,14 @@
 // .pattern4のクラス・子要素消去...冗長
 $(".display-hotels .pattern4").empty();
 $(".display-hotels .pattern4").removeClass("slick-initialized", "slick-slider");
+// ないとレイアウトがくずれる...?
+$(".display-hotels").show();
 
 is_empty = (<%= @empty_check %>)
 if (is_empty == 0) {
 
 	// 部分テンプレート
 	$(".display-hotels .pattern4").html("<%= j(render :partial => 'owners/hotel', :collection => @hotels) %>");
-
-	// ないとレイアウトがくずれる...?
-	$(".display-hotels").show();
 
 	// スライド初期化
 	$('.pattern4').slick({
