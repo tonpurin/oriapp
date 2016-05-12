@@ -22,6 +22,10 @@ class GroupsController < ApplicationController
       }
     end
 
+    # push通知
+    Pusher['general_channel'].trigger('notification', {message: "出来たよ"}
+      )
+
     # トップページにリダイレクト
     user_group_id = UserGroup.where({:user_id => current_user.id, :group_id => group_id})[0].id
     redirect_to controller: 'top', action: "index", id: user_group_id
