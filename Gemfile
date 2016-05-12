@@ -51,6 +51,7 @@ gem 'gon' # railsとjsで変数をやりとり可能
 gem 'jquery-turbolinks' # turbolinksを除外するgem
 gem 'nested_form_fields' # form_forにinputを動的に追加するgem 参照:http://www.virment.com/add_and_remove_rails_nested_form_dynamically/
 gem 'paperclip' # アイコン画像
+gem 'pusher' # websocketをAPIで使用
 
 # herokuデプロイ用
 group :production, :staging do
