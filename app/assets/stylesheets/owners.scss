@@ -3,11 +3,25 @@
 	display: none;
 }
 
+.display-slide-button {
+	font-size: 60px;
+	text-align: center;
+	font-family: 'Neucha', cursive;
+	color: #CACEDA;
+	display: block;
+	margin-top : 50px;
+}
+
+.display-slide-button:hover {
+  color: #101115;
+}
+
 .display-hotels {
 	position: relative;
 	top: 3%;
-	height: 40%;
 	margin: 0px 20px;
+	height: 40%;
+	display: none;
 }
 
 .display-hotels .hotel-info div {
