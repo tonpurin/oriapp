@@ -7,9 +7,5 @@ $(function() {
     $(".display-slide-button").on("click", function(){
       $(".display-hotels").slideToggle(200);;
     });
-
-    $(".display-hotels .search-button").on("click", function() {
-      alert("aaa");
-    });
   }
 });

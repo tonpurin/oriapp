@@ -8,7 +8,7 @@
 
 	<p class="display-slide-button">----------Search Hotel----------</p>
 	<div class="display-hotels">
-		<%= image_tag "search.png", :class => "search-button" %>
+		<a rel="leanModal" href="#search-filter-div"><%= image_tag "search.png", :class => "search-button" %></a>
 		<div class="pattern4">
 			<p class='search-explain'>Google mapのマーカーをクリックして<br>周辺のホテルを検索</p>
 		</div>
@@ -26,6 +26,15 @@
 			<%= hidden_field_tag :count, 3, :class=>"search-count" %>
 			<%= submit_tag '', :class=>"do-search"%>
 		<% end %>
+	</div>
+
+	<div class="modal-div">
+		<div id="search-filter-div">
+			<div class="modal-search-filter-div clearfix">
+				<p>aaaaaaaaa</p>
+			</div>
+		<span class="modal_close">☓</span>
+		</div>
 	</div>
 
 </div>

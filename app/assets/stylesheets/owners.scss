@@ -20,17 +20,16 @@
 	position: relative;
 	top: 3%;
 	margin: 0px 20px;
-	height: 40%;
+	height: 35%;
 	display: none;
 }
 
 .display-hotels .search-button {
+	display: block;
 	position: relative;
 	height: 80px;
 	width: 80px;
-	float: right;
-	top: -50px;
-	right: 20px;
+	top: -70px;
 }
 
 .display-hotels .search-explain {
@@ -38,6 +37,11 @@
 	line-width: 60%;
 	text-align: center;
 	padding-top: 200px;
+}
+
+.display-hotels .pattern4 {
+	position: relative;
+	top: -20%;
 }
 
 .display-hotels .hotel-info div {

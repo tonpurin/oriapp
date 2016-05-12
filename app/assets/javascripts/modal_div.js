@@ -18,5 +18,14 @@ $(function() {
     // グループページで，現在のグループの背景・文字色を変える
     $('.modal-user-group-div-' + gon.user_group_id).css('background-color', '#556068');
     $('.modal-user-group-div-' + gon.user_group_id + " p").css('color', 'white');
-  }
+  };
+
+  // ownerでもmodalを使用
+  if(document.URL.match("/owners/")) {
+    $('a[rel*=leanModal]').leanModal({
+      top: 50,                     // モーダルウィンドウの縦位置を指定
+      overlay : 0.8,               // 背面の透明度
+      closeButton: ".modal_close"  // 閉じるボタンのCSS classを指定
+    });
+  };
 });
