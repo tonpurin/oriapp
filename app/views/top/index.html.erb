@@ -37,12 +37,12 @@
 					<%= image_tag current_user.avatar %>
 				</div>
 				<div class="modal-right">
-					<p><%= "Email : #{current_user.email}" %></p>
-					<p><%= "UserID : #{current_user.unique_name}" %></p>
+					<p class="account-email"><%= "Email : #{current_user.email}" %></p>
+					<p class="account-id"><%= "UserID : #{current_user.unique_name}" %></p>
 				</div>
 			</div>
 			<span class="modal_close">☓</span>
-			<%= link_to "EDIT", edit_user_registration_path, :class => "button button-action button-pill button-giant account-edit-button", :method => "get" %>
+			<%= link_to "EDIT", edit_user_registration_path, :class => "button button-action button-pill button-giant account-edit-button", :method => "get"%>
 		</div>
 
 		<div id="group-div">

@@ -7,7 +7,6 @@ class GroupsController < ApplicationController
 
   def create
     # グループ作成
-    #binding.pry
     new_group_record = Group.create(group_params)
     group_id = new_group_record.id
 
@@ -18,13 +17,15 @@ class GroupsController < ApplicationController
     unless user_groups_params.blank? then
       add_members = user_groups_params
       add_members.each{|key, member_obj|
+
+        # DBに登録
         UserGroup.create({:user_id => User.where(:unique_name => member_obj['user_name'])[0].id, :group_id => group_id, :user_name => member_obj["user_name"]})
+
+        # push通知
+        Pusher["group_member_#{member_obj['user_name']}"].trigger('notification', {sender: current_user.unique_name, group_name: new_group_record.group_name}
+        )
       }
     end
-
-    # push通知
-    Pusher['general_channel'].trigger('notification', {message: "出来たよ"}
-      )
 
     # トップページにリダイレクト
     user_group_id = UserGroup.where({:user_id => current_user.id, :group_id => group_id})[0].id
