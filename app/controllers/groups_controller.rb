@@ -19,10 +19,10 @@ class GroupsController < ApplicationController
       add_members.each{|key, member_obj|
 
         # DBに登録
-        UserGroup.create({:user_id => User.where(:unique_name => member_obj['user_name'])[0].id, :group_id => group_id, :user_name => member_obj["user_name"]})
+        new_group_member = UserGroup.create({:user_id => User.where(:unique_name => member_obj['user_name'])[0].id, :group_id => group_id, :user_name => member_obj["user_name"]})
 
         # push通知
-        Pusher["group_member_#{member_obj['user_name']}"].trigger('notification', {sender: current_user.unique_name, group_name: new_group_record.group_name}
+        Pusher["group_member_#{member_obj['user_name']}"].trigger('notification', {sender: current_user.unique_name, group_name: new_group_record.group_name, user_group_id: new_group_member.id}
         )
       }
     end
@@ -38,10 +38,14 @@ class GroupsController < ApplicationController
 
   def consent
     # 参加する
+
+    redirect_to controller: 'top', action: "index", id: params[:id]
   end
 
   def object
     # 参加しない
+
+    redirect_to root_path
   end
 
   private

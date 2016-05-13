@@ -21,8 +21,15 @@ $(function() {
 
     var owner_name = data.sender;
     var group_name = data.group_name;
+    var user_group_id = data.user_group_id;
+
+    // モーダルの中の承認画面を作成
     $('.owner-name').text(owner_name);
     $('.group-name').text(group_name);
+    $('.consent-button').attr('href', '/groups/consent/' + user_group_id);
+    $('.object-button').attr('href', '/groups/object/' + user_group_id);
+
+    // 通知ボタンを表示
     $('.right-notification').show();
 
   });
