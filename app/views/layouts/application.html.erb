@@ -44,8 +44,9 @@
           <% end %>
         </div>
       </div>
-      <div class="right-contents">
-        <%= image_tag @group_avatar %>
+      <div class="right-contents clearfix">
+        <%= image_tag @group_avatar, :class => "right-avatar"%>
+        <%= image_tag "notification.png", :class => "right-notification"%>
       </div>
     <% else %>
       <div class="left-contents">

@@ -67,19 +67,37 @@ header .left-contents a {
 
 header .right-contents {
   height: 100%;
-  width: 20%;
+  width: 40%;
   float: right;
   text-align: center;
 }
 
-header .right-contents img {
+header .right-contents .right-avatar {
+  display: block;
   position: relative;
+  float: right;
   top: 20px;
+  margin-right: 20px;
   height: 100px;
   width: 100px;
   border-radius: 70%;
 }
 
+header .right-contents .right-notification {
+  display: block;
+  position: relative;
+  float: right;
+  top: 20px;
+  margin-right: 20px;
+  height: 100px;
+  width: 100px;
+  border-radius: 70%;
+  display: none;
+}
+
+header .right-contents .right-notification:hover{
+  border: solid 5px #5EABE6;
+}
 
 /* footer */
 footer{

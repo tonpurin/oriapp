@@ -18,5 +18,6 @@ $(function() {
   channel.bind('notification', function(data) {
     console.log(data.sender);
     console.log(data.group_name);
+    $('.right-notification').show();
   });
 });
