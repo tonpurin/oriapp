@@ -36,6 +36,14 @@ class GroupsController < ApplicationController
     # グループ消去
   end
 
+  def consent
+    # 参加する
+  end
+
+  def object
+    # 参加しない
+  end
+
   private
   def group_params
     params.require(:group).permit(:group_name, :destination, :avatar).merge({:owner_user_id => current_user.id, :owner_user_name => current_user.unique_name})

@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :top, only: [:index, :create, :destroy]
   get "top/index/:id" => 'top#index'
   resources :groups, only: [:new, :create, :destroy]
+  get "groups/consent/:id" => 'groups#consent'
+  get "groups/object/:id" => 'groups#object'
   resources :owners, only: :index
   post "owners/search" => 'owners#search'
 

@@ -190,3 +190,19 @@
   font-size: 40px;
   text-align: center;
 }
+
+.modal-notification-div .consent-button{
+  display: block;
+  float: left;
+  position: relative;
+  left: 130px;
+  top: 30px;
+}
+
+.modal-notification-div .object-button{
+  display: block;
+  float: right;
+  position: relative;
+  right: 130px;
+  top: 30px;
+}

@@ -59,8 +59,10 @@
 		</div>
 
 		<div id="notification-div">
-			<div class="modal-notification-div">
+			<div class="modal-notification-div clearfix">
 				<p><span class="owner-name"></span>さんがあなたを<br><span class="group-name"></span>に招待しています</p>
+				<%= link_to "承認", "/groups/consent/1",:class => "button button-action button-pill button-giant consent-button" %>
+				<%= link_to "破棄", "/groups/object/1" ,:class => "button button-caution button-pill button-giant object-button"%>
 			</div>
 			<span class="modal_close">☓</span>
 		</div>
