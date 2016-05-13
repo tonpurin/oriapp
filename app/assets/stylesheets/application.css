@@ -92,7 +92,7 @@ header .right-contents .right-notification {
   height: 100px;
   width: 100px;
   border-radius: 70%;
-  /*display: none;*/
+  display: none;
 }
 
 header .right-contents .right-notification:hover{

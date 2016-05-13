@@ -15,9 +15,17 @@ $(function() {
   var user_id = $('.account-id').text().substr(9);
   // チャネル設定
   var channel = pusher.subscribe("group_member_" + user_id);
+
+  // グループ招待に関する通知時の処理
   channel.bind('notification', function(data) {
-    console.log(data.sender);
-    console.log(data.group_name);
+
+    var owner_name = data.sender;
+    var group_name = data.group_name;
+    $('.owner-name').text(owner_name);
+    $('.group-name').text(group_name);
     $('.right-notification').show();
+
   });
+
+
 });
