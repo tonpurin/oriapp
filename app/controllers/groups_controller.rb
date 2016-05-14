@@ -12,14 +12,14 @@ class GroupsController < ApplicationController
 
     # ユーザとグループの結びつけ
     # オーナー
-    UserGroup.create({:user_id => current_user.id, :group_id => group_id, :user_name => current_user.unique_name})
+    UserGroup.create({:user_id => current_user.id, :group_id => group_id, :user_name => current_user.unique_name, :state => 1})
     # メンバー
     unless user_groups_params.blank? then
       add_members = user_groups_params
       add_members.each{|key, member_obj|
 
-        # DBに登録
-        new_group_member = UserGroup.create({:user_id => User.where(:unique_name => member_obj['user_name'])[0].id, :group_id => group_id, :user_name => member_obj["user_name"]})
+        # DBに登録...stateは招待中
+        new_group_member = UserGroup.create({:user_id => User.where(:unique_name => member_obj['user_name'])[0].id, :group_id => group_id, :user_name => member_obj["user_name"], :state => 0})
 
         # push通知
         Pusher["group_member_#{member_obj['user_name']}"].trigger('notification', {sender: current_user.unique_name, group_name: new_group_record.group_name, user_group_id: new_group_member.id}
@@ -40,13 +40,15 @@ class GroupsController < ApplicationController
     # 参加する
     user_group = UserGroup.find(params[:id])
 
-    # stateを変更
-
     # push通知
     owner_user_name = User.find(user_group.group.owner_user_id).unique_name
     user_name = user_group.user.unique_name
     Pusher["group_owner_#{owner_user_name}"].trigger('notification', {member: user_name, state: "consent"}
     )
+
+    # stateを変更
+    user_group.state = 1
+    user_group.save()
 
     # リダイレクト
     redirect_to controller: 'top', action: "index", id: params[:id]
@@ -56,13 +58,15 @@ class GroupsController < ApplicationController
     # 参加しない
     user_group = UserGroup.find(params[:id])
 
-    # stateを変更
-
     #push通知
     owner_user_name = User.find(user_group.group.owner_user_id).unique_name
     user_name = user_group.user.unique_name
     Pusher["group_owner_#{owner_user_name}"].trigger('notification', {member: user_name, state: "object"}
     )
+
+    # stateを変更
+    user_group.state = -1
+    user_group.save()
 
     # リダイレクト
     redirect_to root_path
