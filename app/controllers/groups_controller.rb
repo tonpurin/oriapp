@@ -38,13 +38,33 @@ class GroupsController < ApplicationController
 
   def consent
     # 参加する
+    user_group = UserGroup.find(params[:id])
 
+    # stateを変更
+
+    # push通知
+    owner_user_name = User.find(user_group.group.owner_user_id).unique_name
+    user_name = user_group.user.unique_name
+    Pusher["group_owner_#{owner_user_name}"].trigger('notification', {member: user_name, state: "consent"}
+    )
+
+    # リダイレクト
     redirect_to controller: 'top', action: "index", id: params[:id]
   end
 
   def object
     # 参加しない
+    user_group = UserGroup.find(params[:id])
 
+    # stateを変更
+
+    #push通知
+    owner_user_name = User.find(user_group.group.owner_user_id).unique_name
+    user_name = user_group.user.unique_name
+    Pusher["group_owner_#{owner_user_name}"].trigger('notification', {member: user_name, state: "object"}
+    )
+
+    # リダイレクト
     redirect_to root_path
   end
 

@@ -12,12 +12,12 @@ $(function() {
 
   // ユーザのIDを使ってチャネルをつなぐ
   // モーダルのアカウント情報からIDを取得
-  var user_id = $('.account-id').text().substr(9);
-  // チャネル設定
-  var channel = pusher.subscribe("group_member_" + user_id);
+  var user_name = $('.account-id').text().substr(9);
 
+  // チャネル設定
+  var channel_member = pusher.subscribe("group_member_" + user_name);
   // グループ招待に関する通知時の処理
-  channel.bind('notification', function(data) {
+  channel_member.bind('notification', function(data) {
 
     var owner_name = data.sender;
     var group_name = data.group_name;
@@ -32,6 +32,14 @@ $(function() {
     // 通知ボタンを表示
     $('.right-notification').show();
 
+  });
+
+  // チャネル設定
+  var channel_owner = pusher.subscribe("group_owner_" + user_name);
+  //グループ承認・非承認をオーナーに通知
+  channel_owner.bind('notification', function(data){
+    console.log(data.member);
+    console.log(data.state);
   });
 
 
