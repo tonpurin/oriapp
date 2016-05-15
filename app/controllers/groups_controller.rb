@@ -41,9 +41,9 @@ class GroupsController < ApplicationController
     user_group = UserGroup.find(params[:id])
 
     # push通知
-    owner_user_name = user_group.group.owner_user_name
     user_group_id = user_group.id
-    Pusher["group_owner_#{owner_user_name}"].trigger('response', {group_id: user_group.group.id, user_group_id: user_group_id, answer: "consent"}
+    group_id = user_group.group.id
+    Pusher["group_#{group_id}"].trigger('response', {group_id: group_id, user_group_id: user_group_id, answer: "consent"}
     )
 
     # stateを変更
@@ -59,9 +59,9 @@ class GroupsController < ApplicationController
     user_group = UserGroup.find(params[:id])
 
     #push通知
-    owner_user_name = user_group.group.owner_user_name
     user_group_id = user_group.id
-    Pusher["group_owner_#{owner_user_name}"].trigger('response', {group_id: user_group.group.id, user_group_id: user_group_id, answer: "object"}
+    group_id = user_group.group.id
+    Pusher["group_#{group_id}"].trigger('response', {group_id: group_id, user_group_id: user_group_id, answer: "object"}
     )
 
     # stateを変更

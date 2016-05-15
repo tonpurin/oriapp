@@ -34,22 +34,29 @@ $(function() {
 
   });
 
-  // グループIDを使っチャネルをつなぐ
+  // グループIDを使ってチャネルをつなぐ
+  // モーダルのアカウント情報からIDを取得
+  var groups = $('.modal-user-group-div');
+  var group_num = groups.length;
+  // グループに対応したチャネル設定
+  var channel_group = []
+  for (var i = 0; i < group_num; i++) {
+    var group_id = $(groups[i]).attr('value');
+    channel_group[i] = pusher.subscribe("group_" + group_id);
+     // 承認・非承認時の処理
+    channel_group[i].bind('response', function(data){
 
-  // チャネル設定
-  var channel_owner = pusher.subscribe("group_owner_" + user_name);
-  //グループ承認・非承認の通知時の処理
-  channel_owner.bind('response', function(data){
+      var answer = data.answer;
+      var user_group_id = data.user_group_id;
+      var group_id = data.group_id;
+      if (answer == "consent"){
+        // 承認 : メンバーの名前の色を濃くする
+        $("#member-" + user_group_id + "-name p").css("opacity", "1.0");
+      }else{
+        // 非承認 : メンバーの名前を消す
+        $("#member-" + user_group_id + "-name").remove();
+      };
 
-    var answer = data.answer;
-    var user_group_id = data.user_group_id;
-    var group_id = data.group_id;
-    if (answer == "consent"){
-      $("#member-" + user_group_id + "-name p").css("opacity", "1.0");
-    }else{
-      $("#member-" + user_group_id + "-name").remove();
-    };
-
-  });
-
+    });
+  };
 });

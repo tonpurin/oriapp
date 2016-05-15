@@ -1,7 +1,7 @@
 <!-- stateが1であれば所属グループとみなし表示 -->
  <% if user_group.state == 1 %>
 	<!-- content_tagを使ってclassを複数付加できる -->
-	<%= content_tag(:div, :class => ['modal-user-group-div', 'clearfix',"modal-user-group-div-#{user_group.group.id}"]) do -%>
+	<%= content_tag(:div, :class => ['modal-user-group-div', 'clearfix',"modal-user-group-div-#{user_group.id}"], :value => user_group.group.id) do -%>
 		<%= link_to({:controller => :top, :action => :index, :id => user_group.id }, data: {no_turbolink:true}) do %>
 			<div class="modal-left">
 				<%= image_tag user_group.group.avatar,  :class => 'modal-sample-image'%>
