@@ -18,6 +18,12 @@
 			<%= form_for(@new_group_item, :url => {:controller => :owners, :action => :create}, :remote => true) do |f| %>
 				<!-- viewに表示されない -->
 				<%= f.hidden_field :item_id, :value => 1, :class => "iine_item_id" %>
+				<%= f.hidden_field :item_name, :value => 1, :class => "iine_item_name" %>
+				<%= f.hidden_field :item_address, :value => 1, :class => "iine_item_address" %>
+				<%= f.hidden_field :item_url, :value => 1, :class => "iine_item_url" %>
+				<%= f.hidden_field :image_url, :value => 1, :class => "iine_image_url" %>
+				<%= f.hidden_field :item_lat, :value => 1, :class => "iine_item_lat" %>
+				<%= f.hidden_field :item_lng, :value => 1, :class => "iine_item_lng" %>
 				<%= f.submit "" %>
 			<% end %>
 		</div>

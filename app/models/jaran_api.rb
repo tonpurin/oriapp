@@ -10,9 +10,9 @@ class JaranAPI
 
   def get_test_data
     test_data = []
-    hotel1 = {"id" => 313464, "name" => "ラビスタ函館ベイ","address" => "北海道函館市豊川町１２－６","detail_url" => "http://www.jalan.net/JwsRedirect.do?key=vir1549dce10c5&amp;rd_key=MzEzNDY0LCwsLDEsMSwsLCwsLCwwMSwwMA==","picture_url" => "http://www.jalan.net/jalan/images/pictSS/Y4/Y313464/Y313464633.jpg", "catchcopy" => "じゃらんアワード2014泊まって良かった宿大賞301室以上で道内１位", "lng" => 506601488, "lat" => 150353432}
-    hotel2 = {"id" => 393844, "name" => "函館グランドホテル","address" => "北海道函館市宝来町２２番地１５号", "detail_url" => "http://www.jalan.net/JwsRedirect.do?key=vir1549dce10c5&rd_key=MzkzODQ0LCwsLDEsMSwsLCwsLCwwMSwwMA==","picture_url" => "http://www.jalan.net/jalan/images/pictSS/Y4/Y393844/Y393844605.jpg", "catchcopy" => "小学生添寝無料★イクラ盛り放題！朝食が人気★ベイエリア徒歩7分" ,"lng" => 506605519, "lat" => 150333925}
-    hotel3 = {"id" => 322476, "name" => "函館国際ホテル", "address" => "函館市大手町5-10","detail_url" => "http://www.jalan.net/JwsRedirect.do?key=vir1549dce10c5&rd_key=MzIyNDc2LCwsLDEsMSwsLCwsLCwwMSwwMA==","picture_url" => "http://www.jalan.net/jalan/images/pictSS/Y6/Y322476/Y322476As8.jpg", "catchcopy" => "◆港街に佇む老舗シティホテルで寛ぎのひとときを◆", "lng" => 506613200, "lat" => 150361378}
+    hotel1 = {"id" => 313464, "name" => "ラビスタ函館ベイ","address" => "北海道函館市豊川町１２－６","detail_url" => "http://www.jalan.net/JwsRedirect.do?key=vir1549dce10c5&amp;rd_key=MzEzNDY0LCwsLDEsMSwsLCwsLCwwMSwwMA==","picture_url" => "http://www.jalan.net/jalan/images/pictSS/Y4/Y313464/Y313464633.jpg", "catchcopy" => "じゃらんアワード2014泊まって良かった宿大賞301室以上で道内１位", "lng" => 140.7190667559249, "lat" => 41.767434752453894}
+    hotel2 = {"id" => 393844, "name" => "函館グランドホテル","address" => "北海道函館市宝来町２２番地１５号", "detail_url" => "http://www.jalan.net/JwsRedirect.do?key=vir1549dce10c5&rd_key=MzkzODQ0LCwsLDEsMSwsLCwsLCwwMSwwMA==","picture_url" => "http://www.jalan.net/jalan/images/pictSS/Y4/Y393844/Y393844605.jpg", "catchcopy" => "小学生添寝無料★イクラ盛り放題！朝食が人気★ベイエリア徒歩7分" ,"lng" => 140.72018663462404, "lat" => 41.762016740418076}
+    hotel3 = {"id" => 322476, "name" => "函館国際ホテル", "address" => "函館市大手町5-10","detail_url" => "http://www.jalan.net/JwsRedirect.do?key=vir1549dce10c5&rd_key=MzIyNDc2LCwsLDEsMSwsLCwsLCwwMSwwMA==","picture_url" => "http://www.jalan.net/jalan/images/pictSS/Y6/Y322476/Y322476As8.jpg", "catchcopy" => "◆港街に佇む老舗シティホテルで寛ぎのひとときを◆", "lng" => 140.72231971747556, "lat" => 41.769641795429926}
     test_data << hotel1
     test_data << hotel2
     test_data << hotel3
@@ -66,8 +66,12 @@ class JaranAPI
       hotel_info["catchcopy"] = i.elements["HotelCatchCopy"].text
 
       # 世界測に変換する必要あり
-      hotel_info["lng"] = i.elements["X"].text
-      hotel_info["lat"] = i.elements["Y"].text
+      milli_jx = i.elements["X"].text.to_f
+      milli_jy = i.elements["Y"].text.to_f
+      jx, jy = change_millisec_to_degree(milli_jx, milli_jy)
+      wx, wy = change_location_japan_to_global(jx, jy)
+      hotel_info["lng"] = wx
+      hotel_info["lat"] = wy
 
       hotel_info_array << hotel_info
     }
@@ -78,9 +82,18 @@ class JaranAPI
     """
     世界測地系→日本測地系の変換処理
     """
-    jx = wx * 1.000083049 + wy * 0.000046047 - 0.010041046;
-    jy = wy * 1.000106961 - wx * 0.000017467 - 0.004602017;
+    jx = wx * 1.000083049 + wy * 0.000046047 - 0.010041046
+    jy = wy * 1.000106961 - wx * 0.000017467 - 0.004602017
     return [jx, jy];
+  end
+
+  def change_location_japan_to_global(jx, jy)
+    """
+    日本測地系→世界測地系の変換処理
+    """
+    wy = jy - jy * 0.00010695 + jx * 0.000017464 + 0.0046017
+    wx = jx - jy * 0.000046038 - jx * 0.000083043 + 0.010040
+    return [wx, wy];
   end
 
   def change_degree_to_millisec(jx, jy)
@@ -91,5 +104,15 @@ class JaranAPI
     milli_jy = jy * 3600 * 1000
     return [milli_jx, milli_jy]
   end
+
+   def change_millisec_to_degree(milli_jx, milli_jy)
+    """
+    緯度経度をミリ秒形式からdegree形式に変換
+    """
+    jx = milli_jx / (3600 * 1000)
+    jy = milli_jy / (3600 * 1000)
+    return [jx, jy]
+  end
+
 end
 

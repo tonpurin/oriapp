@@ -7,7 +7,7 @@ window.onload = function()
   // 正面画像のitem_idを取得，2つのボタンのリクエストに反映
   set_current_item_id = function(){
 
-    // 正面画像のitem_idを取得
+    // 正面itemのidを取得
     gon.current_item_id = parseInt($('.slick-current a img').data("id"));
 
     // createのリクエスト

@@ -47,6 +47,9 @@ class OwnersController < ApplicationController
   end
 
   def create
+    new_group_item_record = GroupItem.create(group_item_params)
+    # 追加したレコードのIDを取得
+    @create_group_item_id = new_group_item_record.id
   end
 
   def destroy
@@ -66,6 +69,13 @@ class OwnersController < ApplicationController
       converted_voted_item << [vote_count, voted_items.where(:item_id => item_id)[0]]
     end
     return converted_voted_item
+  end
+
+  def group_item_params
+    # 緯度経度の桁数調整
+    lat = params.require(:group_item)['item_lat'].to_f.round(7)
+    lng = params.require(:group_item)['item_lng'].to_f.round(7)
+    params.require(:group_item).permit(:item_id, :item_name, :image_url, :item_url, :item_address).merge({:item_lat => lat, :item_lng => lng, :item_genre => 'hotel', :group_id => UserGroup.group_id(current_user.id)})
   end
 
 end

@@ -21,13 +21,27 @@ if (is_empty == 0) {
 		centerMode: true,
 		centerPadding: '160px'
 	});
+	// スライドのボタンに関するイベントを定義
+	$('.slick-prev, .slick-next').on('click', function() {
+
+      set_current_item_info();
+      // いいね or よくないねを判断
+      //toggle_iine_yokunaine();
+    });
+    // 初期化
+    set_current_item_info();
+
 	var img_element = '<img src="/assets/left-arrow.png" class="left-arrow">';
 	$('.slick-prev').text("");
 	$('.slick-prev').append(img_element);
 	var img_element = '<img src="/assets/right-arrow.png" class="right-arrow">';
 	$('.slick-next').text("");
 	$('.slick-next').append(img_element);
+
+
 }else{
+
 	var no_hit = "<p class='search-explain'>NO Hit</p>";
 	$(".display-hotels .pattern4").append(no_hit);
+
 };
