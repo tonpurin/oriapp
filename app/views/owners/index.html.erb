@@ -12,6 +12,19 @@
 		<div class="pattern4">
 			<p class='search-explain'>Google mapのマーカーをクリックして<br>周辺のホテルを検索</p>
 		</div>
+
+		<!-- iineとyokunaineはトグル -->
+		<div class='iine-button'>
+			<%= form_for(@new_user_item, :url => {:controller => :top, :action => :create}, :remote => true) do |f| %>
+				<!-- viewに表示されない -->
+				<%= f.hidden_field :item_id, :value => 1, :class => "iine_item_id" %>
+				<%= f.submit "" %>
+			<% end %>
+		</div>
+		<div class='yokunaine-button'>
+			<%= link_to image_tag("dislike.png"), "/top/1", :class => "yokunaine_item_id", method: :delete, :remote => true %>
+		</div>
+
 	</div>
 
 	<ul class="selected-item-list" style="list-style:none;">

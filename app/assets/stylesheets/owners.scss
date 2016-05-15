@@ -20,7 +20,7 @@
 	position: relative;
 	top: 3%;
 	margin: 0px 20px;
-	height: 35%;
+	height: 40%;
 	display: none;
 }
 
@@ -105,4 +105,21 @@
 	margin: 0 auto;
 	font-size: 30px;
 	max-width: 500px;
+}
+
+.display-hotels .iine-button, .yokunaine-button {
+	position: absolute;
+	bottom: 130px;
+	height :10%;
+	left: 37%; // 無理やり
+}
+
+.display-hotels .yokunaine-button {
+	display: none;
+}
+
+.selected-item-list {
+	margin: 0 auto;
+	padding: 0;
+	margin-top:20px;
 }

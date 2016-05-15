@@ -17,6 +17,7 @@ class OwnersController < ApplicationController
     gon.user_items_info[3] = tmp[0]
 
     # binding.pry
+    @new_user_item = UserItem.new
 
   end
 
