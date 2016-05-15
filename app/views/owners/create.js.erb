@@ -1,1 +1,34 @@
-alert('create');
+// alert('create');
+
+// geocode取得
+var lat = (<%= @item_lat %>);
+var lng = (<%= @item_lng %>);
+var group_item_id = (<%= @create_group_item_id %>);  // 対応するアクションのインスタンス変数を受け取れる
+// markerを作成
+create_marker(lat, lng, "hotel-" + group_item_id);
+// 地図を移動
+// move_map_center(lat, lng);
+
+var item_url = '<%= @item_url %>';
+var image_url = '<%= @image_url %>';
+var item_name = '<%= @item_name %>';
+var item_address = '<%= @item_address %>';
+
+var left_div_html = '<div class="item-info-left"><a href="' + item_url + '" % target="_blank"><img src="' +image_url + '"></a></div>';
+var middle_div_html = '<div class="item-info-middle"><p>' + item_name + '</p><p>' + item_address + '</p></div>';
+var right_div_html = '<div class="item-info-right"><a data-remote="true" rel="narrow" data-method="delete" href="/owners/' + group_item_id + '"><img class="top-img" src="/assets/gurume-icon-96b1296df208369c8ea4be850f89874feb2a6e7908ccd4ccba3ce3ede2f24c77.png" alt="Gurume icon"><img class="bottom-img" src="/assets/dislike-b850d8502822b64e8a77d32b903829872dc4816da33e48f36a184edea0dd7b5e.png" alt="Dislike"></a>';
+
+var outer_div = $('<li class="selected-item ui-id-' +  group_item_id + ' %>"><div class="selected-item-info clearfix" data-id="' + group_item_id + '">' + left_div_html + middle_div_html + right_div_html + '</div></li>');
+
+$('.selected-item-list').append(outer_div);
+
+// 選択中アイテムのgonに要素を追加
+gon.group_items_info[0].push(gon.current_item_id);
+gon.group_items_info[1].push([lat, lng]);
+gon.group_items_info[2].push("hotel-" + group_item_id);
+gon.group_items_info[3].push(-1);
+
+// // yokunaineボタンにトグル
+$('.iine-button').hide();
+$('.yokunaine-button').show();
+

@@ -12,9 +12,9 @@ class OwnersController < ApplicationController
     tmp = @orderd_voted_items.transpose # transposeで転地...作業用
 
     # 投票中のアイテムのID・ジオコード・ユーザ✕アイテムIDを配列で取得...[[ID], [Geo], [UserItemID]]
-    gon.user_items_info = UserItem.extract_item_info(tmp[1])
+    gon.group_items_info = UserItem.extract_item_info(tmp[1])
     # 得票数も格納
-    gon.user_items_info[3] = tmp[0]
+    gon.group_items_info[3] = tmp[0]
 
     # 投票用のインスタンス
     @new_group_item = GroupItem.new
@@ -48,8 +48,14 @@ class OwnersController < ApplicationController
 
   def create
     new_group_item_record = GroupItem.create(group_item_params)
-    # 追加したレコードのIDを取得
+    # 追加したレコードの情報を取得
     @create_group_item_id = new_group_item_record.id
+    @item_lat = new_group_item_record.item_lat
+    @item_lng = new_group_item_record.item_lng
+    @item_url = new_group_item_record.item_url
+    @image_url = new_group_item_record.image_url
+    @item_name = new_group_item_record.item_name
+    @item_address = new_group_item_record.item_address
   end
 
   def destroy
