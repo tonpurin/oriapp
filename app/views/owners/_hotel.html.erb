@@ -1,6 +1,12 @@
-<div class="hotel-info">
-	<div class="clearfix">
-		<p><%= hotel["name"] %></p>
+<div class="hotel-info clearfix">
+	<div class="hotel-name-address">
+		<p class="hotel-name"><%= hotel["name"] %></p>
+		<p class="hotel-address"><%= hotel["address"] %></p>
 	</div>
-	<a href=<%= hotel['detail_url'] %> target="_blank"><img src=<%= hotel['picture_url']%> data-id="<%= hotel['id'] %>"></a>
+	<div class="hotel-img">
+		<a href=<%= hotel['detail_url'] %> target="_blank"><img src=<%= hotel['picture_url']%> data-id=<%= hotel['id'] %> data-lng=<%= hotel['lng'] %> data-lat=<%= hotel['lat'] %>></a>
+	</div>
+	<div class="hotel-catch">
+		<p><%= hotel["catchcopy"] %></p>
+	</div>
 </div>

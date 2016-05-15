@@ -10,9 +10,9 @@ class JaranAPI
 
   def get_test_data
     test_data = []
-    hotel1 = {"id" => 1, "name" => "ラビスタ函館ベイ","detail_url" => "http://www.jalan.net/JwsRedirect.do?key=vir1549dce10c5&amp;rd_key=MzEzNDY0LCwsLDEsMSwsLCwsLCwwMSwwMA==","picture_url" => "http://www.jalan.net/jalan/images/pictSS/Y4/Y313464/Y313464633.jpg"}
-    hotel2 = {"id" => 2, "name" => "函館グランドホテル","detail_url" => "http://www.jalan.net/JwsRedirect.do?key=vir1549dce10c5&rd_key=MzkzODQ0LCwsLDEsMSwsLCwsLCwwMSwwMA==","picture_url" => "http://www.jalan.net/jalan/images/pictSS/Y4/Y393844/Y393844605.jpg"}
-    hotel3 = {"id" => 3, "name" => "函館国際ホテル","detail_url" => "http://www.jalan.net/JwsRedirect.do?key=vir1549dce10c5&rd_key=MzIyNDc2LCwsLDEsMSwsLCwsLCwwMSwwMA==","picture_url" => "http://www.jalan.net/jalan/images/pictSS/Y6/Y322476/Y322476As8.jpg"}
+    hotel1 = {"id" => 313464, "name" => "ラビスタ函館ベイ","address" => "北海道函館市豊川町１２－６","detail_url" => "http://www.jalan.net/JwsRedirect.do?key=vir1549dce10c5&amp;rd_key=MzEzNDY0LCwsLDEsMSwsLCwsLCwwMSwwMA==","picture_url" => "http://www.jalan.net/jalan/images/pictSS/Y4/Y313464/Y313464633.jpg", "catchcopy" => "じゃらんアワード2014泊まって良かった宿大賞301室以上で道内１位", "lng" => 506601488, "lat" => 150353432}
+    hotel2 = {"id" => 393844, "name" => "函館グランドホテル","address" => "北海道函館市宝来町２２番地１５号", "detail_url" => "http://www.jalan.net/JwsRedirect.do?key=vir1549dce10c5&rd_key=MzkzODQ0LCwsLDEsMSwsLCwsLCwwMSwwMA==","picture_url" => "http://www.jalan.net/jalan/images/pictSS/Y4/Y393844/Y393844605.jpg", "catchcopy" => "小学生添寝無料★イクラ盛り放題！朝食が人気★ベイエリア徒歩7分" ,"lng" => 506605519, "lat" => 150333925}
+    hotel3 = {"id" => 322476, "name" => "函館国際ホテル", "address" => "函館市大手町5-10","detail_url" => "http://www.jalan.net/JwsRedirect.do?key=vir1549dce10c5&rd_key=MzIyNDc2LCwsLDEsMSwsLCwsLCwwMSwwMA==","picture_url" => "http://www.jalan.net/jalan/images/pictSS/Y6/Y322476/Y322476As8.jpg", "catchcopy" => "◆港街に佇む老舗シティホテルで寛ぎのひとときを◆", "lng" => 506613200, "lat" => 150361378}
     test_data << hotel1
     test_data << hotel2
     test_data << hotel3
@@ -63,8 +63,11 @@ class JaranAPI
       hotel_info["address"] = i.elements["HotelAddress"].text
       hotel_info["detail_url"] = i.elements["HotelDetailURL"].text
       hotel_info["picture_url"] = i.elements["PictureURL"].text
-      hotel_info["m_jx"] = i.elements["X"].text
-      hotel_info["m_jy"] = i.elements["Y"].text
+      hotel_info["catchcopy"] = i.elements["HotelCatchCopy"].text
+
+      # 世界測に変換する必要あり
+      hotel_info["lng"] = i.elements["X"].text
+      hotel_info["lat"] = i.elements["Y"].text
 
       hotel_info_array << hotel_info
     }
