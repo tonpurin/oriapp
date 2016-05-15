@@ -129,7 +129,7 @@ add_marker_event = function (marker){
     // geocodeを取得
     var lat = marker.position.lat();
     var lng = marker.position.lng();
-    var radius = parseInt($('.radius-value').text());
+    var radius = parseFloat($('.radius-value').text());
     console.log(lat);
     console.log(lng);
     console.log(radius);
