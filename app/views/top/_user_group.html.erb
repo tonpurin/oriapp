@@ -20,11 +20,13 @@
 	<%= content_tag(:div, :class => ["modal-bottom", "modal-bottom-#{user_group.group.id}"]) do -%>
 		<div class="members-rows" style="font-size: 30px;">
 			<% group_users.each do |gu| %>
-				<div id=<%= "member-#{gu.id}-name" %> class="member-row clearfix">
-					<%= image_tag gu.user.avatar %>
-					<!-- 招待中だったらIDをうすく -->
-					<p class=<%= "member-#{gu.id}-name" %> <%= "style=opacity:0.2;" if gu.state==0%>><%= gu.user.unique_name %></p>
-				</div>
+				<% if gu.state != -1 %>
+					<div id=<%= "member-#{gu.id}-name" %> class="member-row clearfix">
+						<%= image_tag gu.user.avatar %>
+						<!-- 招待中だったらIDをうすく -->
+						<p class=<%= "member-#{gu.id}-name" %> <%= "style=opacity:0.2;" if gu.state==0%>><%= gu.user.unique_name %></p>
+					</div>
+				<% end %>
 			<% end %>
 		</div>
 	<% end -%>
