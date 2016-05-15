@@ -64,6 +64,11 @@ window.onload = function()
     // google map初期化
     top_init_gmap();
 
+    $(".display-slide-button").on("click", function(){
+      $(".display-items").slideToggle(200);;
+    });
+    $(".display-items").show();
+
     // スライド初期化
     $('.pattern4').slick({
       centerMode: true,

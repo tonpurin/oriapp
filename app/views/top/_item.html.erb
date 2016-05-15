@@ -1,7 +1,12 @@
-<div class="item-info">
-	<div class="clearfix">
-		<%= image_tag "gurume-icon.png",:align => "left" %>
-		<p><%= item.item_name %></p>
+<div class="item-info clearfix">
+	<div class="item-name-address">
+		<p class="item-name"><%= item.item_name %></p>
+		<p class="item-address"><%= item.item_address %></p>
 	</div>
-	<a href=<%= item.item_url %> target="_blank"><img src=<%= item.image_url %> data-id="<%= item.id %>"></a>
+	<div class="item-img">
+		<a href=<%= item.item_url %> target="_blank"><img src=<%= item.image_url %> data-id="<%= item.id %>"></a>
+	</div>
+	<div class="item-catch">
+		<p>ハンバーガーは16種類、カレー10種類、チャイニーズチキンなど、どれも手作りでアツアツ。</p>
+	</div>
 </div>

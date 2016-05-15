@@ -3,18 +3,6 @@
 	display: none;
 }
 
-.display-slide-button {
-	font-size: 60px;
-	text-align: center;
-	font-family: 'Neucha', cursive;
-	color: #CACEDA;
-	display: block;
-	margin-top : 50px;
-}
-
-.display-slide-button:hover {
-  color: #101115;
-}
 
 .display-hotels {
 	position: relative;
@@ -22,14 +10,6 @@
 	margin: 0px 20px;
 	height: 40%;
 	display: none;
-}
-
-.display-hotels .search-button {
-	display: block;
-	position: relative;
-	height: 80px;
-	width: 80px;
-	top: -70px;
 }
 
 .display-hotels .search-explain {
@@ -107,19 +87,3 @@
 	max-width: 500px;
 }
 
-.display-hotels .iine-button, .yokunaine-button {
-	position: absolute;
-	bottom: 130px;
-	height :10%;
-	left: 37%; // 無理やり
-}
-
-.display-hotels .yokunaine-button {
-	display: none;
-}
-
-.selected-item-list {
-	margin: 0 auto;
-	padding: 0;
-	margin-top:20px;
-}

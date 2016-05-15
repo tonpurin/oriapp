@@ -9,23 +9,6 @@
 	height: 60%;
 }
 
-.display-items {
-	position: relative;
-	top: 3%;
-	height: 30%;
-	margin: 0px 20px;
-}
-
-.iine-button, .yokunaine-button {
-	position: relative;
-	height :10%;
-	text-align : center ;
-}
-
-.yokunaine-button {
-	display: none;
-}
-
 .display-map .map-embed
 {
 	position: relative;
@@ -43,25 +26,112 @@
 	height: 100% ;
 }
 
-.display-items .item-info div {
-	width: 80%;
-	margin-left: 25%;
+
+.display-slide-button {
+	font-size: 60px;
+	text-align: center;
+	font-family: 'Neucha', cursive;
+	color: #CACEDA;
+	display: block;
+	margin-top : 50px;
 }
 
-.display-items .item-info img{
+.display-slide-button:hover {
+  color: #101115;
+}
+
+.display-items {
+	position: relative;
+	top: 3%;
+	margin: 0px 20px;
+	height: 40%;
+	display: none;
+}
+
+.search-button {
 	display: block;
+	position: relative;
+	height: 80px;
+	width: 80px;
+	top: -70px;
+}
+
+.pattern4 {
+	position: relative;
+	top: -20%;
+}
+
+.display-items .item-info {
+	position: relative;
+	height: 500px;
+	width: 80%;
+	margin: 3px;
+	border-radius: 50%;
+	background-color :white;
+	border: 3px dashed #556068;
+}
+
+.display-items .item-info .item-name-address {
+	position: relative;
+	right: 20px;
+	height: 70%;
+	width: 55%;
+	float: right;
+	text-align: center;
+	margin-top: 100px;
+	//margin-right: 20px;
+}
+.item-name-address p {
+	font-size: 35px;
+	font-family: 'Open Sans', sans-serif;
+}
+.item-name-address .item-name{
+	max-width: 350px;
+}
+.item-name-address .item-address{
+	font-size: 25px;
+	max-width: 400px;
+	display: none;
+}
+
+.display-items .item-info .item-img {
+	height: 70%;
+	width: 40%;
 	float: left;
+	margin-top:10px;
+	margin-left:10px;
+}
+
+.item-img img {
+	width: 100%;
+	height: 80%;
 	border-radius: 50%;
 }
 
-.display-items .item-info p{
-	display: block;
-	float: left;
-	font-size: 20px;
-	font-family: 'Neucha', cursive;
-	padding-top:10px;
-	padding-left:10px;
-	width: 70%;
+.display-items .item-info .item-catch {
+	position: absolute;
+	bottom: 30px;
+	height: 30%;
+	width: 90%;
+	left:50px;
+	text-align: center;
+}
+.item-catch p {
+	display:block;
+	margin: 0 auto;
+	font-size: 30px;
+	max-width: 500px;
+}
+
+.iine-button, .yokunaine-button {
+	position: absolute;
+	bottom: 130px;
+	height :10%;
+	left: 40%; // 無理やり
+}
+
+.yokunaine-button {
+	display: none;
 }
 
 .iine-button input {
@@ -90,6 +160,7 @@
 .selected-item-list {
 	margin: 0 auto;
 	padding: 0;
+	margin-top:20px;
 }
 
 .selected-item-list .selected-item{

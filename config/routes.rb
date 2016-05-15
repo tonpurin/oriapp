@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :groups, only: [:new, :create, :destroy]
   get "groups/consent/:id" => 'groups#consent'
   get "groups/object/:id" => 'groups#object'
-  resources :owners, only: :index
+  resources :owners, only: [:index, :create, :destroy]
   post "owners/search" => 'owners#search'
 
   devise_for :users

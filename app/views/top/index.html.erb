@@ -7,22 +7,25 @@
 		</div>
 	</div>
 
+	<p class="display-slide-button">----------Search Item----------</p>
 	<div class="display-items">
+		<a rel="leanModal" href="#search-filter-div"><%= image_tag "search.png", :class => "search-button" %></a>
+
 		<div class="pattern4">
 			<%= render :partial => "top/item", :collection => @items %>
 		</div>
-	</div>
 
-	<!-- iineとyokunaineはトグル -->
-	<div class='iine-button'>
-		<%= form_for(@new_user_item, :url => {:controller => :top, :action => :create}, :remote => true) do |f| %>
-			<!-- viewに表示されない -->
-			<%= f.hidden_field :item_id, :value => 1, :class => "iine_item_id" %>
-			<%= f.submit "" %>
-		<% end %>
-	</div>
-	<div class='yokunaine-button'>
-		<%= link_to image_tag("dislike.png"), "/top/1", :class => "yokunaine_item_id", method: :delete, :remote => true %>
+		<!-- iineとyokunaineはトグル -->
+		<div class='iine-button'>
+			<%= form_for(@new_user_item, :url => {:controller => :top, :action => :create}, :remote => true) do |f| %>
+				<!-- viewに表示されない -->
+				<%= f.hidden_field :item_id, :value => 1, :class => "iine_item_id" %>
+				<%= f.submit "" %>
+			<% end %>
+		</div>
+		<div class='yokunaine-button'>
+			<%= link_to image_tag("dislike.png"), "/top/1", :class => "yokunaine_item_id", method: :delete, :remote => true %>
+		</div>
 	</div>
 
 	<ul class="selected-item-list" style="list-style:none;">
