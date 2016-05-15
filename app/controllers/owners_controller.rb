@@ -16,8 +16,8 @@ class OwnersController < ApplicationController
     # 得票数も格納
     gon.user_items_info[3] = tmp[0]
 
-    # binding.pry
-    @new_user_item = UserItem.new
+    # 投票用のインスタンス
+    @new_group_item = GroupItem.new
 
   end
 
@@ -44,7 +44,12 @@ class OwnersController < ApplicationController
       # ヒットした場合
       @empty_check = 0
     end
+  end
 
+  def create
+  end
+
+  def destroy
   end
 
   private

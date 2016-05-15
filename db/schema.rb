@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160514150559) do
+ActiveRecord::Schema.define(version: 20160515125918) do
+
+  create_table "group_items", force: :cascade do |t|
+    t.integer  "group_id",     limit: 4
+    t.integer  "item_id",      limit: 4
+    t.string   "item_name",    limit: 255
+    t.string   "item_genre",   limit: 255
+    t.string   "image_url",    limit: 255
+    t.string   "item_url",     limit: 255
+    t.string   "item_address", limit: 255
+    t.decimal  "item_lat",                 precision: 11, scale: 8
+    t.decimal  "item_lng",                 precision: 11, scale: 8
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "groups", force: :cascade do |t|
     t.string   "group_name",          limit: 255
