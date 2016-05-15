@@ -10,9 +10,9 @@ class JaranAPI
 
   def get_test_data
     test_data = []
-    hotel1 = {"name" => "ラビスタ函館ベイ","detail_url" => "http://www.jalan.net/JwsRedirect.do?key=vir1549dce10c5&amp;rd_key=MzEzNDY0LCwsLDEsMSwsLCwsLCwwMSwwMA==","picture_url" => "http://www.jalan.net/jalan/images/pictSS/Y4/Y313464/Y313464633.jpg"}
-    hotel2 = {"name" => "函館グランドホテル","detail_url" => "http://www.jalan.net/JwsRedirect.do?key=vir1549dce10c5&rd_key=MzkzODQ0LCwsLDEsMSwsLCwsLCwwMSwwMA==","picture_url" => "http://www.jalan.net/jalan/images/pictSS/Y4/Y393844/Y393844605.jpg"}
-    hotel3 = {"name" => "函館国際ホテル","detail_url" => "http://www.jalan.net/JwsRedirect.do?key=vir1549dce10c5&rd_key=MzIyNDc2LCwsLDEsMSwsLCwsLCwwMSwwMA==","picture_url" => "http://www.jalan.net/jalan/images/pictSS/Y6/Y322476/Y322476As8.jpg"}
+    hotel1 = {"id" => 1, "name" => "ラビスタ函館ベイ","detail_url" => "http://www.jalan.net/JwsRedirect.do?key=vir1549dce10c5&amp;rd_key=MzEzNDY0LCwsLDEsMSwsLCwsLCwwMSwwMA==","picture_url" => "http://www.jalan.net/jalan/images/pictSS/Y4/Y313464/Y313464633.jpg"}
+    hotel2 = {"id" => 2, "name" => "函館グランドホテル","detail_url" => "http://www.jalan.net/JwsRedirect.do?key=vir1549dce10c5&rd_key=MzkzODQ0LCwsLDEsMSwsLCwsLCwwMSwwMA==","picture_url" => "http://www.jalan.net/jalan/images/pictSS/Y4/Y393844/Y393844605.jpg"}
+    hotel3 = {"id" => 3, "name" => "函館国際ホテル","detail_url" => "http://www.jalan.net/JwsRedirect.do?key=vir1549dce10c5&rd_key=MzIyNDc2LCwsLDEsMSwsLCwsLCwwMSwwMA==","picture_url" => "http://www.jalan.net/jalan/images/pictSS/Y6/Y322476/Y322476As8.jpg"}
     test_data << hotel1
     test_data << hotel2
     test_data << hotel3
@@ -58,6 +58,7 @@ class JaranAPI
     xml_document.elements.each('Results/Hotel/') {|i|
 
       hotel_info = {}
+      hotel_info["id"] = i.elements["HotelID"].text
       hotel_info["name"] = i.elements["HotelName"].text
       hotel_info["address"] = i.elements["HotelAddress"].text
       hotel_info["detail_url"] = i.elements["HotelDetailURL"].text
