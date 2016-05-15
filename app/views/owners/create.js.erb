@@ -1,11 +1,12 @@
 // alert('create');
 
 // geocode取得
+var item_id = (<%= @item_id %>);
 var lat = (<%= @item_lat %>);
 var lng = (<%= @item_lng %>);
 var group_item_id = (<%= @create_group_item_id %>);  // 対応するアクションのインスタンス変数を受け取れる
 // markerを作成
-create_marker(lat, lng, "hotel-" + group_item_id);
+create_marker(lat, lng, group_item_id);
 // 地図を移動
 // move_map_center(lat, lng);
 
@@ -23,9 +24,9 @@ var outer_div = $('<li class="selected-item ui-id-' +  group_item_id + ' %>"><di
 $('.selected-item-list').append(outer_div);
 
 // 選択中アイテムのgonに要素を追加
-gon.group_items_info[0].push(gon.current_item_id);
+gon.group_items_info[0].push(item_id);
 gon.group_items_info[1].push([lat, lng]);
-gon.group_items_info[2].push("hotel-" + group_item_id);
+gon.group_items_info[2].push(group_item_id);
 gon.group_items_info[3].push(-1);
 
 // // yokunaineボタンにトグル

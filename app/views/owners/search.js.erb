@@ -24,9 +24,10 @@ if (is_empty == 0) {
 	// スライドのボタンに関するイベントを定義
 	$('.slick-prev, .slick-next').on('click', function() {
 
-      set_current_item_info();
+      current_item_id = set_current_item_info();
       // いいね or よくないねを判断
-      //toggle_iine_yokunaine();
+      toggle_iine_yokunaine_owner(current_item_id);
+
     });
     // 初期化
     set_current_item_info();

@@ -23,7 +23,31 @@ $(function() {
       $('.iine_item_lat').val(item_lat);
       $('.iine_item_lng').val(item_lng);
 
+      // destroyのリクエスト
+      var destroy_item_id = $.inArray(item_id, gon.group_items_info[0]);
+      if (destroy_item_id >= 0){
+        // destroyはユーザ✕アイテムIDが必要
+        var destroy_group_item_id = gon.group_items_info[2][destroy_item_id];
+        $('.yokunaine_item_id').attr('href', '/owners/'+destroy_group_item_id);
+      };
+
+      return item_id;
+
     };
+
+    toggle_iine_yokunaine_owner = function (current_item_id) {
+
+    // ユーザに選択されたアイテムか否かを判断してボタンをトグル
+    // $.inArray(要素, 配列)：要素が配列に存在すればそのインデックスを返す，なければ-1
+    if ($.inArray(current_item_id, gon.group_items_info[0]) >= 0){
+      $('.iine-button').hide();
+      $('.yokunaine-button').show();
+    }else {
+      $('.iine-button').show();
+      $('.yokunaine-button').hide();
+    };
+
+  };
 
     // google map初期化
     owner_init_gmap();

@@ -56,6 +56,7 @@ class OwnersController < ApplicationController
     @image_url = new_group_item_record.image_url
     @item_name = new_group_item_record.item_name
     @item_address = new_group_item_record.item_address
+    @item_id = new_group_item_record.item_id
   end
 
   def destroy
