@@ -60,6 +60,9 @@ class OwnersController < ApplicationController
   end
 
   def destroy
+    group_item = GroupItem.find(params[:id])
+    group_item.destroy
+    @destroy_group_item_id = params[:id]
   end
 
   private

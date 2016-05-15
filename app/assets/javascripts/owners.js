@@ -31,15 +31,15 @@ $(function() {
         $('.yokunaine_item_id').attr('href', '/owners/'+destroy_group_item_id);
       };
 
-      return item_id;
+      gon.current_item_id = item_id;
 
     };
 
-    toggle_iine_yokunaine_owner = function (current_item_id) {
+    toggle_iine_yokunaine_owner = function () {
 
     // ユーザに選択されたアイテムか否かを判断してボタンをトグル
     // $.inArray(要素, 配列)：要素が配列に存在すればそのインデックスを返す，なければ-1
-    if ($.inArray(current_item_id, gon.group_items_info[0]) >= 0){
+    if ($.inArray(gon.current_item_id, gon.group_items_info[0]) >= 0){
       $('.iine-button').hide();
       $('.yokunaine-button').show();
     }else {
