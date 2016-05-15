@@ -34,9 +34,11 @@ $(function() {
 
   });
 
+  // グループIDを使っチャネルをつなぐ
+
   // チャネル設定
   var channel_owner = pusher.subscribe("group_owner_" + user_name);
-  //グループ承認・非承認を通知時の処理
+  //グループ承認・非承認の通知時の処理
   channel_owner.bind('response', function(data){
 
     var answer = data.answer;
