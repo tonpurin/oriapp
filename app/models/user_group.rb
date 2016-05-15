@@ -55,4 +55,22 @@ class UserGroup < ActiveRecord::Base
       return current_user_group_id
     end
   end
+
+  def self.get_invited_group(user_groups)
+    """
+    招待中のグループがあれば，そのうち１つ取得
+    IDとオーナーID，グループ名を返す
+    """
+    invited_group = {}
+    user_groups.each do |user_group|
+      if user_group.state == 0
+        invited_group['id'] = user_group.id
+        invited_group['owner_name'] = user_group.group.owner_user_name
+        invited_group['group_name'] = user_group.group.group_name
+        return invited_group
+      end
+    end
+    return invited_group
+  end
+
 end

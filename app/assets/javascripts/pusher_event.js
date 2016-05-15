@@ -36,11 +36,18 @@ $(function() {
 
   // チャネル設定
   var channel_owner = pusher.subscribe("group_owner_" + user_name);
-  //グループ承認・非承認をオーナーに通知
-  channel_owner.bind('notification', function(data){
-    console.log(data.member);
-    console.log(data.state);
-  });
+  //グループ承認・非承認を通知時の処理
+  channel_owner.bind('response', function(data){
 
+    var answer = data.answer;
+    var user_group_id = data.user_group_id;
+    var group_id = data.group_id;
+    if (answer == "consent"){
+      $("#member-" + user_group_id + "-name p").css("opacity", "1.0");
+    }else{
+      $("#member-" + user_group_id + "-name").remove();
+    };
+
+  });
 
 });

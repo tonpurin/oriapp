@@ -46,7 +46,8 @@
       </div>
       <div class="right-contents clearfix">
         <%= image_tag @group_avatar, :class => "right-avatar"%>
-        <a rel="leanModal" href="#notification-div"><%= image_tag "notification.png", :class => "right-notification" %></a>
+        <!-- 招待中のグループの有無によって表示・非表示を変換 -->
+        <a rel="leanModal" href="#notification-div" <%= 'style=display:none;' if @invited_group.blank? %> class="right-notification" ><%= image_tag "notification.png" %></a>
       </div>
     <% else %>
       <div class="left-contents">
