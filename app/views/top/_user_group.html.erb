@@ -1,28 +1,31 @@
-<!-- content_tagを使ってclassを複数付加できる -->
-<%= content_tag(:div, :class => ['modal-user-group-div', 'clearfix',"modal-user-group-div-#{user_group.id}"]) do -%>
-	<%= link_to({:controller => :top, :action => :index, :id => user_group.id }, data: {no_turbolink:true}) do %>
-		<div class="modal-left">
-			<%= image_tag user_group.group.avatar,  :class => 'modal-sample-image'%>
-		</div>
-	<% end %>
-	<div class="modal-right">
-		<p><%= "Group : #{user_group.group.group_name}" %></p>
-		<p><%= "Owner : #{user_group.group.owner_user_name}" %></p>
-		<p><%= "Destination : #{user_group.group.destination}" %></p>
-	</div>
-<% end -%>
-
-<p class="members-slide-button" value=<%= user_group.group.id %>>------------Members---------------</p>
-<!-- 冗長にメンバーを取得...部分テンプレートにした方がいい？ -->
-<% group_users = user_group.group.user_groups %>
-<%= content_tag(:div, :class => ["modal-bottom", "modal-bottom-#{user_group.group.id}"]) do -%>
-	<div class="members-rows" style="font-size: 30px;">
-		<% group_users.each do |gu| %>
-			<div id=<%= "member-#{gu.id}-name" %> class="member-row clearfix">
-				<%= image_tag gu.user.avatar %>
-				<!-- 招待中だったらIDをうすく -->
-				<p class=<%= "member-#{gu.id}-name" %> <%= "style=opacity:0.2;" if gu.state==0%>><%= gu.user.unique_name %></p>
+<!-- stateが1であれば所属グループとみなし表示 -->
+ <% if user_group.state == 1 %>
+	<!-- content_tagを使ってclassを複数付加できる -->
+	<%= content_tag(:div, :class => ['modal-user-group-div', 'clearfix',"modal-user-group-div-#{user_group.id}"]) do -%>
+		<%= link_to({:controller => :top, :action => :index, :id => user_group.id }, data: {no_turbolink:true}) do %>
+			<div class="modal-left">
+				<%= image_tag user_group.group.avatar,  :class => 'modal-sample-image'%>
 			</div>
 		<% end %>
-	</div>
-<% end -%>
+		<div class="modal-right">
+			<p><%= "Group : #{user_group.group.group_name}" %></p>
+			<p><%= "Owner : #{user_group.group.owner_user_name}" %></p>
+			<p><%= "Destination : #{user_group.group.destination}" %></p>
+		</div>
+	<% end -%>
+
+	<p class="members-slide-button" value=<%= user_group.group.id %>>------------Members---------------</p>
+	<!-- 冗長にメンバーを取得...部分テンプレートにした方がいい？ -->
+	<% group_users = user_group.group.user_groups %>
+	<%= content_tag(:div, :class => ["modal-bottom", "modal-bottom-#{user_group.group.id}"]) do -%>
+		<div class="members-rows" style="font-size: 30px;">
+			<% group_users.each do |gu| %>
+				<div id=<%= "member-#{gu.id}-name" %> class="member-row clearfix">
+					<%= image_tag gu.user.avatar %>
+					<!-- 招待中だったらIDをうすく -->
+					<p class=<%= "member-#{gu.id}-name" %> <%= "style=opacity:0.2;" if gu.state==0%>><%= gu.user.unique_name %></p>
+				</div>
+			<% end %>
+		</div>
+	<% end -%>
+<% end %>
