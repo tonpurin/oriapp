@@ -7,17 +7,13 @@ class OwnersController < ApplicationController
     # 集計，得票数の多い順にソート，idと得票数のハッシュを取得
     voted_counts = voted_items.group(:item_id).order('count_item_id DESC').count(:item_id).to_a # 配列変換
 
-    # 集計結果を使って並び替え
-    @orderd_voted_items = convert_voted_item(voted_items, voted_counts)
+    # 集計結果をGroupItemに保存
+    @orderd_voted_items = convert_voted_items(voted_items, voted_counts, UserGroup.group_id(current_user.id))
     tmp = @orderd_voted_items.transpose # transposeで転地...作業用
-
-    # GroupItemに保存
-    save_voted_items_to_groupitem(@orderd_voted_items, UserGroup.group_id(current_user.id))
 
     # 投票用のインスタンス
     @new_group_item = GroupItem.new
 
-    # binding.pry
 
     # --- JSでも利用可能な変数 ----
     # 投票中のアイテムのID・ジオコード・ユーザ✕アイテムIDを配列で取得...[[ID], [Geo], [UserItemID]]
@@ -72,44 +68,52 @@ class OwnersController < ApplicationController
   end
 
   private
-  def save_voted_items_to_groupitem(orderd_voted_items, group_id)
+  def convert_voted_items(voted_items, voted_counts, group_id)
     """
-    投票されたアイテムをGroupItemに保存
-    orderd_voted_itemsは重複のない投票結果
-    [[投票数, user_item], [...], [...]]
-    """
-    saved_item_info = {}
-    saved_item_info[:group_id] = group_id
-
-    orderd_voted_items.each do |v_item|
-      # 必要な情報を抽出
-      item = v_item[1].item
-      saved_item_info[:item_id] = item.id
-      saved_item_info[:item_name] = item.item_name
-      saved_item_info[:item_address] = item.item_address
-      saved_item_info[:item_genre] = "grume"
-      saved_item_info[:image_url] = item.image_url
-      saved_item_info[:item_url] = item.item_url
-      saved_item_info[:item_lat] = item.item_lat
-      saved_item_info[:item_lng] = item.item_lng
-
-      GroupItem.create(saved_item_info)
-    end
-  end
-
-  def convert_voted_item(voted_items, voted_counts)
-    """
-    投票されたアイテムを得票数で並び替え,
+    投票されたアイテムを得票数で並び替える
+    GroupItemにアイテムを保存しIDを取得
     カウント数とレコードを要素とした配列を作成する
     """
-    converted_voted_item = []
+    converted_voted_items = []
     voted_counts.each do |voted_count|
       item_id = voted_count[0]
       vote_count = voted_count[1]
 
-      converted_voted_item << [vote_count, voted_items.where(:item_id => item_id)[0]]
+      converted_voted_item = [vote_count, voted_items.where(:item_id => item_id)[0]]
+
+      # GroupItemに保存
+      group_item_id = save_voted_items_to_groupitem(converted_voted_item[1], group_id)
+
+      binding.pry
+      # group_item_idを要素に追加
+      converted_voted_item[1]["group_item_id"] = group_item_id
+
+      converted_voted_items << converted_voted_item
+
     end
-    return converted_voted_item
+    return converted_voted_items
+  end
+
+  def save_voted_items_to_groupitem(voted_item, group_id)
+    """
+    投票されたアイテムをGroupItemに保存
+    """
+    item = voted_item.item
+
+    saved_item_info = {}
+    saved_item_info[:group_id] = group_id
+    saved_item_info[:item_id] = item.id
+    saved_item_info[:item_name] = item.item_name
+    saved_item_info[:item_address] = item.item_address
+    saved_item_info[:item_genre] = "grume"
+    saved_item_info[:image_url] = item.image_url
+    saved_item_info[:item_url] = item.item_url
+    saved_item_info[:item_lat] = item.item_lat
+    saved_item_info[:item_lng] = item.item_lng
+
+    group_item = GroupItem.create(saved_item_info)
+
+    return group_item.id
   end
 
   def group_item_params
