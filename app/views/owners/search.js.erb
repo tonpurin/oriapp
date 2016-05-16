@@ -24,13 +24,15 @@ if (is_empty == 0) {
 	// スライドのボタンに関するイベントを定義
 	$('.slick-prev, .slick-next').on('click', function() {
 
-      set_current_item_info();
-      // いいね or よくないねを判断
-      toggle_iine_yokunaine_owner();
-
-    });
-    // 初期化
-    set_current_item_info();
+		latlng = set_current_item_info();
+		// いいね or よくないねを判断
+		toggle_iine_yokunaine_owner();
+		// マーカーの代理を作成
+		create_marker_agent(latlng[0], latlng[1]);
+	});
+	// 初期化
+	latlng = set_current_item_info();
+	create_marker_agent(latlng[0], latlng[1]);
 
 	var img_element = '<img src="/assets/left-arrow.png" class="left-arrow">';
 	$('.slick-prev').text("");
