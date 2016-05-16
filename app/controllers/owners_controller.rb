@@ -1,15 +1,11 @@
 class OwnersController < ApplicationController
 
   def index
-    # 対象のgroupの投票を集約
-    # 投票されたアイテム...includesが出来ない
-    group_id = UserGroup.group_id(current_user.id)
-    voted_items = Group.find(group_id).user_items
-    # 集計，得票数の多い順にソート，idと得票数のハッシュを取得
-    voted_counts = voted_items.group(:item_id).order('count_item_id DESC').count(:item_id).to_a # 配列変換
-    # 集計結果をGroupItemに保存
-    save_voted_items(voted_items, voted_counts, group_id)
 
+    group_id = UserGroup.group_id(current_user.id)
+
+    # 投票結果を集約して保存
+    aggregate(group_id)
     # GroupItemのレコードを投票数でソートして取り出す
     @group_items = GroupItem.where(:group_id => group_id).order("vote_num DESC")
     # 投票用のインスタンス
@@ -65,6 +61,31 @@ class OwnersController < ApplicationController
   end
 
   private
+  def aggregate(group_id)
+
+    # 以前の記録を消去
+    destroy_voted_items(group_id)
+
+    # 対象のgroupの投票を集約
+    # 投票されたアイテム...includesが出来ない
+    voted_items = Group.find(group_id).user_items
+    # 集計，得票数の多い順にソート，idと得票数のハッシュを取得
+    voted_counts = voted_items.group(:item_id).order('count_item_id DESC').count(:item_id).to_a # 配列変換
+
+    # 集計結果をGroupItemに保存
+    save_voted_items(voted_items, voted_counts, group_id)
+  end
+
+  def destroy_voted_items(group_id)
+    """
+    レコードを消去
+    """
+    voted_items = GroupItem.where(:group_id => group_id)
+    voted_items.each do |v_item|
+      v_item.destroy()
+    end
+  end
+
   def save_voted_items(voted_items, voted_counts, group_id)
     """
     投票されたアイテムを得票数とともにGroupItemに保存
