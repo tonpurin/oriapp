@@ -1,0 +1,11 @@
+<div class="contents">
+
+	<div class="display-map">
+		<div class="map-embed">
+			<div id="map-canvas">map</div>
+		</div>
+	</div>
+
+	<ul class="selected-item-list" style="list-style:none;">
+		<%= render :partial => "groups/group_item", :collection => @group_items %>
+	</ul>

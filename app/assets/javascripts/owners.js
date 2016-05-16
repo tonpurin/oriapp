@@ -46,7 +46,6 @@ $(function() {
       $('.iine-button').show();
       $('.yokunaine-button').hide();
     };
-
   };
 
     // google map初期化

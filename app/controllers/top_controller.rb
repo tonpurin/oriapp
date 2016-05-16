@@ -25,6 +25,8 @@ class TopController < ApplicationController
     @user_groups = current_user.user_groups.includes(:group)
     # 招待中のグループ
     @invited_group = UserGroup.get_invited_group(@user_groups)
+    # グループのID
+    @group_id = user_group.group.id
     # グループのオーナー
     @group_owner_id = user_group.group.owner_user_id
     # グループのアバター

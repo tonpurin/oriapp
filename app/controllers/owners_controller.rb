@@ -7,13 +7,13 @@ class OwnersController < ApplicationController
     # 投票結果を集約して保存
     aggregate(group_id)
     # GroupItemのレコードを投票数でソートして取り出す
-    @group_items = GroupItem.where(:group_id => group_id).order("vote_num DESC")
+    @owner_items = GroupItem.where(:group_id => group_id).order("vote_num DESC")
     # 投票用のインスタンス
     @new_group_item = GroupItem.new
 
     # --- JSでも利用可能な変数 ----
     # 投票中のアイテムのID・ジオコード・ユーザ✕アイテムIDを配列で取得...[[ID], [Geo], [GroupItemID], [VoteNum]]
-    gon.group_items_info = GroupItem.extract_item_info(@group_items)
+    gon.group_items_info = GroupItem.extract_item_info(@owner_items)
   end
 
   def search
