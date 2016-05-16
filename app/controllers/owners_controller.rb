@@ -11,13 +11,19 @@ class OwnersController < ApplicationController
     @orderd_voted_items = convert_voted_item(voted_items, voted_counts)
     tmp = @orderd_voted_items.transpose # transposeで転地...作業用
 
+    # GroupItemに保存
+    save_voted_items_to_groupitem(@orderd_voted_items, UserGroup.group_id(current_user.id))
+
+    # 投票用のインスタンス
+    @new_group_item = GroupItem.new
+
+    # binding.pry
+
+    # --- JSでも利用可能な変数 ----
     # 投票中のアイテムのID・ジオコード・ユーザ✕アイテムIDを配列で取得...[[ID], [Geo], [UserItemID]]
     gon.group_items_info = UserItem.extract_item_info(tmp[1])
     # 得票数も格納
     gon.group_items_info[3] = tmp[0]
-
-    # 投票用のインスタンス
-    @new_group_item = GroupItem.new
 
   end
 
@@ -66,6 +72,31 @@ class OwnersController < ApplicationController
   end
 
   private
+  def save_voted_items_to_groupitem(orderd_voted_items, group_id)
+    """
+    投票されたアイテムをGroupItemに保存
+    orderd_voted_itemsは重複のない投票結果
+    [[投票数, user_item], [...], [...]]
+    """
+    saved_item_info = {}
+    saved_item_info[:group_id] = group_id
+
+    orderd_voted_items.each do |v_item|
+      # 必要な情報を抽出
+      item = v_item[1].item
+      saved_item_info[:item_id] = item.id
+      saved_item_info[:item_name] = item.item_name
+      saved_item_info[:item_address] = item.item_address
+      saved_item_info[:item_genre] = "grume"
+      saved_item_info[:image_url] = item.image_url
+      saved_item_info[:item_url] = item.item_url
+      saved_item_info[:item_lat] = item.item_lat
+      saved_item_info[:item_lng] = item.item_lng
+
+      GroupItem.create(saved_item_info)
+    end
+  end
+
   def convert_voted_item(voted_items, voted_counts)
     """
     投票されたアイテムを得票数で並び替え,
