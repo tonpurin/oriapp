@@ -3,24 +3,21 @@ class OwnersController < ApplicationController
   def index
     # 対象のgroupの投票を集約
     # 投票されたアイテム...includesが出来ない
-    voted_items = Group.find(UserGroup.group_id(current_user.id)).user_items
+    group_id = UserGroup.group_id(current_user.id)
+    voted_items = Group.find(group_id).user_items
     # 集計，得票数の多い順にソート，idと得票数のハッシュを取得
     voted_counts = voted_items.group(:item_id).order('count_item_id DESC').count(:item_id).to_a # 配列変換
-
     # 集計結果をGroupItemに保存
-    @orderd_voted_items = convert_voted_items(voted_items, voted_counts, UserGroup.group_id(current_user.id))
-    tmp = @orderd_voted_items.transpose # transposeで転地...作業用
+    save_voted_items(voted_items, voted_counts, group_id)
 
+    # GroupItemのレコードを投票数でソートして取り出す
+    @group_items = GroupItem.where(:group_id => group_id).order("vote_num DESC")
     # 投票用のインスタンス
     @new_group_item = GroupItem.new
 
-
     # --- JSでも利用可能な変数 ----
-    # 投票中のアイテムのID・ジオコード・ユーザ✕アイテムIDを配列で取得...[[ID], [Geo], [UserItemID]]
-    gon.group_items_info = UserItem.extract_item_info(tmp[1])
-    # 得票数も格納
-    gon.group_items_info[3] = tmp[0]
-
+    # 投票中のアイテムのID・ジオコード・ユーザ✕アイテムIDを配列で取得...[[ID], [Geo], [GroupItemID], [VoteNum]]
+    gon.group_items_info = GroupItem.extract_item_info(@group_items)
   end
 
   def search
@@ -68,33 +65,22 @@ class OwnersController < ApplicationController
   end
 
   private
-  def convert_voted_items(voted_items, voted_counts, group_id)
+  def save_voted_items(voted_items, voted_counts, group_id)
     """
-    投票されたアイテムを得票数で並び替える
-    GroupItemにアイテムを保存しIDを取得
-    カウント数とレコードを要素とした配列を作成する
+    投票されたアイテムを得票数とともにGroupItemに保存
     """
-    converted_voted_items = []
     voted_counts.each do |voted_count|
       item_id = voted_count[0]
       vote_count = voted_count[1]
 
-      converted_voted_item = [vote_count, voted_items.where(:item_id => item_id)[0]]
+      voted_item = voted_items.where(:item_id => item_id)[0]
 
       # GroupItemに保存
-      group_item_id = save_voted_items_to_groupitem(converted_voted_item[1], group_id)
-
-      binding.pry
-      # group_item_idを要素に追加
-      converted_voted_item[1]["group_item_id"] = group_item_id
-
-      converted_voted_items << converted_voted_item
-
+      group_item_id = save_voted_items_to_groupitem(voted_item, voted_count[1], group_id)
     end
-    return converted_voted_items
   end
 
-  def save_voted_items_to_groupitem(voted_item, group_id)
+  def save_voted_items_to_groupitem(voted_item, vote_count, group_id)
     """
     投票されたアイテムをGroupItemに保存
     """
@@ -110,10 +96,9 @@ class OwnersController < ApplicationController
     saved_item_info[:item_url] = item.item_url
     saved_item_info[:item_lat] = item.item_lat
     saved_item_info[:item_lng] = item.item_lng
+    saved_item_info[:vote_num] = vote_count
 
     group_item = GroupItem.create(saved_item_info)
-
-    return group_item.id
   end
 
   def group_item_params
