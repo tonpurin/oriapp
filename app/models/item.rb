@@ -22,4 +22,11 @@ class Item < ActiveRecord::Base
     return hash_data
   end
 
+  def self.get_genre_img(genre)
+    """
+    Genreによって画像を返す
+    """
+    # gurume = [""]
+  end
+
 end

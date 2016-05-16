@@ -154,6 +154,22 @@
   margin-top: 20px;
 }
 
+#owner-div .aggregate-button{
+  display: block;
+  width: 30%;
+  margin: 0 auto;
+  position: relative;
+  top:30px;
+}
+
+#owner-div .group-edit-button{
+  display: block;
+  width: 30%;
+  margin: 0 auto;
+  position: relative;
+  top:70px;
+}
+
 #search-filter-div .modal-search-filter-div .radius-count{
   width: 60%;
   margin: 0 auto;
