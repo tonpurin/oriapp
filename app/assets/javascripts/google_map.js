@@ -6,6 +6,8 @@ map = null;
 markers = {};  // user_itemのidとマーカーの対応
 markers_id_order = [];  // 入力された順番を保持するための配列
 current_chenge_marker_id = undefined; // オプションが変更されているマーカーのID
+current_chenge_marker_icon = undefined; // オプションが変更される前のマーカーのアイコン
+marker_agent = undefined; // 代理マーカー
 
 __is_map_exist = function() {
 
@@ -26,35 +28,33 @@ create_map = function() {
 
     // 地図のオプションを設定する
     var mapOptions = {
-      zoom: 15 ,        // ズーム値
+      zoom: 5 ,        // ズーム値
       center: latlng ,    // 中心座標 [latlng]
-
-      // ---------- マップのスタイル設定 ---------
-      //mapTypeId: google.maps.MapTypeId.ROADMAP,  //マップタイプ
-      // mapTypeControlOptions: {
-      //   mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'simple']
-      // }
     };
-
     // [canvas]に、[mapOptions]の内容の、地図のインスタンス([map])を作成する
     map = new google.maps.Map( canvas , mapOptions );
-
-    // 以下google mapのスタイル変更
-    // http://blog.prostaff1.com/google/1150/
-    // https://snazzymaps.com/style/70/unsaturated-browns
-    // var samplestyle = [{"featureType":"administrative.land_parcel","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"landscape.man_made","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"simplified"},{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"hue":"#f49935"}]},{"featureType":"road.highway","elementType":"labels","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"hue":"#fad959"}]},{"featureType":"road.arterial","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"visibility":"simplified"}]},{"featureType":"road.local","elementType":"labels","stylers":[{"visibility":"simplified"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"hue":"#a1cdfc"},{"saturation":30},{"lightness":49}]}];
-
-    // var samplestyleOptions = {
-    //   name: "シンプル"
-    // };
-
-    // var sampleMapType = new google.maps.StyledMapType(samplestyle, samplestyleOptions);
-    // map.mapTypes.set('simple', sampleMapType);
-    // map.setMapTypeId('simple');
 
   }else{
     console.log('there is a map already');
   };
+};
+
+create_marker_agent = function(lat, lng) {
+
+  if (marker_agent != undefined){
+     // マーカー消去
+      marker_agent.setMap(null);
+  };
+  // マーカーの候補を作成
+  marker_agent = new google.maps.Marker( {
+    map: map ,
+    position: new google.maps.LatLng(lat, lng),
+    opacity: 0.4,
+    icon: new google.maps.MarkerImage(
+        "/assets/default-marker.png",
+        new google.maps.Size(70,80)
+      )
+  });
 };
 
 create_marker = function(lat, lng, uitem_id) {
@@ -63,7 +63,11 @@ create_marker = function(lat, lng, uitem_id) {
 
     markers[uitem_id] = new google.maps.Marker( {
       map: map ,
-      position: new google.maps.LatLng(lat, lng)
+      position: new google.maps.LatLng(lat, lng),
+      icon: new google.maps.MarkerImage(
+          "/assets/default-marker.png",
+          new google.maps.Size(70,80)
+        )
     });
 
     markers_id_order.push(uitem_id);
@@ -104,9 +108,13 @@ chenge_marker_design = function (marker_id){
     // 一つ前の変更を元に戻す
     if ((current_chenge_marker_id != undefined) && (markers[current_chenge_marker_id] != undefined)){
       markers[current_chenge_marker_id].setOptions({
-        icon: "",
+        icon: current_chenge_marker_icon,
       });
     };
+
+    // マーカーのID・アイコンを保持
+    current_chenge_marker_id = marker_id;
+    current_chenge_marker_icon = markers[marker_id].getIcon();
     // クリックしたアイテムのマーカーのデザインを変更
     markers[marker_id].setOptions({
       icon: new google.maps.MarkerImage(
@@ -114,7 +122,6 @@ chenge_marker_design = function (marker_id){
         new google.maps.Size(100,100) // size
       )
     });
-    current_chenge_marker_id = marker_id;
 
   }else{
     console.log('there is no map');
@@ -153,6 +160,8 @@ move_map_center = function(lat, lng){
     var latlng = new google.maps.LatLng(lat ,lng) ;
     // mapのメソッドを取得
     map.setCenter(latlng);
+    // zoom
+    map.setZoom(15);
 
   }else{
 

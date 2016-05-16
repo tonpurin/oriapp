@@ -82,6 +82,8 @@ window.onload = function()
       set_current_item_id();
       // いいね or よくないねを判断
       toggle_iine_yokunaine();
+      // マーカーの代理を作成
+      create_marker_agent(gon.items[gon.current_item_id]["item_lat"], gon.items[gon.current_item_id]["item_lng"]);
     });
 
     // slick.min.jsの一部を無理やり上書き
@@ -114,6 +116,9 @@ window.onload = function()
 
     // 初期の正面画像のいいね or よくないねを考慮
     toggle_iine_yokunaine();
+
+    // マーカーの代理を作成
+    create_marker_agent(gon.items[gon.current_item_id]["item_lat"], gon.items[gon.current_item_id]["item_lng"]);
 
     // ユーザが選択したアイテムに対するイベント
     selected_item_click();
