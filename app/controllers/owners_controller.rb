@@ -105,7 +105,7 @@ class OwnersController < ApplicationController
     # 緯度経度の桁数調整
     lat = params.require(:group_item)['item_lat'].to_f.round(7)
     lng = params.require(:group_item)['item_lng'].to_f.round(7)
-    params.require(:group_item).permit(:item_id, :item_name, :image_url, :item_url, :item_address).merge({:item_lat => lat, :item_lng => lng, :item_genre => 'hotel', :group_id => UserGroup.group_id(current_user.id)})
+    params.require(:group_item).permit(:item_id, :item_name, :image_url, :item_url, :item_address).merge({:item_lat => lat, :item_lng => lng, :item_genre => 'hotel', :group_id => UserGroup.group_id(current_user.id), :vote_num => -1})
   end
 
 end
