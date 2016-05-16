@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
 
   def show
+    # グループのまとめ
     group_id = params[:id]
     @group_items = GroupItem.where(:group_id => group_id).order("vote_num DESC")
     gon.group_items_info = GroupItem.extract_item_info(@group_items)

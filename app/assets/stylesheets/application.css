@@ -82,21 +82,20 @@ header .right-contents .right-avatar {
   width: 100px;
   border-radius: 70%;
 }
+header .right-contents .right-avatar:hover{
+  border: solid 5px #5EABE6;
+}
 
 header .right-contents .right-notification img {
   display: block;
   position: relative;
   float: right;
-  top: 20px;
+  top: 25px;
   margin-right: 20px;
-  height: 100px;
-  width: 100px;
+  height: 70px;
+  width: 70px;
   border-radius: 70%;
-  /*display: none;*/
 }
-
-
-
 header .right-contents .right-notification img:hover{
   border: solid 5px #5EABE6;
 }

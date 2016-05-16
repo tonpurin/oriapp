@@ -45,11 +45,9 @@
         </div>
       </div>
       <div class="right-contents clearfix">
-        <%= image_tag @group_avatar, :class => "right-avatar"%>
+        <%= link_to image_tag(@group_avatar, :class => "right-avatar"), "/groups/#{@group_id}", data: {no_turbolink:true}, method: :get %>
         <!-- 招待中のグループの有無によって表示・非表示を変換 -->
         <a rel="leanModal" href="#notification-div" <%= 'style=display:none;' if @invited_group.blank? %> class="right-notification" ><%= image_tag "notification.png" %></a>
-        <!-- 決定画面groups/showへのリンク -->
-        <%= link_to "show", "/groups/#{@group_id}", data: {no_turbolink:true}, method: :get %>
       </div>
     <% else %>
       <div class="left-contents">
