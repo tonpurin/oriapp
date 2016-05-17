@@ -12,7 +12,7 @@ class OwnersController < ApplicationController
     @new_group_item = GroupItem.new
 
     # --- JSでも利用可能な変数 ----
-    # 投票中のアイテムのID・ジオコード・ユーザ✕アイテムIDを配列で取得...[[ID], [Geo], [GroupItemID], [VoteNum]]
+    # 投票中のアイテムのID・ジオコード・ユーザ✕アイテムIDを配列で取得...[[ID], [Geo], [GroupItemID], [VoteNum], [Genre]]
     gon.voted_items_info = GroupItem.extract_item_info(@owner_items)
   end
 

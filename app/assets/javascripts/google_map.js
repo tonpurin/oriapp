@@ -85,30 +85,6 @@ set_marker_icon = function(marker_id, icon_pass, size){
   });
 };
 
-// create_img_marker = function (lat, lng, uitem_id, image_index) {
-
-//   // image_indexによって読み込む画像を変化
-//   if (__is_map_exist()){
-
-//     if (image_index < 4) {
-//       markers[uitem_id] = new google.maps.Marker( {
-//         map: map ,
-//         position: new google.maps.LatLng(lat, lng),
-//         icon: new google.maps.MarkerImage(
-//           "/assets/marker"+ image_index +".png",
-//           new google.maps.Size(100,100)
-//         )
-//       });
-//     }else{
-//       create_marker(lat, lng, uitem_id);
-//     }
-//     markers_id_order.push(uitem_id);
-
-//   }else{
-//     console.log('there is no map');
-//   };
-// };
-
 chenge_current_marker_design = function (marker_id){
 
   // 一つ前の変更を元に戻す
@@ -228,6 +204,7 @@ adapt_voted_result = function(){
       var latlng = gon.voted_items_info[1][i];
       var group_item_id = gon.voted_items_info[2][i];
       var vote_c = gon.voted_items_info[3][i];
+      var genre = gon.voted_items_info[4][i];
 
       // 得票数のチェック→マーカーのデザインを変更
       if (current_vote_max > vote_c){
@@ -236,7 +213,9 @@ adapt_voted_result = function(){
         current_vote_max = vote_c;
       }
       // アイコンセット
-      set_marker_icon(group_item_id, icon_pass, [100, 100]);
+      if (genre != "hotel"){
+        set_marker_icon(group_item_id, icon_pass, [100, 100]);
+      };
       // イベント設定
       add_marker_event(markers[group_item_id]);
     }
@@ -245,13 +224,16 @@ adapt_voted_result = function(){
     var last_marker_latlng = gon.voted_items_info[1][marker_num - 1];
     var last_marker_group_item_id = gon.voted_items_info[2][marker_num - 1];
     var last_marker_vote_c = gon.voted_items_info[3][marker_num - 1];
+    var last_marker_genre = gon.voted_items_info[4][marker_num - 1];
 
     if (current_vote_max > last_marker_vote_c){
       marker_img_index += 1;
       icon_pass = "/assets/marker"+ marker_img_index +".png";
     }
     // アイコンセット
-    set_marker_icon(last_marker_group_item_id, icon_pass, [100, 100]);
+    if (last_marker_genre != "hotel"){
+      set_marker_icon(last_marker_group_item_id, icon_pass, [100, 100]);
+    };
     // イベント設定
     add_marker_event(markers[last_marker_group_item_id]);
     move_map_center(last_marker_latlng[0], last_marker_latlng[1]);
