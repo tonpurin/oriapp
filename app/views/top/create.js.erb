@@ -26,9 +26,9 @@ var outer_div = $('<li class="selected-item ui-id-' +  user_item_id + ' %>"><div
 $('.selected-item-list').append(outer_div);
 
 // 選択中アイテムのgonに要素を追加
-gon.user_items_info[0].push(gon.current_item_id);
-gon.user_items_info[1].push([lat, lng]);
-gon.user_items_info[2].push(user_item_id);
+gon.voted_items_info[0].push(gon.current_item_id);
+gon.voted_items_info[1].push([lat, lng]);
+gon.voted_items_info[2].push(user_item_id);
 
 // yokunaineボタンにトグル
 $('.iine-button').hide();

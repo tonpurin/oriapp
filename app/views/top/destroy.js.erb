@@ -26,11 +26,11 @@ if (markers_id_order.length > 0){
 $(".ui-id-" + user_item_id).remove(); // 子要素もすべて消去
 
 // 選択中アイテムのgonから要素を消去
-var destroy_item_index = $.inArray(user_item_id, gon.user_items_info[2]);
-var destroy_item_id = gon.user_items_info[0][destroy_item_index]; // 作業用
-gon.user_items_info[0].splice(destroy_item_index, 1);
-gon.user_items_info[1].splice(destroy_item_index, 1);
-gon.user_items_info[2].splice(destroy_item_index, 1);
+var destroy_item_index = $.inArray(user_item_id, gon.voted_items_info[2]);
+var destroy_item_id = gon.voted_items_info[0][destroy_item_index]; // 作業用
+gon.voted_items_info[0].splice(destroy_item_index, 1);
+gon.voted_items_info[1].splice(destroy_item_index, 1);
+gon.voted_items_info[2].splice(destroy_item_index, 1);
 
 // iineボタンにトグル
 if (gon.current_item_id == destroy_item_id){

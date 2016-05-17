@@ -35,8 +35,8 @@ class TopController < ApplicationController
     # --- JSでも利用可能な変数 ----
     # 観光地の候補
     gon.items = Item.to_hash(@items, "id") # idでハッシュに変換
-    # ユーザが投票中のアイテムのID・ジオコード・ユーザ✕アイテムIDを配列で取得...[[ID], [Geo], [UserItemID]]
-    gon.user_items_info = UserItem.extract_item_info(@user_items)
+    # ユーザが投票中したアイテムのID・ジオコード・ユーザ✕アイテムIDを配列で取得...[[ID], [Geo], [UserItemID]]
+    gon.voted_items_info = UserItem.extract_item_info(@user_items)
     # top画面の正面のitem_idを取得
     gon.current_item_id = 0
     # ユーザ✕グループID

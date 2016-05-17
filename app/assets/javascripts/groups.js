@@ -2,6 +2,8 @@ $(function() {
 
   if(document.URL.match("/groups/")){
     // google map初期化
-    owner_init_gmap();
+    top_init_gmap();
+    // ユーザが選択したアイテムに対するイベント
+    selected_item_click();
   };
 });

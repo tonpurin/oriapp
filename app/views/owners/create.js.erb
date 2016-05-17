@@ -24,10 +24,10 @@ var outer_div = $('<li class="selected-item ui-id-' +  group_item_id + ' %>"><di
 $('.selected-item-list').append(outer_div);
 
 // 選択中アイテムのgonに要素を追加
-gon.group_items_info[0].push(item_id);
-gon.group_items_info[1].push([lat, lng]);
-gon.group_items_info[2].push(group_item_id);
-gon.group_items_info[3].push(-1);
+gon.voted_items_info[0].push(item_id);
+gon.voted_items_info[1].push([lat, lng]);
+gon.voted_items_info[2].push(group_item_id);
+gon.voted_items_info[3].push(-1);
 
 // // yokunaineボタンにトグル
 $('.iine-button').hide();

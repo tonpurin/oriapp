@@ -14,49 +14,13 @@ window.onload = function()
     $('.iine_item_id').val(gon.current_item_id);
 
     // destroyのリクエスト
-    var destroy_item_id = $.inArray(gon.current_item_id, gon.user_items_info[0]);
+    var destroy_item_id = $.inArray(gon.current_item_id, gon.voted_items_info[0]);
     if (destroy_item_id >= 0){
       // destroyはユーザ✕アイテムIDが必要
-      var destroy_user_item_id = gon.user_items_info[2][destroy_item_id];
+      var destroy_user_item_id = gon.voted_items_info[2][destroy_item_id];
       $('.yokunaine_item_id').attr('href', '/top/'+destroy_user_item_id);
     };
   };
-
-  var toggle_iine_yokunaine = function () {
-
-    // ユーザに選択されたアイテムか否かを判断してボタンをトグル
-    // $.inArray(要素, 配列)：要素が配列に存在すればそのインデックスを返す，なければ-1
-    if ($.inArray(gon.current_item_id, gon.user_items_info[0]) >= 0){
-      $('.iine-button').hide();
-      $('.yokunaine-button').show();
-    }else {
-      $('.iine-button').show();
-      $('.yokunaine-button').hide();
-    };
-
-  };
-
-  current_selected_dom = undefined; // 選択中のアイテム
-  selected_item_click = function (){
-
-    // ユーザが選択したアイテムに対するイベント
-    // クリックした瞬間にボーダーを設定
-    // 対象のマーカーを目立たせる
-    $('.item-info-middle').click(
-      function (){
-        if (current_selected_dom != undefined) {
-          $(current_selected_dom).css("border", "");
-        };
-        var item_li = $(this).parent();
-        item_li.css("border", "solid 5px #5EABE6");
-        current_selected_dom = item_li;
-
-        // マーカーの変更
-        var marker_id = parseInt($(item_li).data('id'));
-        chenge_marker_design(marker_id);
-      });
-  };
-
   // -------------------------------------------
 
   if((!document.URL.match("/users/")) && (!document.URL.match("/groups/")) && (!document.URL.match("/owners/"))){

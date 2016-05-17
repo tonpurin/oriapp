@@ -10,7 +10,11 @@
 			<p><%= group_item.item_address%></p>
 		</div>
 		<div class="item-info-right">
-			<%= image_tag "gurume-right.png", :class => "group-img"%>
+			<% if group_item.item_genre == "hotel"%>
+				<%= image_tag "hotel-right.png", :class => "group-img"%>
+			<% else %>
+				<%= image_tag "gurume-right.png", :class => "group-img"%>
+			<% end %>
 		</div>
 	</div>
 </li>

@@ -194,16 +194,16 @@ top_init_gmap = function(){
   // 地図作成
   create_map();
   // 選択中のアイテムの数だけマーカー作成
-  var marker_num = gon.user_items_info[0].length
+  var marker_num = gon.voted_items_info[0].length
   if (marker_num > 0) {
     for (var i = 0; i < marker_num - 1; i++) {
-      var latlng = gon.user_items_info[1][i];
-      var user_item_id = gon.user_items_info[2][i];
+      var latlng = gon.voted_items_info[1][i];
+      var user_item_id = gon.voted_items_info[2][i];
       create_marker(latlng[0], latlng[1], user_item_id);
     }
     // 最後のマーカーを作成・同時に地図を移動
-    var last_marker_latlng = gon.user_items_info[1][marker_num - 1];
-    var last_marker_user_item_id = gon.user_items_info[2][marker_num - 1];
+    var last_marker_latlng = gon.voted_items_info[1][marker_num - 1];
+    var last_marker_user_item_id = gon.voted_items_info[2][marker_num - 1];
     create_marker(last_marker_latlng[0], last_marker_latlng[1], last_marker_user_item_id);
     move_map_center(last_marker_latlng[0], last_marker_latlng[1]);
   };
@@ -217,15 +217,15 @@ owner_init_gmap = function(){
 
   // 選択中のアイテムの数だけマーカー作成
   // 得票数に応じてマーカーのデザインを変更
-  var marker_num = gon.group_items_info[0].length;
+  var marker_num = gon.voted_items_info[0].length;
   var current_vote_max = 100000;
   var marker_img_index = 0;
 
   if (marker_num > 0) {
     for (var i = 0; i < marker_num - 1; i++) {
-      var latlng = gon.group_items_info[1][i];
-      var user_item_id = gon.group_items_info[2][i];
-      var vote_c = gon.group_items_info[3][i];
+      var latlng = gon.voted_items_info[1][i];
+      var user_item_id = gon.voted_items_info[2][i];
+      var vote_c = gon.voted_items_info[3][i];
 
       // 得票数のチェック→マーカーのデザインを変更
       if (current_vote_max > vote_c){
@@ -238,9 +238,9 @@ owner_init_gmap = function(){
     }
 
     // 最後のマーカーを作成・同時に地図を移動
-    var last_marker_latlng = gon.group_items_info[1][marker_num - 1];
-    var last_marker_user_item_id = gon.group_items_info[2][marker_num - 1];
-    var last_marker_vote_c = gon.group_items_info[3][marker_num - 1];
+    var last_marker_latlng = gon.voted_items_info[1][marker_num - 1];
+    var last_marker_user_item_id = gon.voted_items_info[2][marker_num - 1];
+    var last_marker_vote_c = gon.voted_items_info[3][marker_num - 1];
 
     if (current_vote_max > last_marker_vote_c){
       marker_img_index += 1;

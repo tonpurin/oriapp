@@ -13,7 +13,7 @@ class OwnersController < ApplicationController
 
     # --- JSでも利用可能な変数 ----
     # 投票中のアイテムのID・ジオコード・ユーザ✕アイテムIDを配列で取得...[[ID], [Geo], [GroupItemID], [VoteNum]]
-    gon.group_items_info = GroupItem.extract_item_info(@owner_items)
+    gon.voted_items_info = GroupItem.extract_item_info(@owner_items)
   end
 
   def search
