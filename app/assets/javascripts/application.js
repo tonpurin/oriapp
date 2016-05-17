@@ -46,6 +46,6 @@ selected_item_click = function (){
 
       // マーカーの変更
       var marker_id = parseInt($(item_li).data('id'));
-      chenge_marker_design(marker_id);
+      chenge_current_marker_design(marker_id);
   });
 };

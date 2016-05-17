@@ -15,6 +15,7 @@ var destroy_item_id = gon.voted_items_info[0][destroy_item_index]; // 作業用
 gon.voted_items_info[0].splice(destroy_item_index, 1);
 gon.voted_items_info[1].splice(destroy_item_index, 1);
 gon.voted_items_info[2].splice(destroy_item_index, 1);
+gon.voted_items_info[3].splice(destroy_item_index, 1);
 
 // iineボタンにトグル
 if (gon.current_item_id == destroy_item_id){
@@ -23,8 +24,8 @@ if (gon.current_item_id == destroy_item_id){
 	$('.yokunaine-button').hide();
 };
 
-// google map初期化...アイコンの調整のため
-owner_init_gmap();
+// アイコンの調整
+adapt_voted_result();
 
 // yokunaineボタンのリクエストを調整
 set_current_item_info();
