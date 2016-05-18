@@ -16,6 +16,10 @@
 //= require_tree .
 //= require nested_form_fields
 
+if (document.URL.match("/users/sign_in")){
+  alert("iPhone6で見てください");
+};
+
 toggle_iine_yokunaine = function () {
 
   // ユーザに選択されたアイテムか否かを判断してボタンをトグル
