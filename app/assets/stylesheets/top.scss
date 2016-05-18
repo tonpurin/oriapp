@@ -4,9 +4,11 @@
 }
 
 .display-map{
-	position: relative;
-	top: 2%;
-	height: 60%;
+	position: fixed;
+	width: 980px;
+	top: 9%;
+	height: 900px;
+	z-index:9;
 }
 
 .display-map .map-embed
@@ -28,12 +30,14 @@
 
 
 .display-slide-button {
+	position: relative;
+	top: -40px;
 	font-size: 60px;
 	text-align: center;
 	font-family: 'Neucha', cursive;
 	color: #CACEDA;
 	display: block;
-	margin-top : 50px;
+	//margin-top : 50px;
 }
 
 .display-slide-button:hover {
@@ -59,6 +63,10 @@
 .pattern4 {
 	position: relative;
 	top: -20%;
+}
+
+.slick-next, .slick-prev{
+	z-index:5;
 }
 
 .display-items .item-info {

@@ -113,7 +113,6 @@
     overflow-y: auto;
   transition: .2s;
   -webkit-transition: .2s;
-  z-index:2;
   background:rgba(253,253,253,.9);
 
 }

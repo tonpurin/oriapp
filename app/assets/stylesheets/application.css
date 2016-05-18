@@ -36,9 +36,13 @@ h1, h2, h3, h4, h5, h6, p, body {
 
 /* header */
 header {
+  position: fixed;
+  top: 0%;
+  width: 100%;
   height: 8%;
   background-color: #333333;
-  margin-bottom: 0px 5px;
+  z-index:100;
+  /*margin-bottom: 0px 5px;*/
 }
 
 header .left-contents {
@@ -98,6 +102,10 @@ header .right-contents .right-notification img {
 }
 header .right-contents .right-notification img:hover{
   border: solid 5px #5EABE6;
+}
+
+.dummy-div {
+  height: 65%;
 }
 
 /* footer */
